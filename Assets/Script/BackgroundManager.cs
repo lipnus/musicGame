@@ -8,11 +8,12 @@ public class BackgroundManager : MonoBehaviour {
 	public GameObject cloud;
 	public GameObject building;
 	public GameObject near;
-    
-	public float userSpeed;
+
+	float userSpeed;
 
 	// this for initialization
 	void Start () {
+        userSpeed = 2.5f;
 		
 	}
 	
@@ -23,8 +24,9 @@ public class BackgroundManager : MonoBehaviour {
 		building.transform.Translate(Vector3.right * (userSpeed-1.3f) * Time.deltaTime);
         
 		//near.transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
-        
-        
-
 	}
+
+    public void userSpeedControl(float percent){
+        this.userSpeed *= percent;
+    }
 }

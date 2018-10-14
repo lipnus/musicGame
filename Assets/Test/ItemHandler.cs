@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragHandler : MonoBehaviour {
+public class ItemHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

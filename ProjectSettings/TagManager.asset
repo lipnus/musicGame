@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - item
+  - cat
+  - score
+  - answerBox
   layers:
   - Default
   - TransparentFX

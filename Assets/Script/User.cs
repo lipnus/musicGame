@@ -8,6 +8,7 @@ public class User : MonoBehaviour
     public float userSpeed;
     public float jumpPower;
     public GameManager gameManager;
+    public BackgroundManager backgroudManager;
     public SoundManager soundManager;
 
     public List<GameObject> note = new List<GameObject>();
@@ -30,19 +31,30 @@ public class User : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //어떤 것과 충돌했는지 판단(l:라인, n:음표, c:collidar)
-        string type = col.transform.name.Substring(0, 1);
-        GameObject obj = null;
+        Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
 
-        Debug.Log("충돌: " + col + " / " + col.transform.name + " type: " + type);
+        if(col.tag.Equals("cat")) colCat(col);
 
-        if (type.Equals("l")){
-            colLine(col);
-        }else if(type.Equals("n")){
-            colNote(col);
-        }else if(type.Equals("c")){
 
+
+        if (col.tag.Equals("score")){
+
+            string type = col.name.Substring(0, 1);
+
+            //어떤 것과 충돌했는지 판단(l:라인, n:음표, c:collidar)
+            if (type.Equals("l")) colLine(col);
+            else if (type.Equals("n")) colNote(col);
         }
+    }
+
+    //야옹충돌
+    private void colCat(Collider2D col){
+
+        //부딪힌 야옹이 찾음
+        GameObject catObj = GameObject.Find(col.name).GetComponent<GameObject>();
+
+        //주인공 속도감소
+        backgroudManager.userSpeedControl(0.7f);
 
     }
 
@@ -56,7 +68,7 @@ public class User : MonoBehaviour
         }
 
         noteObj.GetComponent<Animator>().SetTrigger("Die_t");
-        soundManager.notePlay();
+        soundManager.notePlay(); //효과음
     }
 
 

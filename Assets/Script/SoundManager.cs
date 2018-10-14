@@ -20,10 +20,7 @@ public class SoundManager : MonoBehaviour {
 
     //임의의 멜로디
     public void notePlay(){
-
-        Debug.Log("notePlay()호출");
         int noteIdx = Random.Range(0, noteSoaunds.Count-1);
         noteSoaunds[noteIdx].GetComponent<AudioSource>().Play();
-
     }
 }
