@@ -14,7 +14,6 @@ public class BackgroundManager : MonoBehaviour {
 	// this for initialization
 	void Start () {
         userSpeed = 2.5f;
-		
 	}
 	
 	// Update is called once per frame

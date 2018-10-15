@@ -12,7 +12,7 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public bool submit = false; //답안칸에 제출된상태인지
     Vector3 startPosition; //초기 생성위치
 
-
+    
     public void OnBeginDrag(PointerEventData eventData){
         dragging = true;
     }
@@ -28,27 +28,27 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         //답안칸 밖에서 시작한 드래그의 끝
         if (!submit){
-            if (!collision) transform.position = startPosition; //충돌상태가 아니면 초기생성위치로 복귀
+            if (!collision) comebackToStartPoint();
             dragging = false;    
         }
         
         //답안칸 안에서 시작한 드래그의 끝
         if (submit){
             if (!collision){
-                transform.position = startPosition; //충돌상태가 아니면 '초기생성위치'로 복귀
+                comebackToStartPoint(); 
                 submit = false;
             }
             dragging = false;
         }
     }
 
+    //초기생성위치로 복귀
+    public void comebackToStartPoint() {
+        transform.position = startPosition;
+    }
+
     // Use this for initialization
     void Start(){
         startPosition = gameObject.transform.position; //초기 생성위치 저장
-    }
-
-    // Update is called once per frame
-    void Update(){
-
     }
 }
