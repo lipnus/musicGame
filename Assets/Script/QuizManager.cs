@@ -8,7 +8,7 @@ public class QuizManager : MonoBehaviour {
 
     
 
-	static string answer="ㅅㅂㄹㅁ"; //정답(서버에서 받아온다)
+	static string answer="ㅊㅇㅇ"; //정답(서버에서 받아온다)
 	public Image[] answerBoxImg; //제출된 정답
 	public Text[] initialTexts; //정답입력칸
 	private int initialTextSize; //보기로 주어진 자음의 개수
@@ -58,18 +58,15 @@ public class QuizManager : MonoBehaviour {
 		    answerBoxImg[i].gameObject.SetActive(true);
 	    }
 
-	  
-	    
 	    //서버에서 데이터를 받아와서 할당해주는 부분
 	    //answer, answerLength 할당
 	    //initialText에 답과 오답 섞어서 뿌려주기
 	    
-	    //1초에 한번씩 답을 체크하는 코루틴
 	    StartCoroutine("AnswerCheck", 1);
 	}
 	
 	
-	
+	//1초에 한번씩 답을 체크하는 코루틴
 	IEnumerator AnswerCheck(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
 		
@@ -93,13 +90,11 @@ public class QuizManager : MonoBehaviour {
 			}
 			Debug.Log("결과: " + result);
 		}
-		
 		StartCoroutine("AnswerCheck", 1);
 	}
 
-
-
-	//임의의 자음 하나를 리턴
+	
+	//임의의 자음텍스트 하나를 리턴
 	string FakeText(){
 		string consonant = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㅆ"; //17개
 		int lotto = Random.Range(0, consonant.Length-1);

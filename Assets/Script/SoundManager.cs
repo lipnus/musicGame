@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
-    public List<AudioSource> noteSoaunds = new List<AudioSource>();
-
-    // Use this for initialization
-    void Start () {
-		
-	}
+    public List<AudioSource> noteSounds = new List<AudioSource>();
+	public List<AudioSource> catSounds = new List<AudioSource>();
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
 
     //임의의 멜로디
     public void notePlay(){
-        int noteIdx = Random.Range(0, noteSoaunds.Count-1);
-        noteSoaunds[noteIdx].GetComponent<AudioSource>().Play();
+        int idx = Random.Range(0, noteSounds.Count-1);
+        noteSounds[idx].GetComponent<AudioSource>().Play();
     }
+
+	//임의의 고양이 울음소리
+	public void catPlay() {
+		int idx = Random.Range(0, catSounds.Count-1);
+		catSounds[idx].GetComponent<AudioSource>().Play();
+	}
 }

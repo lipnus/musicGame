@@ -21,8 +21,6 @@ public class BackgroundManager : MonoBehaviour {
         sky.transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
 		cloud.transform.Translate(Vector3.right * (userSpeed-0.1f) * Time.deltaTime);
 		building.transform.Translate(Vector3.right * (userSpeed-1.3f) * Time.deltaTime);
-        
-		//near.transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
 	}
 
     public void userSpeedControl(float percent){

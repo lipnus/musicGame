@@ -10,7 +10,6 @@ public class AnswerBox : MonoBehaviour
 	//자음이 답안박스에 와서 충돌
 	void OnCollisionStay2D(Collision2D col){
 		col.collider.GetComponent<InitialText>().collision = true;
-		
 		col.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; 
 		
 		//드래그가 끝남

@@ -10,10 +10,10 @@ public class User : MonoBehaviour
     public GameManager gameManager;
     public BackgroundManager backgroudManager;
     public SoundManager soundManager;
+    
 
-    public List<GameObject> note = new List<GameObject>();
-    public List<GameObject> line = new List<GameObject>();
-
+    private bool catCollision;
+    
 
     // Use this for initialization
     void Start(){
@@ -32,13 +32,10 @@ public class User : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
-
         if(col.tag.Equals("cat")) colCat(col);
 
 
-
         if (col.tag.Equals("score")){
-
             string type = col.name.Substring(0, 1);
 
             //어떤 것과 충돌했는지 판단(l:라인, n:음표, c:collidar)
@@ -47,40 +44,39 @@ public class User : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerExit2D(Collider2D col) {
+
+        if (col.tag.Equals("cat")){
+            GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
+            catCollision = false;
+        }
+    }
+ 
+    
+
     //야옹충돌
     private void colCat(Collider2D col){
 
-        //부딪힌 야옹이 찾음
-        GameObject catObj = GameObject.Find(col.name).GetComponent<GameObject>();
+        Debug.Log("애옹");
+        GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
 
         //주인공 속도감소
-        backgroudManager.userSpeedControl(0.7f);
+//        backgroudManager.userSpeedControl(0.7f);
 
+        catCollision = true;
+        soundManager.catPlay();
     }
 
     //음표충돌
     private void colNote(Collider2D col){
-        GameObject noteObj=null;
-
-        //부딪힌 음표를 찾음
-        for (int i = 0; i < note.Count; i++){
-            if (col.transform.name == note[i].name) noteObj = note[i];
-        }
-
-        noteObj.GetComponent<Animator>().SetTrigger("Die_t");
+        col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
     }
 
 
     //라인충돌
     private void colLine(Collider2D col){
-        GameObject lineObj = null;
-
-        //부딪힌 라인을 찾음
-        for (int i = 0; i < line.Count; i++){
-            if (col.transform.name == line[i].name) lineObj = line[i];
-        }
-
-        lineObj.GetComponent<Animator>().SetTrigger("Die_t");
+        col.GetComponent<Animator>().SetTrigger("Die_t");
     }
 }
