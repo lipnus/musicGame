@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class User : MonoBehaviour
 {
@@ -25,8 +26,10 @@ public class User : MonoBehaviour
         transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
     }
 
+    //점프
     public void Jump(){ 
         GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower);
+        GetComponent<Animator>().SetTrigger("jump_t");
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -50,6 +53,11 @@ public class User : MonoBehaviour
         if (col.tag.Equals("cat")){
             GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
             catCollision = false;
+
+            Vector3 mPosition = gameObject.transform.position;
+            mPosition.x += 3;
+            GlobalScript.userPosition = mPosition; 
+            SceneManager.LoadScene("Quiz_initial");
         }
     }
  
@@ -62,7 +70,10 @@ public class User : MonoBehaviour
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
 
         //주인공 속도감소
-//        backgroudManager.userSpeedControl(0.7f);
+        backgroudManager.userSpeedControl(0.8f);
+        
+        //화면전환효과
+        GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>().catEffect();
 
         catCollision = true;
         soundManager.catPlay();

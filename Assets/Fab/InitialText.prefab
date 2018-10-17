@@ -46,7 +46,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.001
-  m_GravityScale: 0.004
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -160,6 +160,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -680, y: 204.4}
+  m_AnchoredPosition: {x: -736.2002, y: 99.00009}
   m_SizeDelta: {x: 98.30005, y: 69.400024}
   m_Pivot: {x: 0.5, y: 0.5}

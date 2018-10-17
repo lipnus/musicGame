@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class QuizManager : MonoBehaviour {
+public class QuizManager : MonoBehaviour{
 
     
 
-	static string answer="ㅊㅇㅇ"; //정답(서버에서 받아온다)
+	static string answer="ㄱㄴㄷㄹ"; //정답(서버에서 받아온다)
 	public Image[] answerBoxImg; //제출된 정답
 	public Text[] initialTexts; //정답입력칸
 	private int initialTextSize; //보기로 주어진 자음의 개수
@@ -18,7 +19,7 @@ public class QuizManager : MonoBehaviour {
     void Start () {
 	    
 	    //자음은 답안길이 +2개
-	    initialTextSize = answer.Length + 2;
+	    initialTextSize = answer.Length + 3;
 	    
 	    //자음텍스트 객체들을 배열에 저장
 	    initialTexts = new Text[initialTextSize];
@@ -89,8 +90,11 @@ public class QuizManager : MonoBehaviour {
 				}
 			}
 			Debug.Log("결과: " + result);
+			if (result) {
+				SceneManager.LoadScene("CityScene");
+			}
 		}
-		StartCoroutine("AnswerCheck", 1);
+		StartCoroutine("AnswerCheck", 0.1f);
 	}
 
 	
