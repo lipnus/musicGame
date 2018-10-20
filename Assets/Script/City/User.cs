@@ -70,7 +70,7 @@ public class User : MonoBehaviour
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
 
         //주인공 속도감소
-        backgroudManager.userSpeedControl(0.8f);
+//        backgroudManager.userSpeedControl(0.8f);
         
         //화면전환효과
         GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>().catEffect();

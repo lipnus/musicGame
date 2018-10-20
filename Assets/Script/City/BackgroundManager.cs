@@ -30,27 +30,28 @@ public class BackgroundManager : MonoBehaviour {
         this.userSpeed *= percent;
     }
 
+	//고양이 만났을 때
 	public void catEffect() {
-
+	
 		//투시시점
 		Camera.main.orthographic = false;
 		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
-
+	
 		//카메라초점거리
-		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 6f;
+		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 4f;
 		
 		StartCoroutine("rotateCamera", 0.1);
 	}
 	
 	
-	//카메라시점변화
+	//카메라 시점변화
 	IEnumerator rotateCamera(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
-
+	
 		Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-		cam.transform.Rotate(Vector3.up * 0.15f); 
+		cam.transform.Rotate(Vector3.up * 0.2f); 
 		cam.transform.Translate( Vector3.back * 0.005f);
-
+	
 		StartCoroutine("rotateCamera", 0.05f);
 	}
 }
