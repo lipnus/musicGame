@@ -83,11 +83,13 @@ public class User : MonoBehaviour
     private void colNote(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
+        GlobalScript.modifyScore(1);
     }
 
 
     //라인충돌
     private void colLine(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
+        GlobalScript.modifyScore(1);
     }
 }

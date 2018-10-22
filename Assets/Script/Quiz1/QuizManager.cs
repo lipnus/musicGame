@@ -18,6 +18,11 @@ public class QuizManager : MonoBehaviour{
     // Use this for initialization
     void Start () {
 	    
+	    //통신을 통해 정보를 받아오는 부분
+	    //========================
+	    GlobalScript.answerStr = "정답\n아이유 - 좋은날";
+	    
+	    
 	    //자음은 답안길이 +2개
 	    initialTextSize = answer.Length + 3;
 	    

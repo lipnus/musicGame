@@ -24,28 +24,26 @@ public class HomeUser : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D col) {
 		
 		//3개짜리 전구 앞
-		if (col.name.Equals("Switch1")) {
+		if (col.name.Equals("Switch1")){
 			threeCeilingLight_off.SetActive(false);
 			threeCeilingLight_on.SetActive(true);
 			dark2.SetActive(false);
 			dark3.SetActive(true);
 			switchSound.Play();
 			
-		}else if (col.name.Equals("Switch2")) {
+		}else if (col.name.Equals("Switch2")){
 			
-		}else if (col.name.Equals("Switch3")) {
+		}else if (col.name.Equals("Switch3")){
 			ceilingLight_off.SetActive(false);
 			ceilingLight_on.SetActive(true);
 			dark3.SetActive(false);
 			dark4.SetActive(true);
 			switchSound.Play();
 
-			
-		}else if (col.name.Equals("Switch4")) {
+		}else if (col.name.Equals("Switch4")){
 			door_close.SetActive(false);
 			door_open.SetActive(true);
 			doorSound.Play();
-			
 		}
 	}
 }

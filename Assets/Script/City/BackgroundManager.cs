@@ -18,6 +18,14 @@ public class BackgroundManager : MonoBehaviour {
 		user.transform.position = GlobalScript.userPosition;
 		sky.transform.position = GameObject.Find("Main Camera").GetComponent<Camera>().transform.position;
 		sky.transform.Translate(Vector3.forward*10f);
+		
+		//점수표시
+		GlobalScript.showScoreText();
+		
+		//음악퀴즈를 풀고 돌아온 경우
+		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {
+			returnFromMusicQuiz();
+		}
 	}
 	
 	void Update () {
@@ -26,6 +34,13 @@ public class BackgroundManager : MonoBehaviour {
 		building.transform.Translate(Vector3.right * (userSpeed-1.3f) * Time.deltaTime);
 	}
 
+	
+	void returnFromMusicQuiz() {
+		string answerStr = GlobalScript.answerStr;
+		GameObject.Find("textManager").GetComponent<TextManager>().showText_Long(answerStr);
+	}
+
+	
     public void userSpeedControl(float percent){
         this.userSpeed *= percent;
     }

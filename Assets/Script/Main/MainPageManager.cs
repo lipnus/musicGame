@@ -25,7 +25,6 @@ public class MainPageManager : MonoBehaviour {
 	public void onClick_camera() {
 		main.active = false;
 		camera.active = true;
-		
 		StartCoroutine("CamScreenOff", 4);
 	}
 	
@@ -45,7 +44,7 @@ public class MainPageManager : MonoBehaviour {
 	}
 
 	public void onClick_gamestart() {
-		SceneManager.LoadScene("CityScene");
+		SceneManager.LoadScene("HomeScene");
 	}
 	
 }
