@@ -64,7 +64,7 @@ public class BackgroundManager : MonoBehaviour {
 		yield return new WaitForSeconds(delayTime);
 	
 		Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-		cam.transform.Rotate(Vector3.up * 0.2f); 
+		cam.transform.Rotate(Vector3.up * 0.15f); 
 		cam.transform.Translate( Vector3.back * 0.005f);
 	
 		StartCoroutine("rotateCamera", 0.05f);

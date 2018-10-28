@@ -10,6 +10,7 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject mobile;
 	public GameObject main;
 	public GameObject camera;
+	public GameObject info;
 	
 	
 	// Use this for initialization
@@ -22,17 +23,26 @@ public class MainPageManager : MonoBehaviour {
 //		mobile.transform.Translate(Vector3.up * 0.06f);
 	}
 
+	//카메라메뉴
 	public void onClick_camera() {
 		main.active = false;
 		camera.active = true;
-		StartCoroutine("CamScreenOff", 4);
+		StartCoroutine("ReturnMainScreen", 4);
+	}
+	
+	//정보메뉴
+	public void onClick_info() {
+		main.active = false;
+		info.active = true;
+		StartCoroutine("ReturnMainScreen", 3);
 	}
 	
 	//3초후 종료
-	IEnumerator CamScreenOff(float delayTime) { 
+	IEnumerator ReturnMainScreen(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
 
 		camera.active = false;
+		info.active = false;
 		main.active = true;
 	}
 
@@ -42,7 +52,8 @@ public class MainPageManager : MonoBehaviour {
 		GameObject.Find("shot_img").GetComponent<Animator>().SetTrigger("shot_t");
 		GameObject.Find("MainPageManager").GetComponent<MainSound>().playShutter();
 	}
-
+	
+	//게임시작
 	public void onClick_gamestart() {
 		SceneManager.LoadScene("HomeScene");
 	}

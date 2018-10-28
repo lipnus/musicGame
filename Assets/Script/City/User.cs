@@ -74,7 +74,6 @@ public class User : MonoBehaviour
         
         //화면전환효과
         GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>().catEffect();
-
         catCollision = true;
         soundManager.catPlay();
     }

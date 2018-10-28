@@ -23,11 +23,17 @@ public static class GlobalScript {
         PlayerPrefs.SetInt("Score", score);
         showScoreText();
     }
-    
+  
     
     //현재점수 표시
     public static void showScoreText() {
         int score = PlayerPrefs.GetInt("Score", 0);
         GameObject.Find("scoreText").GetComponent<Text>().text = score + "";
+    }
+    
+    
+    //음악재생시간
+    public static int getPlayTime() {
+        return PlayerPrefs.GetInt("PlayTime", 2);
     }
 }
