@@ -72,7 +72,10 @@ public class QuizManager : MonoBehaviour{
 	}
 	
 	
-	//1초에 한번씩 답을 체크하는 코루틴
+
+	
+	
+	//답을 체크하는 코루틴
 	IEnumerator AnswerCheck(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
 		

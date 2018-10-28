@@ -34,4 +34,12 @@ public class TextManager : MonoBehaviour {
 		g.GetComponent<CanvasRenderer>().SetAlpha(1f);
 		g.CrossFadeAlpha(0f, t, false);
 	}
+
+
+
+
+	//점수를 표시한다
+	public void showText() {
+		
+	}
 }

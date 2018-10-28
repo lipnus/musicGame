@@ -52,7 +52,7 @@ public class HomeManager : MonoBehaviour {
 		
 		//걷기시작
 		user.GetComponent<Animator>().SetTrigger("walking_t");
-		StartCoroutine("walking", 1);
+		StartCoroutine("walking", 0);
 		
 		yield return new WaitForSeconds(8);
 		SceneManager.LoadScene("CityScene");
