@@ -102,6 +102,11 @@ public class QuizManager : MonoBehaviour{
 			}
 			Debug.Log("결과: " + result);
 			if (result) {
+				//정답일 때
+				SceneManager.LoadScene("CityScene"); 
+			}
+			else {
+				//오답일 때
 				SceneManager.LoadScene("CityScene");
 			}
 		}
@@ -126,7 +131,7 @@ public class QuizManager : MonoBehaviour{
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;
 
-		int playTime = GlobalScript.getPlayTime();
+		float playTime = GlobalScript.getPlayTime();
 		StartCoroutine(stopMusic(playTime));
 	}
 	

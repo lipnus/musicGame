@@ -47,7 +47,6 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         transform.position = startPosition;
     }
 
-    // Use this for initialization
     void Start(){
         startPosition = gameObject.transform.position; //초기 생성위치 저장
     }
