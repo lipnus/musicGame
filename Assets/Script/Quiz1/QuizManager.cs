@@ -100,13 +100,15 @@ public class QuizManager : MonoBehaviour{
 					result = false;
 				}
 			}
-			Debug.Log("결과: " + result);
+			
 			if (result) {
 				//정답일 때
+				GlobalScript.lifeEvent = 0; //목숨 변동사항 없음
 				SceneManager.LoadScene("CityScene"); 
 			}
 			else {
 				//오답일 때
+				GlobalScript.lifeEvent = -1; //목숨 변동사항 있음
 				SceneManager.LoadScene("CityScene");
 			}
 		}

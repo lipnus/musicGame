@@ -8,8 +8,6 @@ public class User : MonoBehaviour
 
     public float userSpeed;
     public float jumpPower;
-    public GameManager gameManager;
-    public BackgroundManager backgroudManager;
     public SoundManager soundManager;
 
     private bool isJumped;
@@ -51,14 +49,10 @@ public class User : MonoBehaviour
     
     
     
-    
-    
-    
-    
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
+//        Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
         if(col.tag.Equals("cat")) colCat(col);
 
 
@@ -90,14 +84,14 @@ public class User : MonoBehaviour
     //야옹충돌
     private void colCat(Collider2D col){
 
-        Debug.Log("애옹");
+//        Debug.Log("애옹");
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
 
         //주인공 속도감소
 //        backgroudManager.userSpeedControl(0.8f);
         
         //화면전환효과
-        GameObject.Find("BackgroundManager").GetComponent<BackgroundManager>().catEffect();
+        GameObject.Find("FieldManager").GetComponent<FieldManager>().catEffect();
         catCollision = true;
         soundManager.catPlay();
     }

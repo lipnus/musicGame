@@ -11,7 +11,6 @@ public class ConnectServer : MonoBehaviour {
 	//테스트용경로: "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music/likeit.mp3";
 
 	
-
 	
 	public void quiz_1(int genre, int order) {
 		WWWForm form = new WWWForm();
@@ -28,6 +27,7 @@ public class ConnectServer : MonoBehaviour {
 		));
 	}
 	
+	
 	//서버로 데이터를 post하는 코루틴
 	IEnumerator postToServer(WWWForm form, string path, Action<UnityWebRequest> callback) {
 
@@ -39,7 +39,6 @@ public class ConnectServer : MonoBehaviour {
 		}else {
 			Debug.Log("Form upload complete!");
 		}
-		
 		callback(www);
 	}
 
@@ -48,8 +47,8 @@ public class ConnectServer : MonoBehaviour {
 		if (musicInfo!=null) StartCoroutine("streamingSound");
 	}
 	
+	
 	IEnumerator streamingSound() {
-
 		string musicPath = GlobalScript.musicPath + "/" + musicInfo.path;
 		using (var www = new WWW(musicPath)){			
 			yield return www; //다운받을동안 대기
@@ -63,12 +62,11 @@ public class ConnectServer : MonoBehaviour {
 		}
 	}
 
+	
 	IEnumerator stopMusic(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 		source.Stop();
 	}
-
-
 
 
 	public MusicInfo getMusicInfo() {

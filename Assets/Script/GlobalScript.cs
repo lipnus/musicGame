@@ -12,11 +12,11 @@ public static class GlobalScript {
     public static string musicPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
 
     
-    //퀴즈 풀고 필드로 돌아왔을때
+    //퀴즈 <-> 필드 사이의 데이터 전달을 위한 변수들
     //public static int userPosition=0;
     public static Vector3 userPosition = new Vector3(0,0,0); //위치 기억
     public static string answerStr = ""; //정답표시
-    public static bool isAnswer; //맞았는지 확인
+    public static int lifeEvent; // -1:오답 , 0:정답 1:보너스
 
     
     //점수조작
@@ -30,6 +30,11 @@ public static class GlobalScript {
     //목숨초기화
     public static void setLife(int life) {
         PlayerPrefs.SetInt("Life", life);
+    }
+    
+    //목숨값받기
+    public static int getLife() {
+        return PlayerPrefs.GetInt("Life", 1);
     }
     
     //목숨수정
