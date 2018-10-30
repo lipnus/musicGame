@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Networking;
 
 public class FieldManager : MonoBehaviour {
@@ -11,16 +12,23 @@ public class FieldManager : MonoBehaviour {
 	public GameObject user;
 	public GameObject near;
 
+ 
 	float userSpeed;
 
-	void Update () {
+	void Update () { 
 		sky.transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
 		cloud.transform.Translate(Vector3.right * (userSpeed-0.1f) * Time.deltaTime);
-		building.transform.Translate(Vector3.right * (userSpeed-1.3f) * Time.deltaTime);
+		building.transform.Translate(Vector3.right * (userSpeed-1.3f) * Time.deltaTime);	
+ 
+		
 	}
 	
 	
 	void Start () {
+		
+		//테스트용, 반드시 지울것
+		GlobalScript.setLife(1);
+		
         userSpeed = 2.5f;
 		user.transform.position = GlobalScript.userPosition;
 		sky.transform.position = GameObject.Find("Main Camera").GetComponent<Camera>().transform.position;
@@ -54,11 +62,29 @@ public class FieldManager : MonoBehaviour {
 			
 			//사망여부확인
 			if (GlobalScript.getLife() <= 0) {
-				Debug.Log("다이");
+				StartCoroutine(userDie(1));
 			}
 		}
 	}
 
+	
+	//[게임오버] 메인 코루틴
+	IEnumerator userDie(float delayTime) {
+
+		
+		
+		//UI게임오버효과
+		GameObject.Find("UIManager").GetComponent<UIManager>().UIUserDie(); 
+		yield return new WaitForSeconds(delayTime);
+		
+		//기력딸려서 속도느려짐
+		GameObject.Find("User").GetComponent<User>().userSpeed = 0.1f;
+		
+		//죽음을 직감한 멘트
+		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long("텐션이 떨어진다...");
+	}
+
+	
 	
     public void userSpeedControl(float percent){
         this.userSpeed *= percent;

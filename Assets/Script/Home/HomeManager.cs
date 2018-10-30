@@ -32,7 +32,7 @@ public class HomeManager : MonoBehaviour {
 
 	IEnumerator Scenario(float delayTime) { 
 		yield return new WaitForSeconds(1);
-		GameObject.Find("textManager").GetComponent<UIManager>().showText("잠이 오지 않아..");
+		GameObject.Find("UIManager").GetComponent<UIManager>().showText("잠이 오지 않아..");
 		yield return new WaitForSeconds(2);
 
 		//불켜기
@@ -42,7 +42,7 @@ public class HomeManager : MonoBehaviour {
 		dark1.SetActive(false);
 		dark2.SetActive(true);
 		switchSound.Play();
-		GameObject.Find("textManager").GetComponent<UIManager>().showText("공허한 마음을 달래줄 것은 오직 음악..");
+		GameObject.Find("UIManager").GetComponent<UIManager>().showText("공허한 마음을 달래줄 것은 오직 음악..");
 		yield return new WaitForSeconds(1);
 		
 		//일어남

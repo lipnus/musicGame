@@ -17,6 +17,7 @@ public class User : MonoBehaviour
     private int groundPosition; //점프하기 전의 y좌표(제일앞 3자리만 비교)
 
     private bool jumpOK=true;
+    private bool slow = false;
     
 
     // Use this for initialization
@@ -28,6 +29,8 @@ public class User : MonoBehaviour
     void Update(){
         transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
     }
+
+
 
     //점프
     public void Jump() {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -13,6 +14,9 @@ public class UIManager : MonoBehaviour {
 	private const int LIFE_UNIT = 166; //목숨 한칸의 양
 	private const int LIFE_MAX = 500; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
+	
+	//게임오버
+	public Image userDieBackgroud;
 
 	public void showText(string str) {
 		midText.text = str;
@@ -78,11 +82,25 @@ public class UIManager : MonoBehaviour {
 		rt.sizeDelta = new Vector2 (nowWidth, nowHeight);
 	}
 
-
-
-
 	//점수를 표시한다
 	public void showText() {
 		
+	}
+
+
+	//게임오벼 연출
+	public void UIUserDie() {
+		Debug.Log("디져라");
+
+		userDieBackgroud.gameObject.SetActive(true);
+		FadeIn(userDieBackgroud, 4f);
+		
+		StartCoroutine(DieEvent(4));
+	}
+
+	IEnumerator DieEvent(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		SceneManager.LoadScene("DieScene");
+
 	}
 }
