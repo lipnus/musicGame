@@ -1022,8 +1022,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 462414299
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe55a52b54d284b2187279c02e877686, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: "\uB204\uAD6C\uC640 \uB2EE\uC558\uB2E4\uB294 \uC774\uC57C\uAE30\uB294 \uACE7
     \uC2E0\uB784\uD55C \uBE44\uD310\uACFC\uB3C4 \uAC19\uB2E4.\n\uB0B4 \uC2A4\uD0C0\uC77C\uC744,
     \uC74C\uC545\uC744 \uBAA8\uC695\uD558\uB294 \uC5B8\uC0AC\uB2E4.\n\nSnoop Dogg"

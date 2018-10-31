@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour {
 
     public List<AudioSource> noteSounds = new List<AudioSource>();
 	public List<AudioSource> catSounds = new List<AudioSource>();
+	public AudioSource footSound;
 	
 
     //임의의 멜로디
@@ -18,5 +19,10 @@ public class SoundManager : MonoBehaviour {
 	public void catPlay() {
 		int idx = Random.Range(0, catSounds.Count-1);
 		catSounds[idx].GetComponent<AudioSource>().Play();
+	}
+	
+	//발소리
+	public void footPlay() {
+		footSound.GetComponent<AudioSource>().Play();
 	}
 }

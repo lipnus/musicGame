@@ -45,9 +45,9 @@ public class User : MonoBehaviour
     
     IEnumerator JumpCheck(float delayTime) {
         yield return new WaitForSeconds(delayTime); //표시시간
+        soundManager.footPlay(); //효과음(발소리)
         jumpOK = true;
     }
-    
     
     
     

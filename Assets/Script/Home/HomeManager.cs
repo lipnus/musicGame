@@ -54,8 +54,9 @@ public class HomeManager : MonoBehaviour {
 		user.GetComponent<Animator>().SetTrigger("walking_t");
 		StartCoroutine("walking", 0);
 		
-		yield return new WaitForSeconds(8);
-		SceneManager.LoadScene("CityScene");
+		yield return new WaitForSeconds(6);
+		SceneManager.LoadScene("CityScene");		
+
 	}
 	
 	

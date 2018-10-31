@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DieScene.unity
     guid: 5b0f73c438a374b918b057149d4fa34e
+  - enabled: 1
+    path: Assets/Scenes/RiverScene.unity
+    guid: 68da88c4fcc354535a4d9ce524c197e8
   m_configObjects: {}

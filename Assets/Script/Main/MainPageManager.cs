@@ -56,6 +56,8 @@ public class MainPageManager : MonoBehaviour {
 	//게임시작
 	public void onClick_gamestart() {
 		GlobalScript.setLife(1);
+		GlobalScript.lifeEvent = 0;
+		GlobalScript.userPosition = new Vector3(0,0,0);
 		SceneManager.LoadScene("HomeScene");
 	}
 	
