@@ -16,8 +16,8 @@ public class DieText{
        
         list.Add("누구와 닮았다는 이야기는 곧 신랄한 비판과도 같다.\n내 스타일을, 음악을 모욕하는 언사다.\n\nSnoop Dogg");
         list.Add("가사에 허황된 이야기를 쓰지 않는다.\n내가 하는 음악은 내 삶이 닮긴 결과물이다.\n\nScHoolboy Q");
-        list.Add("The best is yet to come\n내 생에 최고의 순간은 아직 오지 않았다.\n\nFrank Sinatra");
-        list.Add("And the beat goes on\n(그리고 내 노래의 고동은 이어진다.)\n\nSalvatore Phillip Bono");
+        list.Add("내 생에 최고의 순간은 아직 오지 않았다.\n\nFrank Sinatra");
+        list.Add("그리고 내 노래의 고동은 이어진다.\n\nSalvatore Phillip Bono");
         list.Add("난 이 세상의 밑바닥이 아닌 밑받침.\n\nTablo");
         list.Add("언어가 끝나는 곳에서 음악은 시작된다.\n\nWolfgang Amadeus Mozart");
         list.Add("마음이 깨끗한 자만이 맛있는 음식을 요리할 수 있다.\n\nLudwig van Beethoven");

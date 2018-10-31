@@ -108,7 +108,7 @@ public class FieldManager : MonoBehaviour {
 	
 		//투시시점
 		Camera.main.orthographic = false;
-//		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
+		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
 	
 		//카메라초점거리
 		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 4f;

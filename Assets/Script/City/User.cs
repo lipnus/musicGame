@@ -89,9 +89,6 @@ public class User : MonoBehaviour
 
 //        Debug.Log("애옹");
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
-
-        //주인공 속도감소
-//        backgroudManager.userSpeedControl(0.8f);
         
         //화면전환효과
         GameObject.Find("FieldManager").GetComponent<FieldManager>().catEffect();
