@@ -19,6 +19,7 @@ public class AnswerBox : MonoBehaviour
 			if (mText != null && col.collider.GetComponent<Text>().text != mText.text) {
 				mText.GetComponent<InitialText>().comebackToStartPoint();
 			}
+			//빈칸에 다른 게 들어옴
 			else {
 				col.collider.gameObject.transform.position = transform.position; //위치를 박스 안으로 고정
 				col.collider.GetComponent<InitialText>().submit = true;

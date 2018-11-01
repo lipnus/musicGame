@@ -25,7 +25,12 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     }
 
     public void OnEndDrag(PointerEventData eventData){
-
+        
+        Debug.Log("E!: " + -transform.eulerAngles.z);
+        
+        //회전값 복구
+        transform.Rotate(0, 0, -transform.eulerAngles.z);
+        
         //답안칸 밖에서 시작한 드래그의 끝
         if (!submit){
             if (!collision) comebackToStartPoint();
@@ -39,7 +44,7 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 submit = false;
             }
             dragging = false;
-        }
+        }        
     }
 
     //초기생성위치로 복귀

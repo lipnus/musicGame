@@ -7,6 +7,8 @@ public class SoundManager : MonoBehaviour {
     public List<AudioSource> noteSounds = new List<AudioSource>();
 	public List<AudioSource> catSounds = new List<AudioSource>();
 	public AudioSource footSound;
+	public AudioSource fireworkSound1;
+	public AudioSource fireworkSound2;
 	
 
     //임의의 멜로디
@@ -24,5 +26,14 @@ public class SoundManager : MonoBehaviour {
 	//발소리
 	public void footPlay() {
 		footSound.GetComponent<AudioSource>().Play();
+	}
+	
+	//폭죽소리
+	public void fireworkPlay1() {
+		fireworkSound1.GetComponent<AudioSource>().Play();
+	}
+	
+	public void fireworkPlay2() {
+		fireworkSound2.GetComponent<AudioSource>().Play();
 	}
 }
