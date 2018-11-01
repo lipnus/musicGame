@@ -17,6 +17,8 @@ public static class GlobalScript {
     public static Vector3 userPosition = new Vector3(0,0,0); //위치 기억
     public static string answerStr = ""; //정답표시
     public static int lifeEvent; // -1:오답 , 0:정답 1:보너스
+    public static string sceneName;
+    public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
 
     
     //점수조작

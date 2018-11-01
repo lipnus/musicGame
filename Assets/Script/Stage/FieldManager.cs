@@ -1,29 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.Networking;
 
 public class FieldManager : MonoBehaviour {
 
-	public GameObject layer_1;
-	public float layer1_speed;
-	public GameObject layer_2;
-	public float layer2_speed;
-	public GameObject layer_3;
-	public float layer3_speed;
+	public List<GameObject> layer=new List<GameObject>();
+	public List<float> layer_speed =new List<float>();
+	
 	public GameObject user;
 	public GameObject near;
+
+	private const float BEFORE_QUIZ_POSITION = 4;
 
 
 
  
 	float userSpeed;
 
-	void Update () { 
-		layer_1.transform.Translate(Vector3.right * (userSpeed-layer1_speed) * Time.deltaTime);
-		layer_2.transform.Translate(Vector3.right * (userSpeed-layer2_speed) * Time.deltaTime);
-		layer_3.transform.Translate(Vector3.right * (userSpeed-layer3_speed) * Time.deltaTime);	
+	void Update () {
+
+		for (int i = 0; i < layer.Count; i++) {
+			layer[i].transform.Translate(Vector3.right * (userSpeed-layer_speed[i]) * Time.deltaTime);
+		}
 	}
 	
 	
@@ -33,8 +34,6 @@ public class FieldManager : MonoBehaviour {
 		GlobalScript.setLife(1);
 		
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
-
-		
 		
 		//점수표시
 		GlobalScript.showScoreText();
@@ -56,14 +55,10 @@ public class FieldManager : MonoBehaviour {
 	void returnFromMusicQuiz() {
 		string answerStr = GlobalScript.answerStr;
 		
-		user.transform.position = GlobalScript.userPosition;
-			
-		//배경위치 보정
-		layer_1.transform.position = GameObject.Find("Main Camera").GetComponent<Camera>().transform.position;
-		layer_1.transform.Translate(Vector3.forward*10f);
+		//레이어들의 위치를 퀴즈풀기 이전으로 복구
+		loadPosition();
 		
-		
-		
+		//정답표시
 		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long(answerStr);
 		
 		//목숨처리
@@ -84,8 +79,6 @@ public class FieldManager : MonoBehaviour {
 	//[게임오버] 메인 코루틴
 	IEnumerator userDie(float delayTime) {
 
-		
-		
 		//UI게임오버효과
 		GameObject.Find("UIManager").GetComponent<UIManager>().UIUserDie(); 
 		yield return new WaitForSeconds(delayTime);
@@ -97,23 +90,19 @@ public class FieldManager : MonoBehaviour {
 		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long("텐션이 떨어진다...");
 	}
 
-	
-	
-    public void userSpeedControl(float percent){
-        this.userSpeed *= percent;
-    }
+ 
 
 	//고양이 만났을 때
 	public void catEffect() {
 	
-		//투시시점
-		Camera.main.orthographic = false;
-		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
-	
-		//카메라초점거리
-		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 4f;
-		
-		StartCoroutine("rotateCamera", 0.1);
+//		//투시시점
+//		Camera.main.orthographic = false;
+//		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
+//	
+//		//카메라초점거리
+//		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 4f;
+//		
+//		StartCoroutine("rotateCamera", 0.1);
 	}
 	
 	
@@ -126,5 +115,37 @@ public class FieldManager : MonoBehaviour {
 		cam.transform.Translate( Vector3.back * 0.005f);
 	
 		StartCoroutine("rotateCamera", 0.1f);
+	}
+
+	//모든 레이어의 위치를 전역에 저장
+	public void savePosition() {
+		
+		GlobalScript.sceneName = Application.loadedLevelName; //스테이지 기억
+		
+		//레이어위치 저장
+		GlobalScript.positionHolder.Clear();
+		for (int i = 0; i < layer.Count; i++) {
+			GlobalScript.positionHolder.Add( layer[i].transform.position );
+		}
+		
+		//유저위치 저장
+		GlobalScript.userPosition = user.transform.position;
+	}
+	
+	//모든 레이어의 위치를 전역에서 불러옴
+	public void loadPosition() {
+
+		//레이어 복구
+		for (int i = 0; i < layer.Count; i++) {
+			Vector3 lPosition = GlobalScript.positionHolder[i];
+			lPosition.x += BEFORE_QUIZ_POSITION;
+			layer[i].transform.position = lPosition;
+		}
+		
+		//유저위치 복구
+		Vector3 uPosition = GlobalScript.userPosition;
+		uPosition.x += BEFORE_QUIZ_POSITION;
+		user.transform.position = uPosition;
+
 	}
 }

@@ -21,8 +21,6 @@ public class QuizManager : MonoBehaviour{
 	}
 
 	
-	
-
 	//ConnectServer에서 이곳을 호출하면서 퀴즈 시작
 	public void setGame( MusicInfo musicInfo) {
 
@@ -75,9 +73,6 @@ public class QuizManager : MonoBehaviour{
 	}
 	
 	
-
-	
-	
 	//답을 체크하는 코루틴
 	IEnumerator AnswerCheck(float delayTime, string answerInitial) { 
 		yield return new WaitForSeconds(delayTime);
@@ -101,16 +96,12 @@ public class QuizManager : MonoBehaviour{
 				}
 			}
 			
-			if (result) {
-				//정답일 때
-				GlobalScript.lifeEvent = 0; //목숨 변동사항 없음
-				SceneManager.LoadScene("CityScene"); 
-			}
-			else {
-				//오답일 때
-				GlobalScript.lifeEvent = -1; //목숨 변동사항 있음
-				SceneManager.LoadScene("CityScene");
-			}
+			//정답일 때
+			if (result) GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+			else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+			
+			//복귀
+			SceneManager.LoadScene( GlobalScript.sceneName );
 		}
 		StartCoroutine(AnswerCheck(0.1f, answerInitial));
 	}

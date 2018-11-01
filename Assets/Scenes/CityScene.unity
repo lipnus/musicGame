@@ -918,12 +918,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534e49597359b4d7c905d8d66f73655f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer_1: {fileID: 86467254}
-  layer1_speed: 0
-  layer_2: {fileID: 1740108872}
-  layer2_speed: 0.1
-  layer_3: {fileID: 518751000}
-  layer3_speed: 1.3
+  layer:
+  - {fileID: 86467254}
+  - {fileID: 1740108872}
+  - {fileID: 518751000}
+  layer_speed:
+  - 0
+  - 0.5
+  - 1
   user: {fileID: 1717455674}
   near: {fileID: 716258989}
 --- !u!1001 &220736234
@@ -4176,8 +4178,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302040751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.22, y: -1.656, z: -3.0174227}
-  m_LocalScale: {x: 0.42820117, y: 0.43780383, z: 1.3024645}
+  m_LocalPosition: {x: 5.2253, y: -1.6955, z: -3.0174227}
+  m_LocalScale: {x: 0.41835254, y: 0.36661693, z: 1.3024645}
   m_Children: []
   m_Father: {fileID: 86467256}
   m_RootOrder: 1
@@ -4214,8 +4216,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2130553017
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6c99940f4d83a4cfba486db460cb0037, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.84705883}

@@ -9,7 +9,6 @@ public class User : MonoBehaviour
     public float userSpeed;
     public float jumpPower;
     public SoundManager soundManager;
-
     private bool isJumped;
     
 
@@ -74,10 +73,8 @@ public class User : MonoBehaviour
         if (col.tag.Equals("cat")){
             GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
             catCollision = false;
-
-            Vector3 mPosition = gameObject.transform.position;
-            mPosition.x += 3;
-            GlobalScript.userPosition = mPosition; 
+            
+            GameObject.Find("FieldManager").GetComponent<FieldManager>().savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
             SceneManager.LoadScene("Quiz_initial");
         }
     }

@@ -51,7 +51,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &61993689668189744
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -160,6 +160,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -736.2002, y: 99.00009}
+  m_AnchoredPosition: {x: -141.3003, y: 99.00012}
   m_SizeDelta: {x: 98.30005, y: 69.400024}
   m_Pivot: {x: 0.5, y: 0.5}
