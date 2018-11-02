@@ -90,8 +90,6 @@ public class UIManager : MonoBehaviour {
 
 	//게임오벼 연출
 	public void UIUserDie() {
-		Debug.Log("디져라");
-
 		userDieBackgroud.gameObject.SetActive(true);
 		FadeIn(userDieBackgroud, 4f);
 		

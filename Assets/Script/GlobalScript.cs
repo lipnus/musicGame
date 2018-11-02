@@ -21,6 +21,19 @@ public static class GlobalScript {
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
 
     
+    //게임초기화
+    public static void startGame() {
+        setLife(1);
+        lifeEvent = 0;
+        userPosition = new Vector3(0,0,0);
+    }
+    
+    //부활(리워드 광고 보상)
+    public static void responeGame() {
+        setLife(2);
+        lifeEvent = 0;
+    }
+    
     //점수조작
     public static void modifyScore(int s) {
         int score = PlayerPrefs.GetInt("Score", 0) + s;

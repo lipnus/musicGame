@@ -14,10 +14,6 @@ public class FieldManager : MonoBehaviour {
 	public GameObject near;
 
 	private const float BEFORE_QUIZ_POSITION = 4;
-
-
-
- 
 	float userSpeed;
 
 	void Update () {
@@ -32,6 +28,9 @@ public class FieldManager : MonoBehaviour {
 		
 		//테스트용, 반드시 지울것
 		GlobalScript.setLife(1);
+		
+		//페이드인 효과
+//		GameObject.Find("BlackBackgroud").GetComponent<FadeEffect>().FadeIn(3f);
 		
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
 		
@@ -70,6 +69,7 @@ public class FieldManager : MonoBehaviour {
 			
 			//사망여부확인
 			if (GlobalScript.getLife() <= 0) {
+				savePosition(); //부활을 대비해서 현제상태 기억
 				StartCoroutine(userDie(1));
 			}
 		}

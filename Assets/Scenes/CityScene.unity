@@ -924,8 +924,8 @@ MonoBehaviour:
   - {fileID: 518751000}
   layer_speed:
   - 0
-  - 0.5
-  - 1
+  - 0.01
+  - 0.4
   user: {fileID: 1717455674}
   near: {fileID: 716258989}
 --- !u!1001 &220736234
@@ -1757,6 +1757,8 @@ MonoBehaviour:
   - {fileID: 1381933967}
   - {fileID: 587667079}
   footSound: {fileID: 1393743081}
+  fireworkSound1: {fileID: 0}
+  fireworkSound2: {fileID: 0}
 --- !u!4 &567551993
 Transform:
   m_ObjectHideFlags: 0

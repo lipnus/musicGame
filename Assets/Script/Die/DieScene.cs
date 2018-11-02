@@ -54,8 +54,15 @@ public class DieScene : MonoBehaviour {
 		g.CrossFadeAlpha(0f, t, false);
 	}
 
+	//메인으로
 	public void onClick_main() {
 		SceneManager.LoadScene("MainScene");
+	}
+
+	//광고보고 부활(광고에서 콜백으로 여기 호출)
+	public void respone() {
+		GlobalScript.responeGame();
+		SceneManager.LoadScene( GlobalScript.sceneName );
 	}
 	 
 }

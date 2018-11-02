@@ -30,7 +30,6 @@ public class User : MonoBehaviour
     }
 
 
-
     //점프
     public void Jump() {
         if (jumpOK) {
@@ -50,8 +49,6 @@ public class User : MonoBehaviour
     
     
     
-    
-
     private void OnTriggerEnter2D(Collider2D col)
     {
 //        Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
