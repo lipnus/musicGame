@@ -31,7 +31,6 @@ public class DieScene : MonoBehaviour {
 
 	}
 
-	
 	//스포트라이트 먼저
 	IEnumerator dieScenario(float delayTime) {
 		
@@ -41,7 +40,6 @@ public class DieScene : MonoBehaviour {
 		uiFadeIn(text, 4f);
 	}
 	
-
 	//UI페이드인
 	static void uiFadeIn(Graphic g, float t){
 		g.GetComponent<CanvasRenderer>().SetAlpha(0f);
@@ -64,5 +62,4 @@ public class DieScene : MonoBehaviour {
 		GlobalScript.responeGame();
 		SceneManager.LoadScene( GlobalScript.sceneName );
 	}
-	 
 }

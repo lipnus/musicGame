@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class QuizManager : MonoBehaviour{
+public class QuizManager1 : MonoBehaviour{
 
    
 	public Image[] answerBoxImg; //제출된 정답

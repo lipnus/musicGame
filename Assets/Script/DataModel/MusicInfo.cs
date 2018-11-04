@@ -10,5 +10,5 @@ public class MusicInfo {
 	public string path;
 	public int correct;
 	public int wrong;
-//	public int music_order;
+	public int music_order;
 }
