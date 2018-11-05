@@ -21,7 +21,7 @@ public class ConnectServer : MonoBehaviour {
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/quiz_1", (www) => {
 				musicInfo = JsonUtility.FromJson<MusicInfo>(www.downloadHandler.text);
-				Debug.Log("콜백: " + musicInfo.title);
+				Debug.Log("POST RESONSE callback OK!");
 
 				GameObject.Find("QuizManager").GetComponent<QuizManager1>().setGame( musicInfo );
 			}
@@ -36,10 +36,10 @@ public class ConnectServer : MonoBehaviour {
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/quiz_2", (www) => {
 				quiz = JsonUtility.FromJson<Quiz>(www.downloadHandler.text);
-				Debug.Log("콜백: " + quiz.choices[0].choice);
-				
-				
-//				GameObject.Find("QuizManager").GetComponent<QuizManager2>().setGame( quiz );
+				Debug.Log("POST RESONSE callback OK!");
+
+				musicInfo = quiz.musicInfo; //곡 정보 저장
+				GameObject.Find("QuizManager").GetComponent<QuizManager2>().setGame( quiz );
 			}
 		));
 	}

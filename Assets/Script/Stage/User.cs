@@ -51,10 +51,10 @@ public class User : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-//        Debug.Log("충돌: " + col + "태그: " + col.tag + " 이름: " + col.name);
+        //고양이는 tag가 cat, 첫글자가 i(init,초성)인지 c(choice,선택)인지로 구분
         if(col.tag.Equals("cat")) colCat(col);
 
-
+        //음표
         if (col.tag.Equals("score")){
             string type = col.name.Substring(0, 1);
 
@@ -65,6 +65,7 @@ public class User : MonoBehaviour
     }
 
 
+    //Collision박스 영역에서 벗어남
     private void OnTriggerExit2D(Collider2D col) {
 
         if (col.tag.Equals("cat")){
@@ -72,7 +73,14 @@ public class User : MonoBehaviour
             catCollision = false;
             
             GameObject.Find("FieldManager").GetComponent<FieldManager>().savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
-            SceneManager.LoadScene("Quiz_initial");
+            Debug.Log("2");
+            string stageType = col.name.Substring(0, 1);
+            
+            if(stageType.Equals("i")) SceneManager.LoadScene("Quiz_initial");
+            else if (stageType.Equals("c")) {
+                Debug.Log("여기 되라");
+                SceneManager.LoadScene("Quiz_choice");
+            }
         }
     }
  
@@ -81,7 +89,7 @@ public class User : MonoBehaviour
     //야옹충돌
     private void colCat(Collider2D col){
 
-//        Debug.Log("애옹");
+        //Debug.Log("애옹");
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
         
         //화면전환효과

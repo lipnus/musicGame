@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 119580276}
   - component: {fileID: 119580278}
   m_Layer: 0
-  m_Name: cat_hunt
+  m_Name: init_cat_hunt
   m_TagString: cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2606,7 +2606,7 @@ GameObject:
   - component: {fileID: 712565015}
   - component: {fileID: 712565018}
   m_Layer: 0
-  m_Name: cat_dot
+  m_Name: init_cat_dot
   m_TagString: cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4792,7 +4792,7 @@ GameObject:
   - component: {fileID: 1544892434}
   - component: {fileID: 1544892436}
   m_Layer: 0
-  m_Name: cat_box
+  m_Name: choice_cat_box
   m_TagString: cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

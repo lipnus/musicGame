@@ -3,11 +3,8 @@
 using Boo.Lang;
 
 public class Quiz {
-    public int music_pk;
+    public MusicInfo musicInfo;
     public int quiz_pk;
-    public string title;
-    public string singer;
-    public string path;
     public Choice[] choices = new Choice[3];
 }
  

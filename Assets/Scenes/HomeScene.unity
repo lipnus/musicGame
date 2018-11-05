@@ -1706,6 +1706,17 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114397596104462946, guid: a49032737cdc84032a397b57ad93afaf,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 17f6186a142684b9ba481ea8e7258793,
+        type: 3}
+    - target: {fileID: 114397596104462946, guid: a49032737cdc84032a397b57ad93afaf,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49032737cdc84032a397b57ad93afaf, type: 2}
   m_IsPrefabAsset: 0
