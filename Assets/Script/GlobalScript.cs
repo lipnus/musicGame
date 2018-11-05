@@ -21,6 +21,12 @@ public static class GlobalScript {
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
 
     
+    //위치 초기화(스테이지 이동할 떼 호출)
+    public static void resetStage() {
+        answerStr = "";
+        userPosition = new Vector3(0,0,0);
+    }
+    
     //게임초기화
     public static void startGame() {
         setLife(1);

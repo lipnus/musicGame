@@ -73,12 +73,10 @@ public class User : MonoBehaviour
             catCollision = false;
             
             GameObject.Find("FieldManager").GetComponent<FieldManager>().savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
-            Debug.Log("2");
             string stageType = col.name.Substring(0, 1);
             
             if(stageType.Equals("i")) SceneManager.LoadScene("Quiz_initial");
             else if (stageType.Equals("c")) {
-                Debug.Log("여기 되라");
                 SceneManager.LoadScene("Quiz_choice");
             }
         }

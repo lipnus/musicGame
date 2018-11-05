@@ -27,10 +27,11 @@ public class FieldManager : MonoBehaviour {
 	void Start () {
 		
 		//테스트용, 반드시 지울것
-		GlobalScript.setLife(1);
+		GlobalScript.setLife(3);
 		
 		//페이드인 효과
-//		GameObject.Find("BlackBackgroud").GetComponent<FadeEffect>().FadeIn(3f);
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(1f);
+
 		
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
 		

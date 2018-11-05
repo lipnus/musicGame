@@ -20,7 +20,7 @@ public class QuizManager2 : MonoBehaviour{
 	void Start() {
 		connectServer.quiz_2(0);
 		sightMove();
-		
+				
 		//초기화(올라가기 전엔 안보임)
 		for (int i = 0; i < button.Count; i++) {
 			button[i].GetComponent<CanvasRenderer>().SetAlpha(0f);
@@ -97,7 +97,10 @@ public class QuizManager2 : MonoBehaviour{
 		yield return new WaitForSeconds(delayTime);
 		selectedImg[choice].fillAmount += 0.02f;
 		if (selectedImg[choice].fillAmount < 1f) StartCoroutine(imgFilled(choice, 0.001f));
-		else endQuiz(choice);
+		else {
+			yield return new WaitForSeconds(0.5f);
+			endQuiz(choice);
+		}
 	}
 
 	//답안제출

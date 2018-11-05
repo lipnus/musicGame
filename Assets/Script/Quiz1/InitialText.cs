@@ -26,8 +26,6 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData){
         
-        Debug.Log("E!: " + -transform.eulerAngles.z);
-        
         //회전값 복구
         transform.Rotate(0, 0, -transform.eulerAngles.z);
         
