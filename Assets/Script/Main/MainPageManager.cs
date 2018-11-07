@@ -5,24 +5,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainPageManager : MonoBehaviour {
-	
+
 	//각각의 스마트폰 스크린
 	public GameObject mobile;
 	public GameObject main;
 	public GameObject camera;
 	public GameObject info;
+	public GameObject shop;
+	
 	public GameObject logo;
-	
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-//		mobile.transform.Translate(Vector3.up * 0.06f);
-	}
+	private const float BACK_OPPACITY=0.9f;
 
 	//카메라메뉴
 	public void onClick_camera() {
@@ -30,33 +22,55 @@ public class MainPageManager : MonoBehaviour {
 		camera.active = true;
 		StartCoroutine("ReturnMainScreen", 4);
 	}
-	
+
 	//정보메뉴
 	public void onClick_info() {
-		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, 0.9f);
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
 		main.active = false;
 		info.active = true;
 		logo.active = false;
 		StartCoroutine("ReturnMainScreenFadeIn", 3);
 	}
 
+	//쇼핑메뉴
+	public void onClick_shop() {
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
+		main.active = false;
+		shop.active = true;
+		logo.active = false;
+	}
+
+	//뒤로버튼
+	public void onClick_back() {
+		StartCoroutine(ReturnMainScreen(0f));
+	}
 	
-	//3초후종료 + 페이드(정보 전용)
+	//뒤로버튼
+	public void onClick_back_fade() {
+		StartCoroutine(ReturnMainScreenFadeIn(0f));
+	}
+
+
+	//페이드인 하면서 메인으로 돌아가기
 	IEnumerator ReturnMainScreenFadeIn(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 		camera.active = false;
 		info.active = false;
-		main.active = true;
+		shop.active = false;
 		logo.active = true;
-		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,0.9f);
+		
+		main.active = true;
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,BACK_OPPACITY);
 		
 	}
 	
-	//3초후 종료
+	//메인으로 돌아가기
 	IEnumerator ReturnMainScreen(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
 		camera.active = false;
 		info.active = false;
+		shop.active = false;
+
 		main.active = true;
 	}
 
