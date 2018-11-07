@@ -74,8 +74,10 @@ public class User : MonoBehaviour
             
             GameObject.Find("FieldManager").GetComponent<FieldManager>().savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
             string stageType = col.name.Substring(0, 1);
-            
-            if(stageType.Equals("i")) SceneManager.LoadScene("Quiz_initial");
+
+            if (stageType.Equals("i")) {
+                SceneManager.LoadScene("Quiz_initial");
+            }
             else if (stageType.Equals("c")) {
                 SceneManager.LoadScene("Quiz_choice");
             }

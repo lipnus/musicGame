@@ -31,7 +31,6 @@ public class FieldManager : MonoBehaviour {
 		
 		//페이드인 효과
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(1f);
-
 		
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
 		
@@ -40,11 +39,9 @@ public class FieldManager : MonoBehaviour {
 		
 		//목숨표시(Life만큼의 칸을 표시해줌)
 		GameObject.Find("UIManager").GetComponent<UIManager>().updateLifeBar();
-
 		
 		//음악퀴즈를 풀고 돌아온 경우
-		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {
-			
+		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {			
 			Debug.Log("Quiz에서 복귀");
 			returnFromMusicQuiz();
 		}
@@ -63,8 +60,9 @@ public class FieldManager : MonoBehaviour {
 		
 		//목숨처리
 		if (GlobalScript.lifeEvent == 0) {//정답
-			
+			StartCoroutine(correctIcon((3f)));
 		}else if (GlobalScript.lifeEvent == -1) {//오답
+			StartCoroutine(wrongIcon((3f)));
 			GameObject.Find("UIManager").GetComponent<UIManager>().decreaseLifeBar();
 			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
@@ -74,6 +72,18 @@ public class FieldManager : MonoBehaviour {
 				StartCoroutine(userDie(1));
 			}
 		}
+	}
+
+	IEnumerator correctIcon(float delayTime) {
+		GameObject.Find("correct_icon").GetComponent<Animator>().SetBool("correct_b", true);
+		yield return new WaitForSeconds(delayTime);
+		GameObject.Find("correct_icon").GetComponent<Animator>().SetBool("correct_b", false);
+	}
+	
+	IEnumerator wrongIcon(float delayTime) {
+		GameObject.Find("wrong_icon").GetComponent<Animator>().SetBool("wrong_b", true);
+		yield return new WaitForSeconds(delayTime);
+		GameObject.Find("wrong_icon").GetComponent<Animator>().SetBool("wrong_b", false);
 	}
 
 	
@@ -95,7 +105,6 @@ public class FieldManager : MonoBehaviour {
 
 	//고양이 만났을 때
 	public void catEffect() {
-	
 //		//투시시점
 //		Camera.main.orthographic = false;
 //		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
