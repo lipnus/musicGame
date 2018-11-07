@@ -11,6 +11,7 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject main;
 	public GameObject camera;
 	public GameObject info;
+	public GameObject logo;
 	
 	
 	// Use this for initialization
@@ -32,15 +33,28 @@ public class MainPageManager : MonoBehaviour {
 	
 	//정보메뉴
 	public void onClick_info() {
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, 0.9f);
 		main.active = false;
 		info.active = true;
-		StartCoroutine("ReturnMainScreen", 3);
+		logo.active = false;
+		StartCoroutine("ReturnMainScreenFadeIn", 3);
+	}
+
+	
+	//3초후종료 + 페이드(정보 전용)
+	IEnumerator ReturnMainScreenFadeIn(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		camera.active = false;
+		info.active = false;
+		main.active = true;
+		logo.active = true;
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,0.9f);
+		
 	}
 	
 	//3초후 종료
 	IEnumerator ReturnMainScreen(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
-
 		camera.active = false;
 		info.active = false;
 		main.active = true;
