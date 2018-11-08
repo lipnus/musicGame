@@ -2,22 +2,46 @@
 
 using Boo.Lang;
 
-public class Item {
-    private int category; //0:상의, 1:하의 2:신발 3:기타
-    private int perchase; //0:포인트로 구매, 1:캐쉬로 구매
+public class Item { 
+    private int perchase_type; //0:포인트로 구매, 1:캐쉬로 구매
     private int code; //아이템고유코드
     
     private string name; //제품명
     private int price; //가격
     private string shopping_category; //앱에 표시되는 가라 카테고리
 
-    public Item(int category, int perchase, int code, string name, int price, string shoppingCategory) {
-        this.category = category;
-        this.perchase = perchase;
+    public Item(int perchase, int code, string name, int price, string shoppingCategory) {
+        this.perchase_type = perchase;
         this.code = code;
         this.name = name;
         this.price = price;
         shopping_category = shoppingCategory;
+    }
+ 
+
+    public int Perchase {
+        get { return perchase_type; }
+        set { perchase_type = value; }
+    }
+
+    public int Code {
+        get { return code; }
+        set { code = value; }
+    }
+
+    public string Name {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public int Price {
+        get { return price; }
+        set { price = value; }
+    }
+
+    public string ShoppingCategory {
+        get { return shopping_category; }
+        set { shopping_category = value; }
     }
 }
  

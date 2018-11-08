@@ -671,12 +671,12 @@ Prefab:
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -459
+      value: 49.150024
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -168
+      value: -197
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
@@ -1989,8 +1989,9 @@ GameObject:
   - component: {fileID: 1098528318}
   - component: {fileID: 1098528317}
   - component: {fileID: 1098528319}
+  - component: {fileID: 1098528320}
   m_Layer: 5
-  m_Name: Image
+  m_Name: news
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +2012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.199219, y: -68.200195}
+  m_AnchoredPosition: {x: -13.199219, y: -613}
   m_SizeDelta: {x: 26.4, y: -66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098528317
@@ -2073,6 +2074,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2119.2925, y: 19.98413}
   m_EdgeRadius: 0
+--- !u!114 &1098528320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1098528315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde12126015184a7f9663371d1e9ab47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phone: {fileID: 1098528317}
+  delay: 0.01
+  speed: 0.1
 --- !u!1 &1138126652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,8 +2126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 748.5, y: 94}
-  m_SizeDelta: {x: 1183.5, y: 143.8}
+  m_AnchoredPosition: {x: 709.7, y: 93.875}
+  m_SizeDelta: {x: 1073.9, y: 143.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138126654
 MonoBehaviour:
@@ -2126,11 +2141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -2222,12 +2237,12 @@ Prefab:
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -221
+      value: -308
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -211
+      value: -264
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
@@ -2637,6 +2652,7 @@ GameObject:
   - component: {fileID: 1714879904}
   - component: {fileID: 1714879903}
   - component: {fileID: 1714879905}
+  - component: {fileID: 1714879906}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -2652,7 +2668,7 @@ RectTransform:
   m_GameObject: {fileID: 1714879899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4431, y: 1.4431, z: 1.4431}
   m_Children:
   - {fileID: 333374498}
   - {fileID: 325988831}
@@ -2661,8 +2677,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -268, y: 204.2998}
-  m_SizeDelta: {x: 484.4, y: 479}
+  m_AnchoredPosition: {x: -358.65002, y: -53}
+  m_SizeDelta: {x: 442.2, y: 437.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714879901
 MonoBehaviour:
@@ -2724,13 +2740,13 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1714879899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.485764, y: 5.239273}
+  m_Offset: {x: 3.9986038, y: 5.239273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2741,7 +2757,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 441.4019, y: 409.98532}
+  m_Size: {x: 412.43317, y: 409.98532}
   m_EdgeRadius: 0
 --- !u!114 &1714879905
 MonoBehaviour:
@@ -2795,6 +2811,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1714879906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714879899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde12126015184a7f9663371d1e9ab47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phone: {fileID: 1714879901}
+  delay: 0
+  speed: 0.06
 --- !u!1001 &1733401857
 Prefab:
   m_ObjectHideFlags: 0
@@ -2974,12 +3004,12 @@ Prefab:
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 57
+      value: -501
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 38
+      value: -109
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
@@ -3078,12 +3108,12 @@ Prefab:
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 248
+      value: -276
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: -88
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 2}

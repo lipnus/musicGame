@@ -27,7 +27,7 @@ public class FieldManager : MonoBehaviour {
 	void Start () {
 		
 		//테스트용, 반드시 지울것
-		GlobalScript.setLife(3);
+//		GlobalScript.setLife(3);
 		
 		//페이드인 효과
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(1f);

@@ -27,8 +27,8 @@ public class QuizManager1 : MonoBehaviour{
 		GlobalScript.answerStr = "정답\n" + musicInfo.singer + " - " + musicInfo.title; //정답표시 설정		
 		string answerInitial = musicInfo.initial;
 		
-		//보기자음은 답안길이 +3개
-		initialTextSize = answerInitial.Length + 3;
+		//보기자음은 답안길이 +a개
+		initialTextSize = answerInitial.Length + 1;
 	    
 		//자음텍스트 객체들을 배열에 저장
 		initialTexts = new Text[initialTextSize];

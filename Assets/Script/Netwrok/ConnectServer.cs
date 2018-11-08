@@ -74,7 +74,7 @@ public class ConnectServer : MonoBehaviour {
 			source.Play();		
 			
 			//지정된 시간만큼 음악을 틀어준다
-			float playTime = GlobalScript.getPlayTime();
+			float playTime = GlobalScript.getPlayTime()+2f;
 			StartCoroutine(stopMusic(playTime));
 		}
 	}
