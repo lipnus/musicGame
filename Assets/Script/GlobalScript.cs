@@ -123,12 +123,8 @@ public static class GlobalScript {
     
 
     //옷입히기
-    public static void setTop1(int code) {
-        PlayerPrefs.SetInt("wear_top1", code);
-    }
-    
-    public static void setTop2(int code) {
-        PlayerPrefs.SetInt("wear_top2", code);
+    public static void setTop(int code) {
+        PlayerPrefs.SetInt("wear_top", code);
     }
     
     public static void setBottom(int code) {
@@ -141,55 +137,50 @@ public static class GlobalScript {
     
     
     
-    
     //무슨 옷 입고있는지 확인
-    public static void getTop1(int code) {
-        PlayerPrefs.GetInt("wear_top1", 0);
+    public static int getTop() {
+        return PlayerPrefs.GetInt("wear_top", 0);
     }
     
-    public static void getTop2(int code) {
-        PlayerPrefs.GetInt("wear_top2", 0);        
+    public static int getBottom() {
+        return PlayerPrefs.GetInt("wear_bottom", 0);
     }
     
-    public static void getBottom(int code) {
-        PlayerPrefs.GetInt("wear_bottom", 0);
-    }
-    
-    public static void getShoes(int code) {
-        PlayerPrefs.GetInt("wear_shoes", 0);
+    public static int getShoes() {
+        return PlayerPrefs.GetInt("wear_shoes", 0);
     }
 
-    //아이템정보는 여기다가 입력하고 여기서 조회한다
+    
+    
+    
+    //아이템정보를 생성하고 조회한다(사실상 DB역할)
     public static Item getItemInfo(int code) {
         
         List<Item> items = new List<Item>();
 
         Item item;
         
-        //상의1
+        //상의
         item = new Item(0, 100, "유니클로 무지반팔", 12000, "전체보기>상의>반팔티셔츠");
         items.Add(item);
-        
-        //상의2
-        item = new Item(0, 200, "유니클로 무지반팔", 12000, "전체보기>상의>반팔티셔츠");
-        items.Add(item);
-        
+                
         //하의
-        item = new Item(0, 300, "지오다노 슬랙스", 12000, "전체보기>상의>");
+        item = new Item(0, 200, "지오다노 슬랙스", 35000, "전체보기>상의>");
         items.Add(item);
         
         //신발
-        item = new Item(0, 400, "락포트 페니로퍼", 12000, "전체보기>신발>구두");
+        item = new Item(0, 300, "락포트 페니로퍼", 50000, "전체보기>신발>구두");
+        items.Add(item);
+        item = new Item(0, 301, "꼼데 스니커즈", 100000, "전체보기>신발>스니커즈");
         items.Add(item);
 
 
-        Item returnObj = new Item(0, 100, "투명한 옷", 10, "전체보기>상의>투명망토");
+        Item returnObj = new Item(0, 0, "투명한 옷", 10, "전체보기>상의>투명망토");
         for (int i = 0; i < items.Count(); i++) {
             if (code == items[i].Code) returnObj = items[i];
         }
 
         return returnObj;
-
     }
 
 
@@ -201,17 +192,15 @@ public static class GlobalScript {
         if (isFirstStart == 0) {
             
             //입혀준다
-            setTop1(100);
-            setTop2(200);
-            setBottom(300);
-            setShoes(400);
+            setTop(100);
+            setBottom(200);
+            setShoes(300);
         
             //기본 소유목록작성
             MyItem mItem = new MyItem();
             mItem.owns.Add(100);
             mItem.owns.Add(200);
             mItem.owns.Add(300);
-            mItem.owns.Add(400);
         
             //소유목록 초기화
             string jsonStr = JsonUtility.ToJson(mItem);

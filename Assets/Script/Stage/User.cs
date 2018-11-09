@@ -18,35 +18,46 @@ public class User : MonoBehaviour
     private bool jumpOK=true;
     private bool slow = false;
     
+    //현재 입고있는 옷
+    private GameObject cur_top;
+    private GameObject cur_bottom;
+    private GameObject cur_shoes;
 
+    
     // Use this for initialization
     void Start(){
         Time.timeScale = 1f; //시간은 정상적으로 흐른다	
+        
+        //옷을 입는다
+        wearCloth();
     }
 
+    
     // Update is called once per frame
     void Update(){
         transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
     }
-
+    
 
     //점프
     public void Jump() {
         if (jumpOK) {
             jumpOK = false;
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower);
-            GetComponent<Animator>().SetTrigger("jump_t");
+            cur_top.GetComponent<Animator>().SetTrigger("jump_t");
+            cur_bottom.GetComponent<Animator>().SetTrigger("jump_t");
+            cur_shoes.GetComponent<Animator>().SetTrigger("jump_t");
             StartCoroutine("JumpCheck", 0.5f);
         }
 
     }
+    
     
     IEnumerator JumpCheck(float delayTime) {
         yield return new WaitForSeconds(delayTime); //표시시간
         soundManager.footPlay(); //효과음(발소리)
         jumpOK = true;
     }
-    
     
     
     private void OnTriggerEnter2D(Collider2D col)
@@ -83,7 +94,6 @@ public class User : MonoBehaviour
             }
         }
     }
- 
     
 
     //야옹충돌
@@ -98,6 +108,7 @@ public class User : MonoBehaviour
         soundManager.catPlay();
     }
 
+    
     //음표충돌
     private void colNote(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
@@ -110,5 +121,23 @@ public class User : MonoBehaviour
     private void colLine(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
         GlobalScript.modifyScore(1);
+    }
+
+    
+    //무슨 옷을 입고있는지 찾아서 입힌다
+    void wearCloth() {
+        string item_code;
+
+        item_code = GlobalScript.getTop().ToString();
+        cur_top = GameObject.Find("Top").transform.Find(item_code).gameObject;
+        cur_top.SetActive(true);
+
+        item_code = GlobalScript.getBottom().ToString();
+        cur_bottom = GameObject.Find("Bottom").transform.Find(item_code).gameObject;
+        cur_bottom.SetActive(true);
+        
+        item_code = GlobalScript.getShoes().ToString();
+        cur_shoes = GameObject.Find("Shoes").transform.Find(item_code).gameObject;
+        cur_shoes.SetActive(true);
     }
 }
