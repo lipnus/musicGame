@@ -46,11 +46,20 @@ public static class GlobalScript {
         lifeEvent = 0;
     }
     
-    //점수조작
+    //점수조작(더하거나 뺌)
     public static void modifyScore(int s) {
         int score = PlayerPrefs.GetInt("Score", 0) + s;
         PlayerPrefs.SetInt("Score", score);
         showScoreText();
+    }
+
+    public static void setScore(int score) {
+        PlayerPrefs.SetInt("Score", score);
+
+    }
+
+    public static int getScore() {
+        return PlayerPrefs.GetInt("Score", 0);
     }
 
     
@@ -84,12 +93,14 @@ public static class GlobalScript {
     }
     
     
+    
+    
     //==========================================================
     // 아이템관련함수
     //==========================================================
 
     //소유목록에 새 아이템 추가
-    public static void addItem(int code) {
+    public static void addMyItem(int code) {
         MyItem curItem = new MyItem();
         string jsonStr = PlayerPrefs.GetString("my_item");
         
@@ -105,7 +116,6 @@ public static class GlobalScript {
         MyItem curItem = new MyItem();
         string jsonStr = PlayerPrefs.GetString("my_item");
         
-        Debug.Log("뽑은텍스트: " + jsonStr);
         curItem = JsonUtility.FromJson<MyItem>(jsonStr);
 
         bool isHave = false;
@@ -113,6 +123,17 @@ public static class GlobalScript {
             if (code == curItem.owns[i]) isHave = true;
         }
         return isHave;
+    }
+    
+    //옷을 입고있는지 확인
+    public static bool isWearItem(int code) {
+        if (code == getTop() || code == getBottom() || code == getShoes()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        
     }
     
     //소유목록 업데이트
@@ -154,28 +175,30 @@ public static class GlobalScript {
     
     
     //아이템정보를 생성하고 조회한다(사실상 DB역할)
-    public static Item getItemInfo(int code) {
+    public static ItemInfo getItemInfo(int code) {
         
-        List<Item> items = new List<Item>();
+        List<ItemInfo> items = new List<ItemInfo>();
 
-        Item item;
+        ItemInfo item;
         
         //상의
-        item = new Item(0, 100, "유니클로 무지반팔", 12000, "전체보기>상의>반팔티셔츠");
+        item = new ItemInfo(0, 100, "유니클로 무지반팔", 12000, "전체보기 > 상의 > 반팔티셔츠");
+        items.Add(item);
+        item = new ItemInfo(0, 101, "아크네 맨투맨", 10, "전체보기 > 상의 > 맨투맨");
         items.Add(item);
                 
         //하의
-        item = new Item(0, 200, "지오다노 슬랙스", 35000, "전체보기>상의>");
+        item = new ItemInfo(0, 200, "지오다노 슬랙스", 35000, "전체보기 > 하의 > 슬랙스");
         items.Add(item);
         
         //신발
-        item = new Item(0, 300, "락포트 페니로퍼", 50000, "전체보기>신발>구두");
+        item = new ItemInfo(0, 300, "락포트 페니로퍼", 50000, "전체보기 > 신발 > 구두");
         items.Add(item);
-        item = new Item(0, 301, "꼼데 스니커즈", 100000, "전체보기>신발>스니커즈");
+        item = new ItemInfo(0, 301, "꼼데 스니커즈", 100000, "전체보기 > 신발 > 스니커즈");
         items.Add(item);
 
 
-        Item returnObj = new Item(0, 0, "투명한 옷", 10, "전체보기>상의>투명망토");
+        ItemInfo returnObj = new ItemInfo(0, 0, "투명한 옷", 10, "전체보기 > 상의 > 투명망토");
         for (int i = 0; i < items.Count(); i++) {
             if (code == items[i].Code) returnObj = items[i];
         }

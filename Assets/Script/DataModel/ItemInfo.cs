@@ -2,7 +2,7 @@
 
 using Boo.Lang;
 
-public class Item { 
+public class ItemInfo { 
     private int perchase_type; //0:포인트로 구매, 1:캐쉬로 구매
     private int code; //아이템고유코드
     
@@ -10,7 +10,7 @@ public class Item {
     private int price; //가격
     private string shopping_category; //앱에 표시되는 가라 카테고리
 
-    public Item(int perchase, int code, string name, int price, string shoppingCategory) {
+    public ItemInfo(int perchase, int code, string name, int price, string shoppingCategory) {
         this.perchase_type = perchase;
         this.code = code;
         this.name = name;
@@ -21,27 +21,22 @@ public class Item {
 
     public int Perchase {
         get { return perchase_type; }
-        set { perchase_type = value; }
     }
 
     public int Code {
         get { return code; }
-        set { code = value; }
     }
 
     public string Name {
         get { return name; }
-        set { name = value; }
     }
 
     public int Price {
         get { return price; }
-        set { price = value; }
     }
 
     public string ShoppingCategory {
         get { return shopping_category; }
-        set { shopping_category = value; }
     }
 }
  

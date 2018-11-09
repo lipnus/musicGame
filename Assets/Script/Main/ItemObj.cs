@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +7,10 @@ using UnityEngine.UI;
 //각 아이템이 들고 있는 스크립트
 public class ItemObj : MonoBehaviour {
 
-	public Image active;
-	public Image inActive;
-	public Image applied;
-	public Image product;
+	public GameObject activated;
+	public GameObject standard;
+	public GameObject applied;
+	public GameObject product;
 	
 	public int curCode; //이 옷의 코드
 
@@ -17,22 +18,56 @@ public class ItemObj : MonoBehaviour {
 	private int bottomCode;
 	private int shoesCode;
 	
-	//(각자 아이템마다 이런식으로 하는게 효율은 떨어질 것 같지만 이 부분은 연산을 크게 요하는 부분이 아니니 성능에는 크게 문제가 없을 것 같음)
+	private ShopApp shopApp;
+	
+	 
 	void Start () {
+		shopApp = GameObject.Find("Shop_App").GetComponent<ShopApp>();
 		
-		//캐릭터 착용상태 확인
-		int topCode = GlobalScript.getTop();
-		int bottomCode = GlobalScript.getBottom();
-		int shoesCode = GlobalScript.getShoes();
+		shopApp.items.Add(gameObject); //스스로의 정보를 전달
+		updateAppliedState();
+	}
+
+	//착용상태 표시
+	public void updateAppliedState() {
+		Debug.Log("updateAppliedState()");
 		
-		//착용중 아이콘 표시
-		if (curCode == topCode || curCode == bottomCode || curCode == shoesCode) {
-			applied.enabled = true;
+		applied.active = false;
+		if (GlobalScript.isWearItem(curCode)) {
+			applied.active = true;
+			Debug.Log("fucking");
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	public void hideAllActivatedImg() {
+		try {//선택된게 있으면 다 제거(하나도 선택된게 없으면 에러나서 try~catch)
+			GameObject.Find("activated").gameObject.active = false; 
+		}catch (Exception e) {}  
+	}
+
+	public void onClick_product() {
 		
+		//앱화면
+		
+		shopApp.setCode(curCode);
+		shopApp.removeInfo();
+
+		
+		if (activated.active) {
+			activated.active = false;
+		}
+		else {
+			hideAllActivatedImg();
+			activated.active = true;
+			shopApp.showHeart();
+			shopApp.showNote();
+			
+			//구매,착용 유무에 맞게 버튼출력
+			shopApp.showBtn();
+			
+			//정보와 이미지 출력
+			shopApp.showInfo(curCode);
+			shopApp.setProductImg( product.GetComponent<Image>().sprite );
+		} 
 	}
 }

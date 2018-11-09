@@ -51,6 +51,5 @@ public class UImove : MonoBehaviour {
 		rotateCount++;
 		phone.transform.Rotate(0,0,-0.17f);
 		if (rotateCount < 50) StartCoroutine(rotateCCW(0.005f));
-
 	}
 }

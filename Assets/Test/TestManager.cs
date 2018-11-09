@@ -7,7 +7,7 @@ public class TestManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GlobalScript.firstGift();
-		GlobalScript.addItem(1818);
+		GlobalScript.addMyItem(1818);
 		
 		Debug.Log("가지고있는가: " + GlobalScript.isHaveItem(1818));
 	}
