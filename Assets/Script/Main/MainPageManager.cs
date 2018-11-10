@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainPageManager : MonoBehaviour {
 
-	//각 메뉴화면
+	//각 페이지 
 //	public GameObject mobile;
 	public GameObject start_page; //초기화면
 	public GameObject camera_page; //카메라
@@ -14,16 +14,17 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject shop_page; //쇼핑
 	
 	
-	private const float BACK_OPPACITY=0.9f;
+	private const float BACK_OPPACITY=0.6f;
 
-	//카메라메뉴
+	//카메라 페이지
 	public void onClick_camera() {
+		Debug.Log("카메라");
 		start_page.active = false;
 		camera_page.active = true;
 		StartCoroutine("ReturnMainScreen", 4);
 	}
 
-	//정보메뉴
+	//정보 페이지
 	public void onClick_info() {
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
 		start_page.active = false;
@@ -31,7 +32,7 @@ public class MainPageManager : MonoBehaviour {
 		StartCoroutine("ReturnMainScreenFadeIn", 4);
 	}
 
-	//쇼핑메뉴
+	//쇼핑 페이지
 	public void onClick_shop() {
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
 		start_page.active = false;
@@ -67,7 +68,6 @@ public class MainPageManager : MonoBehaviour {
 		camera_page.active = false;
 		info_page.active = false;
 		shop_page.active = false;
-
 		start_page.active = true;
 	}
 
