@@ -50,7 +50,10 @@ public class ShopApp : MonoBehaviour {
 
 	//옷입기
 	public void onClick_wear() {
-		if (curCode / 100 == 1) GlobalScript.setTop(curCode);
+		if (curCode / 100 == 1) {
+			GlobalScript.setTop(curCode);
+			Debug.Log("상의교체");
+		}
 		else if (curCode / 100 == 2) GlobalScript.setBottom(curCode);
 		else if (curCode / 100 == 3) GlobalScript.setShoes(curCode);
 

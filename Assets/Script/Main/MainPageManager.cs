@@ -6,38 +6,36 @@ using UnityEngine.UI;
 
 public class MainPageManager : MonoBehaviour {
 
-	//각각의 스마트폰 스크린
-	public GameObject mobile;
-	public GameObject main;
-	public GameObject camera;
-	public GameObject info;
-	public GameObject shop;
+	//각 메뉴화면
+//	public GameObject mobile;
+	public GameObject start_page; //초기화면
+	public GameObject camera_page; //카메라
+	public GameObject info_page; //정보
+	public GameObject shop_page; //쇼핑
 	
-	public GameObject logo;
+	
 	private const float BACK_OPPACITY=0.9f;
 
 	//카메라메뉴
 	public void onClick_camera() {
-		main.active = false;
-		camera.active = true;
+		start_page.active = false;
+		camera_page.active = true;
 		StartCoroutine("ReturnMainScreen", 4);
 	}
 
 	//정보메뉴
 	public void onClick_info() {
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
-		main.active = false;
-		info.active = true;
-		logo.active = false;
-		StartCoroutine("ReturnMainScreenFadeIn", 3);
+		start_page.active = false;
+		info_page.active = true;
+		StartCoroutine("ReturnMainScreenFadeIn", 4);
 	}
 
 	//쇼핑메뉴
 	public void onClick_shop() {
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
-		main.active = false;
-		shop.active = true;
-		logo.active = false;
+		start_page.active = false;
+		shop_page.active = true;
 	}
 
 	//뒤로버튼
@@ -54,12 +52,11 @@ public class MainPageManager : MonoBehaviour {
 	//페이드인 하면서 메인으로 돌아가기
 	IEnumerator ReturnMainScreenFadeIn(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
-		camera.active = false;
-		info.active = false;
-		shop.active = false;
-		logo.active = true;
+		camera_page.active = false;
+		info_page.active = false;
+		shop_page.active = false;
 		
-		main.active = true;
+		start_page.active = true;
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,BACK_OPPACITY);
 		
 	}
@@ -67,11 +64,11 @@ public class MainPageManager : MonoBehaviour {
 	//메인으로 돌아가기
 	IEnumerator ReturnMainScreen(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
-		camera.active = false;
-		info.active = false;
-		shop.active = false;
+		camera_page.active = false;
+		info_page.active = false;
+		shop_page.active = false;
 
-		main.active = true;
+		start_page.active = true;
 	}
 
 	//카메라 쵤영버튼

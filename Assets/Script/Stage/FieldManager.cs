@@ -13,11 +13,12 @@ public class FieldManager : MonoBehaviour {
 	public GameObject user;
 	public GameObject near;
 
-	private const float BEFORE_QUIZ_POSITION = 4;
+	private const float BEFORE_QUIZ_POSITION = 4f; //퀴즈 후엔 4만큼 앞으로 가서 고양이 뒤쪽에서 복귀
 	float userSpeed;
 
 	void Update () {
-
+		
+		//배경스크롤
 		for (int i = 0; i < layer.Count; i++) {
 			layer[i].transform.Translate(Vector3.right * (userSpeed-layer_speed[i]) * Time.deltaTime);
 		}
@@ -106,7 +107,7 @@ public class FieldManager : MonoBehaviour {
 	//고양이 만났을 때
 	public void catEffect() {
 //		//투시시점
-//		Camera.main.orthographic = false;
+//		Camera.start_page.orthographic = false;
 //		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
 //	
 //		//카메라초점거리

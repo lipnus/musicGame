@@ -29,7 +29,7 @@ public class A : MonoBehaviour {
         float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen);
 
-        //button.transform.position = Camera.main.ScreenToWorldPoint( mousePosition );
+        //button.transform.position = Camera.start_page.ScreenToWorldPoint( mousePosition );
 
 
 

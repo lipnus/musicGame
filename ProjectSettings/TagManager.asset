@@ -60,3 +60,6 @@ TagManager:
   - name: UI
     uniqueID: 462414299
     locked: 0
+  - name: Outline
+    uniqueID: 17307065
+    locked: 0

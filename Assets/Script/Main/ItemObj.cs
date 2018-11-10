@@ -30,17 +30,14 @@ public class ItemObj : MonoBehaviour {
 
 	//착용상태 표시
 	public void updateAppliedState() {
-		Debug.Log("updateAppliedState()");
-		
 		applied.active = false;
 		if (GlobalScript.isWearItem(curCode)) {
 			applied.active = true;
-			Debug.Log("fucking");
 		}
 	}
 
-	public void hideAllActivatedImg() {
-		try {//선택된게 있으면 다 제거(하나도 선택된게 없으면 에러나서 try~catch)
+	public void hideActivatedImg() {
+		try {//선택된 표시 제거(하나도 선택된게 없으면 에러나서 try~catch)
 			GameObject.Find("activated").gameObject.active = false; 
 		}catch (Exception e) {}  
 	}
@@ -57,7 +54,7 @@ public class ItemObj : MonoBehaviour {
 			activated.active = false;
 		}
 		else {
-			hideAllActivatedImg();
+			hideActivatedImg();
 			activated.active = true;
 			shopApp.showHeart();
 			shopApp.showNote();
