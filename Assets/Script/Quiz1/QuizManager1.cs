@@ -23,8 +23,10 @@ public class QuizManager1 : MonoBehaviour{
 	
 	//ConnectServer에서 이곳을 호출하면서 퀴즈 시작
 	public void setGame( MusicInfo musicInfo) {
-
-		GlobalScript.answerStr = "정답\n" + musicInfo.singer + " - " + musicInfo.title; //정답표시 설정		
+		
+		//필드에서 표시해줄 답안등록
+		GlobalScript.setAnswer(musicInfo.title, musicInfo.singer);
+		
 		string answerInitial = musicInfo.initial;
 		
 		//보기자음은 답안길이 +a개

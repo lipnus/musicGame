@@ -77,13 +77,13 @@ public class TutorialFieldManager : MonoBehaviour {
 		loadPosition();
 		
 		//정답표시
-		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long(answerStr);
+		GameObject.Find("UIManager").GetComponent<UIManager>().showAnswer();
 		
 		//목숨처리
 		if (GlobalScript.lifeEvent == 0) {//정답
-			StartCoroutine(correctIcon((3f)));
+			StartCoroutine(correctIcon((4f)));
 		}else if (GlobalScript.lifeEvent == -1) {//오답
-			StartCoroutine(wrongIcon((3f)));
+			StartCoroutine(wrongIcon((4f)));
 			GameObject.Find("UIManager").GetComponent<UIManager>().decreaseLifeBar();
 			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			

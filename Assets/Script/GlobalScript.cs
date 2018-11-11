@@ -21,6 +21,9 @@ public static class GlobalScript {
     public static string sceneName;
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
     
+    private static string answer_title="";
+    private static string answer_singer="";
+    
     
 
     //==========================================================
@@ -77,13 +80,24 @@ public static class GlobalScript {
         int lf = PlayerPrefs.GetInt("Life", 0) + life;
         PlayerPrefs.SetInt("Life", lf);
     }
-  
-    
-    
+
+
+    public static void setAnswer(string title, string singer) {
+        answer_title = title;
+        answer_singer = singer;
+    }
+
+    public static string getAnswerTitle() {
+        return answer_title;
+    }
+
+    public static string getAnswerSinger() {
+        return answer_singer;
+    }
     
     //음악재생시간
     public static float getPlayTime() {
-        return PlayerPrefs.GetFloat("PlayTime", 1f); //기본값:2
+        return PlayerPrefs.GetFloat("PlayTime", 3f); //기본값:2
     }
     
     

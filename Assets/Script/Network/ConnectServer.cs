@@ -38,7 +38,7 @@ public class ConnectServer : MonoBehaviour {
 				quiz = JsonUtility.FromJson<Quiz>(www.downloadHandler.text);
 				Debug.Log("POST RESONSE callback OK!");
 
-				musicInfo = quiz.musicInfo; //곡 정보 저
+				musicInfo = quiz.musicInfo; //곡 정보 저장
 				GameObject.Find("QuizManager").GetComponent<QuizManager2>().setGame( quiz );
 			}
 		));
@@ -74,7 +74,7 @@ public class ConnectServer : MonoBehaviour {
 			source.Play();		
 			
 			//지정된 시간만큼 음악을 틀어준다
-			float playTime = GlobalScript.getPlayTime()+2f;
+			float playTime = GlobalScript.getPlayTime();
 			StartCoroutine(stopMusic(playTime));
 		}
 	}

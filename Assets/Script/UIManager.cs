@@ -12,10 +12,14 @@ public class UIManager : MonoBehaviour {
 	public Image lifeBar; //생명바
 	public Text scoreText; //점수표시
 	public Image userDieBackgroud; //게임오버
+	
+	public GameObject answerImg; //답변페이지
+	public Text answerTitle; //노래제목
+	public Text answerSinger; //가수
 
 	
-	private const int LIFE_UNIT = 166; //목숨 한칸의 양
-	private const int LIFE_MAX = 500; //최대 목숨의 양
+	private const int LIFE_UNIT = 116; //목숨 한칸의 양
+	private const int LIFE_MAX = 350; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
 	
 	
@@ -26,27 +30,37 @@ public class UIManager : MonoBehaviour {
 		StartCoroutine("stayText", 1.5f);		
 	}
 	
+	
 	public void showText_Long(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
 		StartCoroutine("stayText", 4f);		
 	}
 
+	
 	IEnumerator stayText(float delayTime) {
 		yield return new WaitForSeconds(delayTime); //표시시간
 		FadeOut(midText, 0.5f);
 	}
+
+	//정답을 표시
+	public void showAnswer() {
+		answerImg.SetActive(true);
+		answerTitle.text = GlobalScript.getAnswerTitle();
+		answerSinger.text = GlobalScript.getAnswerSinger();
+	}
+	
 	
 	public static void FadeIn(Graphic g, float t){
 		g.GetComponent<CanvasRenderer>().SetAlpha(0f);
 		g.CrossFadeAlpha(1f, t, false);//second param is the time
 	}
 	
+	
 	public static void FadeOut(Graphic g, float t){
 		g.GetComponent<CanvasRenderer>().SetAlpha(1f);
 		g.CrossFadeAlpha(0f, t, false);
 	}
-	
 	
 	
 	//라이프바 한칸 내림
@@ -76,17 +90,13 @@ public class UIManager : MonoBehaviour {
 		if (lifebarCount < LIFE_UNIT) StartCoroutine(modifyLifeBarSize(0.005f, val));
 	}
 
+	
 	//라이프바 값에 맞게 업데이트
 	public void updateLifeBar() {
 		RectTransform rt = lifeBar.rectTransform;
 		float nowWidth = GlobalScript.getLife() * LIFE_UNIT;
 		float nowHeight = rt.rect.height;
 		rt.sizeDelta = new Vector2 (nowWidth, nowHeight);
-	}
-
-	//점수를 표시한다
-	public void showText() {
-		
 	}
 
 
@@ -109,7 +119,6 @@ public class UIManager : MonoBehaviour {
 		scoreText.text = score.ToString();
 		//글씨크기에 맞게 박스크기 조정
 		scoreText.rectTransform.sizeDelta = new Vector2(scoreText.preferredWidth, scoreText.preferredHeight); 
-		Debug.Log(scoreText.preferredWidth + " " + scoreText.preferredHeight);
 	}
 
 }
