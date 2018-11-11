@@ -1,27 +1,47 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
-public class FieldManager : MonoBehaviour {
+public class TutorialFieldManager : MonoBehaviour {
 
 	public List<GameObject> layer=new List<GameObject>();
 	public List<float> layer_speed =new List<float>();
-	
 	public GameObject user;
-	public GameObject near;
 
-	private const float BEFORE_QUIZ_POSITION = 4f; //퀴즈 후엔 4만큼 앞으로 가서 고양이 뒤쪽에서 복귀
+	private const float BEFORE_QUIZ_POSITION = 8f; //퀴즈 후엔 4만큼 앞으로 가서 고양이 뒤쪽에서 복귀
 	float userSpeed;
+	private bool stopMoving = false;
 
+	//배경스크롤
 	void Update () {
-		
-		//배경스크롤
-		for (int i = 0; i < layer.Count; i++) {
-			layer[i].transform.Translate(Vector3.right * (userSpeed-layer_speed[i]) * Time.deltaTime);
+		if (!stopMoving) {
+			for (int i = 0; i < layer.Count; i++) {
+				layer[i].transform.Translate(Vector3.right * (userSpeed-layer_speed[i]) * Time.deltaTime);
+			}
 		}
+		else {
+			
+		}
+		
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+		if (hit) {
+			if (user.GetComponent<User>().catCollision) { //야옹충돌 이벤트 이후
+				if (hit.collider.gameObject.name.Equals("catArea_init")) {
+					quizStart("Quiz_initial");
+					Debug.Log("야옹영억 터치");
+				}
+
+			}
+
+		}
+		
+		
 	}
 	
 	
@@ -106,14 +126,18 @@ public class FieldManager : MonoBehaviour {
 
 	//고양이 만났을 때
 	public void catEffect() {
-//		//투시시점
-//		Camera.start_page.orthographic = false;
-//		GameObject.Find("Sky").transform.localScale += new Vector3(2f, 2f, 0);
-//	
-//		//카메라초점거리
-//		GameObject.Find("Main Camera").GetComponent<Camera>().focalLength = 4f;
-//		
-//		StartCoroutine("rotateCamera", 0.1);
+		stopMoving = true;
+		user.GetComponent<User>().userSpeed = 0; //정지
+		
+	}
+
+	//퀴즈씬으로 이동
+	public void quizStart(String quizType) {
+		savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
+
+		SceneManager.LoadScene(quizType);
+
+		
 	}
 	
 	
@@ -145,7 +169,6 @@ public class FieldManager : MonoBehaviour {
 	
 	//모든 레이어의 위치를 전역에서 불러옴
 	public void loadPosition() {
-
 		//레이어 복구
 		for (int i = 0; i < layer.Count; i++) {
 			Vector3 lPosition = GlobalScript.positionHolder[i];
@@ -158,5 +181,10 @@ public class FieldManager : MonoBehaviour {
 		uPosition.x += BEFORE_QUIZ_POSITION;
 		user.transform.position = uPosition;
 
+	}
+
+	//고양이 만났을때 고양이 터치
+	public void onClick_cat() {
+		Debug.Log("고양터치");
 	}
 }

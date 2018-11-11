@@ -14,7 +14,7 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject shop_page; //쇼핑
 	
 	
-	private const float BACK_OPPACITY=0.6f;
+	private const float BACK_OPPACITY=0.7f;
 
 	//카메라 페이지
 	public void onClick_camera() {

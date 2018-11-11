@@ -50,7 +50,6 @@ public static class GlobalScript {
     public static void modifyScore(int s) {
         int score = PlayerPrefs.GetInt("Score", 0) + s;
         PlayerPrefs.SetInt("Score", score);
-        showScoreText();
     }
 
     public static void setScore(int score) {
@@ -77,14 +76,9 @@ public static class GlobalScript {
     public static void modifyLife(int life) {
         int lf = PlayerPrefs.GetInt("Life", 0) + life;
         PlayerPrefs.SetInt("Life", lf);
-        showScoreText();
     }
   
-    //현재점수 표시
-    public static void showScoreText() {
-        int score = PlayerPrefs.GetInt("Score", 0);
-        GameObject.Find("scoreText").GetComponent<Text>().text = score + "";
-    }
+    
     
     
     //음악재생시간

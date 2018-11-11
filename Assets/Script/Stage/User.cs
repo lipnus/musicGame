@@ -9,10 +9,10 @@ public class User : MonoBehaviour
     public float userSpeed;
     public float jumpPower;
     public SoundManager soundManager;
+    public TutorialFieldManager TutorialFieldManager;
     private bool isJumped;
     
 
-    private bool catCollision;
     private int groundPosition; //점프하기 전의 y좌표(제일앞 3자리만 비교)
 
     private bool jumpOK=true;
@@ -22,6 +22,8 @@ public class User : MonoBehaviour
     private GameObject cur_top;
     private GameObject cur_bottom;
     private GameObject cur_shoes;
+
+    public bool catCollision = false;
 
     
     // Use this for initialization
@@ -81,9 +83,8 @@ public class User : MonoBehaviour
 
         if (col.tag.Equals("cat")){
             GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
-            catCollision = false;
             
-            GameObject.Find("FieldManager").GetComponent<FieldManager>().savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
+            TutorialFieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
             string stageType = col.name.Substring(0, 1);
 
             if (stageType.Equals("i")) {
@@ -95,16 +96,18 @@ public class User : MonoBehaviour
         }
     }
     
+   
+    
 
     //야옹충돌
     private void colCat(Collider2D col){
 
-        //Debug.Log("애옹");
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
+
+        catCollision = true; //야옹충돌
         
         //화면전환효과
-        GameObject.Find("FieldManager").GetComponent<FieldManager>().catEffect();
-        catCollision = true;
+        TutorialFieldManager.catEffect();
         soundManager.catPlay();
     }
 
@@ -114,6 +117,8 @@ public class User : MonoBehaviour
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
         GlobalScript.modifyScore(1);
+        GameObject.Find("UIManager").GetComponent<UIManager>().setScoreText();
+
     }
 
 
@@ -121,6 +126,8 @@ public class User : MonoBehaviour
     private void colLine(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
         GlobalScript.modifyScore(1);
+        GameObject.Find("UIManager").GetComponent<UIManager>().setScoreText();
+
     }
 
     

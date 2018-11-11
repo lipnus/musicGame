@@ -55,7 +55,8 @@ public class HomeManager : MonoBehaviour {
 		StartCoroutine("walking", 0);
 		
 		yield return new WaitForSeconds(6);
-		SceneManager.LoadScene("CityScene");		
+//		SceneManager.LoadScene("CityScene");		
+		SceneManager.LoadScene("TutorialScene");		
 
 	}
 	

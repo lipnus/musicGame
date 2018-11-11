@@ -9,14 +9,16 @@ public class UIManager : MonoBehaviour {
 //	public Image image;
 	public Text midText;
 	
-	//목숨
-	public Image lifeBar;
+	public Image lifeBar; //생명바
+	public Text scoreText; //점수표시
+	public Image userDieBackgroud; //게임오버
+
+	
 	private const int LIFE_UNIT = 166; //목숨 한칸의 양
 	private const int LIFE_MAX = 500; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
 	
-	//게임오버
-	public Image userDieBackgroud;
+	
 
 	public void showText(string str) {
 		midText.text = str;
@@ -99,6 +101,15 @@ public class UIManager : MonoBehaviour {
 	IEnumerator DieEvent(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 		SceneManager.LoadScene("DieScene");
-
 	}
+	
+	//현재 점수 표시
+	public void setScoreText() {
+		int score = PlayerPrefs.GetInt("Score", 0);		
+		scoreText.text = score.ToString();
+		//글씨크기에 맞게 박스크기 조정
+		scoreText.rectTransform.sizeDelta = new Vector2(scoreText.preferredWidth, scoreText.preferredHeight); 
+		Debug.Log(scoreText.preferredWidth + " " + scoreText.preferredHeight);
+	}
+
 }
