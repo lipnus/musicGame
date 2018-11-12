@@ -11,6 +11,8 @@ public class QuizManager1 : MonoBehaviour{
 	public Image[] answerBoxImg; //제출된 정답
 	public Text[] initialTexts; //정답입력칸
 	private int initialTextSize; //보기로 주어진 자음의 개수
+	public GameObject midText;
+	public GameObject midBack;
 
 	private bool isSountPlay = false;
 
@@ -18,6 +20,27 @@ public class QuizManager1 : MonoBehaviour{
 
 	void Start() {
 		connectServer.quiz_1(0,0);
+		
+		//첫 퀴즈인 경우, n초후 가이드 텍스트 표시
+		if(!GlobalScript.isQuizGuide_1_Finished()) StartCoroutine(showGuideText(3f));
+
+	}
+
+	IEnumerator showGuideText(float delayTime) {
+		midText.active = true;
+		midBack.active = true;
+		midText.GetComponent<Animator>().SetBool("showText", true);
+
+		yield return new WaitForSeconds(delayTime);
+	
+		midText.GetComponent<Animator>().SetBool("showText", false);
+		yield return new WaitForSeconds(0.8f);
+		midBack.active = false;
+
+
+
+		
+		
 	}
 
 	

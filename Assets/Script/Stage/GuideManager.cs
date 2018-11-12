@@ -9,15 +9,47 @@ public class GuideManager : MonoBehaviour {
 	public GameObject fieldManager;
 	public GameObject guideObj; //가이드가 발동되면 여기가 등록시켜두고, 클릭시 해당 가이드 파괴
 	public GameObject midText;
+	public GameObject user;
+	
+	private bool touchOK; //그냥 슉 지나가는거 방지하기 위해 좀 딜레이를 준 다음 보여준다.
+	private const float TOUCH_DELAY = 0.6f;//터치 딜레이
+
+
+	public void enrollGuideObj(GameObject guideObj) {
+		this.guideObj = guideObj;
+		touchOK = false;
+		StartCoroutine(authorizeTouch(TOUCH_DELAY));
+
+	}
+
+	IEnumerator authorizeTouch(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		touchOK = true;
+	}
 	
 	
-	public void onClick_guide() {
-		if (guideObj != null) {
-			Debug.Log("가이드 파괴");
+	//가이드와 점프 모두 화면터치를 입력받으므로 그 두가지를 구분해주는 역할
+	public void onClick_JumpAndGuide() {
+		
+		//가이드 이벤트가 발동되지 않았을때
+		if (guideObj == null) {
+			user.GetComponent<User>().Jump();
+			return;
+		}
+		
+		//가이드이벤트발동 & 발동후 일정시간이 지남
+		if (touchOK) {
 			
+			if (guideObj.transform.name.Equals("Guide-jump")) user.GetComponent<User>().Jump(); //점프퀘스트
+			else if(guideObj.transform.name.Equals("Guide-cat1")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_initial");
+				
+				
+			Debug.Log("가이드 파괴");
 			midText.GetComponent<Animator>().SetBool("showText", false);
 			fieldManager.GetComponent<TutorialFieldManager>().resumeMove();
 			Destroy(guideObj);	
+			
+			
 		}
 		
 	}

@@ -103,8 +103,7 @@ public class User : MonoBehaviour
     private void colCat(Collider2D col){
 
         GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
-
-        catCollision = true; //야옹충돌
+        catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)
         
         //화면전환효과
         TutorialFieldManager.pauseMove();

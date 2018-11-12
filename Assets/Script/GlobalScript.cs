@@ -100,6 +100,24 @@ public static class GlobalScript {
         return PlayerPrefs.GetFloat("PlayTime", 3f); //기본값:2
     }
     
+    //가이드를 봤는지 여부
+    public static bool isQuizGuide_1_Finished() {
+        int result = PlayerPrefs.GetInt("QuizGuide1", 0);
+
+        if (result == 0) {
+            PlayerPrefs.SetInt("QuizGuide1", 1);
+            return false;
+        }else return true;
+    }
+    
+    public static bool isQuizGuide_2_Finished() {
+        int result = PlayerPrefs.GetInt("QuizGuide2", 0);
+
+        if (result == 0) {
+            PlayerPrefs.SetInt("QuizGuide2", 1);
+            return false;
+        }else return true;
+    }
     
     
     
