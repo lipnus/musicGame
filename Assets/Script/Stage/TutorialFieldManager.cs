@@ -135,9 +135,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	public void quizStart(String quizType) {
 		savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
 
-		SceneManager.LoadScene(quizType);
-
-		
+		SceneManager.LoadScene(quizType);		
 	}
 	
 	
