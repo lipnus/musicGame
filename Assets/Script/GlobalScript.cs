@@ -202,7 +202,7 @@ public static class GlobalScript {
         //신발
         item = new ItemInfo(0, 300, "락포트 페니로퍼", 50000, "전체보기 > 신발 > 구두");
         items.Add(item);
-        item = new ItemInfo(0, 301, "꼼데 스니커즈", 100000, "전체보기 > 신발 > 스니커즈");
+        item = new ItemInfo(0, 301, "꼼데 스니커즈", 1000, "전체보기 > 신발 > 스니커즈");
         items.Add(item);
 
 

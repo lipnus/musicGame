@@ -107,7 +107,7 @@ public class User : MonoBehaviour
         catCollision = true; //야옹충돌
         
         //화면전환효과
-        TutorialFieldManager.catEffect();
+        TutorialFieldManager.pauseMove();
         soundManager.catPlay();
     }
 

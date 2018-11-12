@@ -124,12 +124,17 @@ public class TutorialFieldManager : MonoBehaviour {
 
  
 
-	//고양이 만났을 때
-	public void catEffect() {
+	//움직임 일시정지
+	public void pauseMove() {
 		stopMoving = true;
 		user.GetComponent<User>().userSpeed = 0; //정지
-		
 	}
+
+	public void resumeMove() {
+		stopMoving = false;
+		user.GetComponent<User>().userSpeed = userSpeed;
+	}
+	
 
 	//퀴즈씬으로 이동
 	public void quizStart(String quizType) {
@@ -181,8 +186,5 @@ public class TutorialFieldManager : MonoBehaviour {
 
 	}
 
-	//고양이 만났을때 고양이 터치
-	public void onClick_cat() {
-		Debug.Log("고양터치");
-	}
+
 }

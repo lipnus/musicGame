@@ -16,6 +16,9 @@ public class ShopApp : MonoBehaviour {
 	public GameObject purchase_btn;
 	public GameObject wear_btn;
 	public GameObject wore_img;
+	
+	public GameObject moneyEffect;
+
 
 	public List<GameObject> items = new List<GameObject>();
 
@@ -23,11 +26,11 @@ public class ShopApp : MonoBehaviour {
 
 
 	void Start() {
-		setInitialProduct();
-		
-//		PlayerPrefs.DeleteAll();
-//		GlobalScript.firstGift();
+		PlayerPrefs.DeleteAll();
+		GlobalScript.firstGift();
 		GlobalScript.setScore(10000);
+		
+		setInitialProduct();
 	}
 	
 	//구매하기
@@ -38,6 +41,9 @@ public class ShopApp : MonoBehaviour {
 		if (score >= item.Price) {
 
 			score -= item.Price;
+			moneyEffect.GetComponent<Animator>().SetTrigger("money_t");
+			
+			
 			GlobalScript.setScore(score);
 			GlobalScript.addMyItem(curCode); //새로 산 아이템 표시
 			showBtn(); //버튼이 바뀌겠지
@@ -46,6 +52,7 @@ public class ShopApp : MonoBehaviour {
 		else {
 			Debug.Log("돈이없다. 가진돈: " + GlobalScript.getScore());
 		}
+		updateAllItemState();
 	}
 
 	//옷입기
@@ -58,12 +65,15 @@ public class ShopApp : MonoBehaviour {
 		else if (curCode / 100 == 3) GlobalScript.setShoes(curCode);
 
 		showBtn(); //버튼변경
+		updateAllItemState();
+	}
 
-		//각 아이템들의 착용상태 아이콘 업데이트
-		for (int i = 0; i < 5; i++) {
-			items[i].GetComponent<ItemObj>().updateAppliedState();
-		}
 	
+	//각 아이템들의 착용상태 아이콘 업데이트
+	public void updateAllItemState() {
+		for (int i = 0; i < 5; i++) {
+			items[i].GetComponent<ItemObj>().updateItemState();
+		}
 	}
 
 	//코드입력받기
@@ -92,6 +102,12 @@ public class ShopApp : MonoBehaviour {
 			heartSelected = false;
 		}
 
+	}
+
+	public void cancelHeart() {
+		heart_img.GetComponent<Image>().sprite = GameObject.Find("app_heart_img").
+			transform.Find("empty_heart_img").GetComponent<Image>().sprite;
+		heartSelected = false;
 	}
 	
 	//정보 삭제

@@ -7,10 +7,12 @@ using UnityEngine.UI;
 //각 아이템이 들고 있는 스크립트
 public class ItemObj : MonoBehaviour {
 
-	public GameObject activated;
+	public GameObject focused;
 	public GameObject standard;
 	public GameObject applied;
 	public GameObject product;
+	public GameObject locked;
+
 	
 	public int curCode; //이 옷의 코드
 
@@ -24,21 +26,31 @@ public class ItemObj : MonoBehaviour {
 	void Start () {
 		shopApp = GameObject.Find("Shop_App").GetComponent<ShopApp>();
 		
-		shopApp.items.Add(gameObject); //스스로의 정보를 전달
-		updateAppliedState();
+		shopApp.items.Add(gameObject); //스스로의 갹체를 전달
+		updateItemState();
 	}
 
-	//착용상태 표시
-	public void updateAppliedState() {
+	//각 아이콘의 상태 표시
+	public void updateItemState() {
 		applied.active = false;
-		if (GlobalScript.isWearItem(curCode)) {
-			applied.active = true;
+		locked.active = false;
+
+		if (GlobalScript.isHaveItem(curCode)) {
+			if (GlobalScript.isWearItem(curCode)) { //입고있다
+				applied.active = true;
+			}
+			else{ //가지고만 있다
+			
+			}
+		}else { //없다
+			locked.active = true;
 		}
+		
 	}
 
 	public void hideActivatedImg() {
 		try {//선택된 표시 제거(하나도 선택된게 없으면 에러나서 try~catch)
-			GameObject.Find("activated").gameObject.active = false; 
+			GameObject.Find("focused").gameObject.active = false; 
 		}catch (Exception e) {}  
 	}
 
@@ -47,15 +59,16 @@ public class ItemObj : MonoBehaviour {
 		//앱화면
 		
 		shopApp.setCode(curCode);
+		shopApp.cancelHeart();
 		shopApp.removeInfo();
 
 		
-		if (activated.active) {
-			activated.active = false;
+		if (focused.active) {
+			focused.active = false;
 		}
 		else {
 			hideActivatedImg();
-			activated.active = true;
+			focused.active = true;
 			shopApp.showHeart();
 			shopApp.showNote();
 			
