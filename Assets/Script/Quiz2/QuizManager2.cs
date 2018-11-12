@@ -15,6 +15,11 @@ public class QuizManager2 : MonoBehaviour{
 	public List<Image> button = new List<Image>();
 	public List<Image> selectedImg = new List<Image>();
 	public List<Text> choiceText = new List<Text>();
+
+
+	public GameObject midText;
+	public GameObject midBack;
+	
 	private Quiz quiz;
 
 	void Start() {
@@ -28,7 +33,24 @@ public class QuizManager2 : MonoBehaviour{
 			button[i].enabled = false;
 			choiceText[i].enabled = false;
 		}
+		
+		//첫 퀴즈인 경우 가이드 텍스트 표시
+		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(2.5f));
+
 	}
+
+	IEnumerator showGuideText(float delayTime) {
+		midText.active = true;
+		midBack.active = true;
+		midText.GetComponent<Animator>().SetBool("showText", true);
+
+		yield return new WaitForSeconds(delayTime);
+	
+		midText.GetComponent<Animator>().SetBool("showText", false);
+		yield return new WaitForSeconds(0.5f);
+		midBack.active = false;
+	}
+	
 
 	void sightMove() {
 		sight.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 610);
@@ -67,8 +89,8 @@ public class QuizManager2 : MonoBehaviour{
 	public void setGame(Quiz q) {
 		quiz = q; //전역에 할당
 		
-		GlobalScript.answerStr = "곡명\n" + quiz.musicInfo.singer + " - " + quiz.musicInfo.title; //정답표시 설정
-		Debug.Log("노래이름: " + quiz.musicInfo.title);
+		//필드에서 표시해줄 답안등록
+		GlobalScript.setAnswer(quiz.musicInfo.title, quiz.musicInfo.singer);
 
 		for (int i = 0; i < choiceText.Count; i++) {
 			choiceText[i].text = quiz.choices[i].choice;

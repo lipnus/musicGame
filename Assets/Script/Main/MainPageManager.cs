@@ -12,6 +12,8 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject camera_page; //카메라
 	public GameObject info_page; //정보
 	public GameObject shop_page; //쇼핑
+
+	public SoundManager soundManager;
 	
 	
 	private const float BACK_OPPACITY=0.7f;
@@ -26,6 +28,7 @@ public class MainPageManager : MonoBehaviour {
 
 	//정보 페이지
 	public void onClick_info() {
+		soundManager.clickPlay();
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
 		start_page.active = false;
 		info_page.active = true;
@@ -34,6 +37,7 @@ public class MainPageManager : MonoBehaviour {
 
 	//쇼핑 페이지
 	public void onClick_shop() {
+		soundManager.clickPlay();
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(0.3f, BACK_OPPACITY);
 		start_page.active = false;
 		shop_page.active = true;
@@ -41,11 +45,13 @@ public class MainPageManager : MonoBehaviour {
 
 	//뒤로버튼
 	public void onClick_back() {
+		soundManager.clickPlay();
 		StartCoroutine(ReturnMainScreen(0f));
 	}
 	
 	//뒤로버튼
 	public void onClick_back_fade() {
+		soundManager.clickPlay();
 		StartCoroutine(ReturnMainScreenFadeIn(0f));
 	}
 
@@ -80,6 +86,7 @@ public class MainPageManager : MonoBehaviour {
 	
 	//게임시작
 	public void onClick_gamestart() {
+		soundManager.clickPlay();
 		GlobalScript.startGame(); //게임초기화
 		SceneManager.LoadScene("HomeScene");
 	}

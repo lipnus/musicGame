@@ -55,11 +55,11 @@ public class ItemObj : MonoBehaviour {
 	}
 
 	public void onClick_product() {
+		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
 		
 		//앱화면
-		
 		shopApp.setCode(curCode);
-		shopApp.cancelHeart();
+//		shopApp.cancelHeart();
 		shopApp.removeInfo();
 
 		

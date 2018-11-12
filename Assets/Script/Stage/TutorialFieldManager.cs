@@ -12,6 +12,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	public List<GameObject> layer=new List<GameObject>();
 	public List<float> layer_speed =new List<float>();
 	public GameObject user;
+	public SoundManager soundManager;
 
 	private const float BEFORE_QUIZ_POSITION = 8f; //퀴즈 후엔 4만큼 앞으로 가서 고양이 뒤쪽에서 복귀
 	float userSpeed;
@@ -32,10 +33,8 @@ public class TutorialFieldManager : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 		if (hit) {
 			if (user.GetComponent<User>().catCollision) { //야옹충돌 이벤트 이후
-				if (hit.collider.gameObject.name.Equals("catArea_init")) {
-					quizStart("Quiz_initial");
-					Debug.Log("야옹영억 터치");
-				}
+				if (hit.collider.gameObject.name.Equals("catArea_init")) quizStart("Quiz_initial");
+				else if (hit.collider.gameObject.name.Equals("catArea_choice")) quizStart("Quiz_choice");
 
 			}
 
@@ -79,10 +78,16 @@ public class TutorialFieldManager : MonoBehaviour {
 		//정답표시
 		GameObject.Find("UIManager").GetComponent<UIManager>().showAnswer();
 		
-		//목숨처리
-		if (GlobalScript.lifeEvent == 0) {//정답
+		
+		//정답
+		if (GlobalScript.lifeEvent == 0) {
 			StartCoroutine(correctIcon((4f)));
-		}else if (GlobalScript.lifeEvent == -1) {//오답
+			GlobalScript.modifyScore(100); //점수
+			soundManager.correctPlay();
+
+		}
+		//오답
+		else if (GlobalScript.lifeEvent == -1) {
 			StartCoroutine(wrongIcon((4f)));
 			GameObject.Find("UIManager").GetComponent<UIManager>().decreaseLifeBar();
 			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
@@ -151,7 +156,6 @@ public class TutorialFieldManager : MonoBehaviour {
 		Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		cam.transform.Rotate(Vector3.up * 0.1f); 
 		cam.transform.Translate( Vector3.back * 0.005f);
-	
 		StartCoroutine("rotateCamera", 0.1f);
 	}
 

@@ -81,19 +81,19 @@ public class User : MonoBehaviour
     //Collision박스 영역에서 벗어남
     private void OnTriggerExit2D(Collider2D col) {
 
-        if (col.tag.Equals("cat")){
-            GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
-            
-            TutorialFieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
-            string stageType = col.name.Substring(0, 1);
-
-            if (stageType.Equals("i")) {
-                SceneManager.LoadScene("Quiz_initial");
-            }
-            else if (stageType.Equals("c")) {
-                SceneManager.LoadScene("Quiz_choice");
-            }
-        }
+//        if (col.tag.Equals("cat")){
+//            GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
+//            
+//            TutorialFieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
+//            string stageType = col.name.Substring(0, 1);
+//
+//            if (stageType.Equals("i")) {
+//                SceneManager.LoadScene("Quiz_initial");
+//            }
+//            else if (stageType.Equals("c")) {
+//                SceneManager.LoadScene("Quiz_choice");
+//            }
+//        }
     }
     
    

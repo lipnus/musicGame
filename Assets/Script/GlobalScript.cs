@@ -38,7 +38,7 @@ public static class GlobalScript {
     
     //게임초기화
     public static void startGame() {
-        setLife(1);
+        setLife(3);
         lifeEvent = 0;
         userPosition = new Vector3(0,0,0);
     }
@@ -101,23 +101,22 @@ public static class GlobalScript {
     }
     
     //가이드를 봤는지 여부
-    public static bool isQuizGuide_1_Finished() {
-        int result = PlayerPrefs.GetInt("QuizGuide1", 0);
-
-        if (result == 0) {
-            PlayerPrefs.SetInt("QuizGuide1", 1);
-            return false;
-        }else return true;
+    public static bool isGuide_Finished() {
+        int result = PlayerPrefs.GetInt("Guide", 0);
+        
+        if (result == 0) return false;
+        else return true;
     }
-    
-    public static bool isQuizGuide_2_Finished() {
-        int result = PlayerPrefs.GetInt("QuizGuide2", 0);
 
-        if (result == 0) {
-            PlayerPrefs.SetInt("QuizGuide2", 1);
-            return false;
-        }else return true;
+    //가이드를 끝낸다
+    public static void endGuide() {
+        PlayerPrefs.SetInt("Guide", 1);
     }
+
+    public static bool soundOn() {
+        return true;
+    }
+
     
     
     

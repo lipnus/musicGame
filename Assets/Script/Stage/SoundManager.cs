@@ -9,6 +9,9 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource footSound;
 	public AudioSource fireworkSound1;
 	public AudioSource fireworkSound2;
+	public AudioSource correct;
+	public AudioSource click;
+	
 	
 
     //임의의 멜로디
@@ -35,5 +38,16 @@ public class SoundManager : MonoBehaviour {
 	
 	public void fireworkPlay2() {
 		fireworkSound2.GetComponent<AudioSource>().Play();
+	}
+
+	//정답
+	public void correctPlay() {
+		correct.GetComponent<AudioSource>().Play();
+	}
+	
+	//클릭
+	public void clickPlay() {
+		click.GetComponent<AudioSource>().Play();
+
 	}
 }

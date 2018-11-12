@@ -22,7 +22,7 @@ public class QuizManager1 : MonoBehaviour{
 		connectServer.quiz_1(0,0);
 		
 		//첫 퀴즈인 경우, n초후 가이드 텍스트 표시
-		if(!GlobalScript.isQuizGuide_1_Finished()) StartCoroutine(showGuideText(3f));
+		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(3f));
 
 	}
 
@@ -34,13 +34,8 @@ public class QuizManager1 : MonoBehaviour{
 		yield return new WaitForSeconds(delayTime);
 	
 		midText.GetComponent<Animator>().SetBool("showText", false);
-		yield return new WaitForSeconds(0.8f);
+		yield return new WaitForSeconds(0.5f);
 		midBack.active = false;
-
-
-
-		
-		
 	}
 
 	

@@ -42,16 +42,22 @@ public class GuideManager : MonoBehaviour {
 			
 			if (guideObj.transform.name.Equals("Guide-jump")) user.GetComponent<User>().Jump(); //점프퀘스트
 			else if(guideObj.transform.name.Equals("Guide-cat1")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_initial");
+			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_choice");
+			else if(guideObj.transform.name.Equals("Guide-subway")) GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(3f); //페이드아웃
+
 				
 				
 			Debug.Log("가이드 파괴");
 			midText.GetComponent<Animator>().SetBool("showText", false);
 			fieldManager.GetComponent<TutorialFieldManager>().resumeMove();
-			Destroy(guideObj);	
-			
-			
+			Destroy(guideObj);		
 		}
-		
+	}
+
+
+	//가이드 종료(퀴즈에서 더이상 가이드가 안나온다)
+	public void endGuide() {
+		GlobalScript.endGuide();
 	}
 	 
 }

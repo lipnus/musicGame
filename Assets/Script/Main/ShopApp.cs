@@ -57,6 +57,8 @@ public class ShopApp : MonoBehaviour {
 
 	//옷입기
 	public void onClick_wear() {
+		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
+
 		if (curCode / 100 == 1) {
 			GlobalScript.setTop(curCode);
 			Debug.Log("상의교체");
@@ -91,6 +93,8 @@ public class ShopApp : MonoBehaviour {
 	
 	//하트터치
 	public void onClick_heart() {
+		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
+
 		if (!heartSelected) {
 			heart_img.GetComponent<Image>().sprite = GameObject.Find("app_heart_img").
 				transform.Find("full_heart_img").GetComponent<Image>().sprite;

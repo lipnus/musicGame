@@ -48,6 +48,14 @@ public class UIManager : MonoBehaviour {
 		answerImg.SetActive(true);
 		answerTitle.text = GlobalScript.getAnswerTitle();
 		answerSinger.text = GlobalScript.getAnswerSinger();
+		
+		//정답창 5초후에 끈다
+		StartCoroutine(hideAnswer(5f));
+	}
+
+	IEnumerator hideAnswer(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		answerImg.GetComponent<Animator>().SetTrigger("answerHide_t");
 	}
 	
 	
