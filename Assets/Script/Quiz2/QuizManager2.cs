@@ -35,7 +35,7 @@ public class QuizManager2 : MonoBehaviour{
 		}
 		
 		//첫 퀴즈인 경우 가이드 텍스트 표시
-		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(2.5f));
+		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(3f));
 
 	}
 

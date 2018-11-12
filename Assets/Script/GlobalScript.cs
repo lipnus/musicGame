@@ -209,7 +209,7 @@ public static class GlobalScript {
         //상의
         item = new ItemInfo(0, 100, "유니클로 무지반팔", 12000, "전체보기 > 상의 > 반팔티셔츠");
         items.Add(item);
-        item = new ItemInfo(0, 101, "아크네 맨투맨", 10, "전체보기 > 상의 > 맨투맨");
+        item = new ItemInfo(0, 101, "아크네 맨투맨", 1000, "전체보기 > 상의 > 맨투맨");
         items.Add(item);
                 
         //하의
@@ -220,6 +220,8 @@ public static class GlobalScript {
         item = new ItemInfo(0, 300, "락포트 페니로퍼", 50000, "전체보기 > 신발 > 구두");
         items.Add(item);
         item = new ItemInfo(0, 301, "꼼데 스니커즈", 1000, "전체보기 > 신발 > 스니커즈");
+        items.Add(item);
+        item = new ItemInfo(0, 302, "이지 부스트", 1000, "전체보기 > 신발 > 운동화");
         items.Add(item);
 
 

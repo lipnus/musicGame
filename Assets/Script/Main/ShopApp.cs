@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,10 +27,10 @@ public class ShopApp : MonoBehaviour {
 
 
 	void Start() {
-		PlayerPrefs.DeleteAll();
-		GlobalScript.firstGift();
-		GlobalScript.setScore(10000);
-		
+//		
+//		PlayerPrefs.DeleteAll();
+//		GlobalScript.firstGift();
+//		GlobalScript.setScore(10000);
 		setInitialProduct();
 	}
 	
@@ -55,9 +56,9 @@ public class ShopApp : MonoBehaviour {
 		updateAllItemState();
 	}
 
-	//옷입기
+	//착용하기
 	public void onClick_wear() {
-		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
+//		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
 
 		if (curCode / 100 == 1) {
 			GlobalScript.setTop(curCode);
@@ -73,7 +74,7 @@ public class ShopApp : MonoBehaviour {
 	
 	//각 아이템들의 착용상태 아이콘 업데이트
 	public void updateAllItemState() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < items.Count(); i++) {
 			items[i].GetComponent<ItemObj>().updateItemState();
 		}
 	}
@@ -152,7 +153,7 @@ public class ShopApp : MonoBehaviour {
 		note_img.active = true;
 	}
 
-	//버튼부분 출력
+	//버튼출력(구매,착용,착용중)
 	public void showBtn() {
 		purchase_btn.active = false;
 		wear_btn.active = false;

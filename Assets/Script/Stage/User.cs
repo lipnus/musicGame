@@ -22,6 +22,10 @@ public class User : MonoBehaviour
     private GameObject cur_top;
     private GameObject cur_bottom;
     private GameObject cur_shoes;
+    
+    private GameObject cur_top_bg;
+    private GameObject cur_bottom_bg;
+    private GameObject cur_shoes_bg;
 
     public bool catCollision = false;
 
@@ -46,9 +50,16 @@ public class User : MonoBehaviour
         if (jumpOK) {
             jumpOK = false;
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower);
+            
             cur_top.GetComponent<Animator>().SetTrigger("jump_t");
+            cur_top_bg.GetComponent<Animator>().SetTrigger("jump_t");
+            
             cur_bottom.GetComponent<Animator>().SetTrigger("jump_t");
+            cur_bottom_bg.GetComponent<Animator>().SetTrigger("jump_t");
+            
             cur_shoes.GetComponent<Animator>().SetTrigger("jump_t");
+            cur_shoes_bg.GetComponent<Animator>().SetTrigger("jump_t");
+            
             StartCoroutine("JumpCheck", 0.5f);
         }
 
@@ -137,13 +148,19 @@ public class User : MonoBehaviour
         item_code = GlobalScript.getTop().ToString();
         cur_top = GameObject.Find("Top").transform.Find(item_code).gameObject;
         cur_top.SetActive(true);
+        cur_top_bg = GameObject.Find("Top").transform.Find(item_code+"_b").gameObject;
+        cur_top_bg.SetActive(true);
 
         item_code = GlobalScript.getBottom().ToString();
         cur_bottom = GameObject.Find("Bottom").transform.Find(item_code).gameObject;
         cur_bottom.SetActive(true);
-        
+        cur_bottom_bg = GameObject.Find("Bottom").transform.Find(item_code+"_b").gameObject;
+        cur_bottom_bg.SetActive(true);
+ 
         item_code = GlobalScript.getShoes().ToString();
         cur_shoes = GameObject.Find("Shoes").transform.Find(item_code).gameObject;
         cur_shoes.SetActive(true);
+        cur_shoes_bg = GameObject.Find("Shoes").transform.Find(item_code+"_b").gameObject;
+        cur_shoes_bg.SetActive(true);
     }
 }

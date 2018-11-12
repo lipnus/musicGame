@@ -160,4 +160,11 @@ public class QuizManager1 : MonoBehaviour{
 		isSountPlay = false;
 	}
 	
+	
+	//포기
+	public void onClick_giveUp() {
+		GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+		SceneManager.LoadScene( GlobalScript.sceneName );
+	}
+	
 }
