@@ -31,9 +31,7 @@ public class ShopApp : MonoBehaviour {
 
 	void Start() {
 //		
-		PlayerPrefs.DeleteAll();
-		GlobalScript.firstGift();
-		GlobalScript.setScore(10000);
+
 		setInitialProduct();
 
 		StartCoroutine(showPoint(0.1f));

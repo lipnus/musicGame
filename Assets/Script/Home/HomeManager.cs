@@ -19,6 +19,8 @@ public class HomeManager : MonoBehaviour {
 	public AudioSource tickingSound;
 	public AudioSource blanketSound;
 
+	public UIManager uiManager;
+
 
 	void Update() {
 		cloud.transform.Translate(Vector3.left * 0.6f * Time.deltaTime);
@@ -32,7 +34,7 @@ public class HomeManager : MonoBehaviour {
 
 	IEnumerator Scenario(float delayTime) { 
 		yield return new WaitForSeconds(1);
-		GameObject.Find("uiManager").GetComponent<UIManager>().showText("잠이 오지 않아..");
+		uiManager.showText("잠이 오지 않아..");
 		yield return new WaitForSeconds(2);
 
 		//불켜기
@@ -42,7 +44,7 @@ public class HomeManager : MonoBehaviour {
 		dark1.SetActive(false);
 		dark2.SetActive(true);
 		switchSound.Play();
-		GameObject.Find("uiManager").GetComponent<UIManager>().showText("공허한 마음을 달래줄 것은 오직 음악..");
+		uiManager.showText("공허한 마음을 달래줄 것은 오직 음악..");
 		yield return new WaitForSeconds(1);
 		
 		//일어남
@@ -54,9 +56,10 @@ public class HomeManager : MonoBehaviour {
 		user.GetComponent<Animator>().SetTrigger("walking_t");
 		StartCoroutine("walking", 0);
 		
-		yield return new WaitForSeconds(6);
+		yield return new WaitForSeconds(4);
+		SceneManager.LoadSceneAsync("TutorialScene");
 //		SceneManager.LoadScene("CityScene");		
-		SceneManager.LoadScene("TutorialScene");		
+//		SceneManager.LoadScene("TutorialScene");
 
 	}
 	

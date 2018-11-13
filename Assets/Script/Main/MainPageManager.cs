@@ -16,8 +16,14 @@ public class MainPageManager : MonoBehaviour {
 	public SoundManager2 soundManager;
 	private const float BACK_OPPACITY=0.7f;
 
+	void Start() {
+		GlobalScript.firstGift();
+		GlobalScript.setScore(10000);
+	}
+	
 	//카메라 페이지
 	public void onClick_camera() {
+		soundManager.playSound(1); //클릭소리
 		start_page.active = false;
 		camera_page.active = true;
 	}
@@ -84,6 +90,6 @@ public class MainPageManager : MonoBehaviour {
 		SceneManager.LoadScene("HomeScene");
 	}	
 }
-	
+
 	
   

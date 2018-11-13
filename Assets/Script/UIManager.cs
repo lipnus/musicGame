@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour {
 	public Text answerTitle; //노래제목
 	public Text answerSinger; //가수
 
+	public GameObject userScore;
 	
 	private const int LIFE_UNIT = 116; //목숨 한칸의 양
 	private const int LIFE_MAX = 350; //최대 목숨의 양
@@ -127,6 +128,12 @@ public class UIManager : MonoBehaviour {
 		scoreText.text = score.ToString();
 		//글씨크기에 맞게 박스크기 조정
 		scoreText.rectTransform.sizeDelta = new Vector2(scoreText.preferredWidth, scoreText.preferredHeight); 
+	}
+	
+	//캐릭터 위에 점수상승 이펙트
+	public void raiseScore(int score) {
+		userScore.GetComponent<Text>().text = "+" + score;
+		userScore.GetComponent<Animator>().SetTrigger("score_t");
 	}
 
 }

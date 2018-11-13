@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class User : MonoBehaviour
 {
@@ -17,12 +18,8 @@ public class User : MonoBehaviour
     public GameObject top;
     public GameObject bottom;
     public GameObject shoes;
-    
-    
-    private bool isJumped;
-    private int groundPosition; //점프하기 전의 y좌표(제일앞 3자리만 비교)
 
-    private bool jumpOK=true;
+    private bool jumpOK=true; 
     private bool slow = false;
     
     //현재 입고있는 옷
@@ -73,7 +70,6 @@ public class User : MonoBehaviour
             
             StartCoroutine("JumpCheck", 0.5f);
         }
-
     }
     
     
@@ -113,9 +109,6 @@ public class User : MonoBehaviour
     
     
     
-   
-    
-
     //야옹충돌
     private void colCat(Collider2D col){
         icons[0].GetComponent<Animator>().SetBool("cat_b", true); //고앙이아이콘
@@ -130,6 +123,7 @@ public class User : MonoBehaviour
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
         uiManager.setScoreText();
+        uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
         GlobalScript.modifyScore(1);
     }
 
@@ -137,6 +131,7 @@ public class User : MonoBehaviour
     //라인충돌
     private void colLine(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
+        uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
         GlobalScript.modifyScore(1);
         uiManager.setScoreText();
     }

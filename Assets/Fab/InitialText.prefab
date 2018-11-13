@@ -31,7 +31,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &50990933053712322
 Rigidbody2D:
   serializedVersion: 4
@@ -91,6 +91,7 @@ MonoBehaviour:
   dragging: 0
   collision: 0
   submit: 0
+  soundManager: {fileID: 0}
 --- !u!114 &114637349056460328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +161,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -141.3003, y: 99.00012}
+  m_AnchoredPosition: {x: -736.2002, y: 99.00009}
   m_SizeDelta: {x: 98.30005, y: 69.400024}
   m_Pivot: {x: 0.5, y: 0.5}

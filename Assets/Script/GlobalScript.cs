@@ -95,7 +95,7 @@ public static class GlobalScript {
     
     //음악재생시간
     public static float getPlayTime() {
-        return PlayerPrefs.GetFloat("PlayTime", 3f); //기본값:2
+        return PlayerPrefs.GetFloat("PlayTime", 4f); //기본값
     }
     
     //가이드를 봤는지 여부

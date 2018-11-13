@@ -13,6 +13,7 @@ public class QuizManager1 : MonoBehaviour{
 	private int initialTextSize; //보기로 주어진 자음의 개수
 	public GameObject midText;
 	public GameObject midBack;
+	public SoundManager2 soundManager;
 
 	private bool isSountPlay = false;
 
@@ -137,6 +138,7 @@ public class QuizManager1 : MonoBehaviour{
 	
 	//스마트폰을 터치하였을 때
 	public void onClick_smartPhone() {
+		soundManager.playSound(0);
 		if(isSountPlay) stopMusic();
 		
 		GameObject.Find("ConnectServer").GetComponent<ConnectServer>().stremingSound();
@@ -163,8 +165,14 @@ public class QuizManager1 : MonoBehaviour{
 	
 	//포기
 	public void onClick_giveUp() {
+		soundManager.playSound(0);
 		GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 		SceneManager.LoadScene( GlobalScript.sceneName );
+	}
+
+
+	public void onClick_CatHand() {
+		soundManager.playSound(1);
 	}
 	
 }

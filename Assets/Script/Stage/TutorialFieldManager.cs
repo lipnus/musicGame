@@ -12,10 +12,11 @@ public class TutorialFieldManager : MonoBehaviour {
 	public List<GameObject> layer=new List<GameObject>();
 	public List<float> layer_speed =new List<float>();
 	public GameObject user;
-	public GameObject uiManager;
+	public UIManager uiManager;
 	public SoundManager soundManager;
 	public GameObject star;
 	public FadeEffect fadeEffect;
+	
 	private const float BEFORE_QUIZ_POSITION = 8f; //퀴즈 후에 앞으로 이동할 거리
 	
 	float userSpeed;
@@ -77,6 +78,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		if (GlobalScript.lifeEvent == 0) {
 			user.GetComponent<User>().startShowIcon(2); //정답아이콘
 			GlobalScript.modifyScore(100); //점수
+			uiManager.raiseScore(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();
 		}
 		
