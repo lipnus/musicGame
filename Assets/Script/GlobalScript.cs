@@ -16,7 +16,6 @@ public static class GlobalScript {
     //퀴즈 <-> 필드 사이의 데이터 전달을 위한 변수들
     //public static int userPosition=0;
     public static Vector3 userPosition = new Vector3(0,0,0); //위치 기억
-    public static string answerStr = ""; //정답표시
     public static int lifeEvent; // -1:오답 , 0:정답 1:보너스
     public static string sceneName;
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
@@ -32,7 +31,6 @@ public static class GlobalScript {
     
     //위치 초기화(스테이지 이동할 떼 호출)
     public static void resetStage() {
-        answerStr = "";
         userPosition = new Vector3(0,0,0);
     }
     

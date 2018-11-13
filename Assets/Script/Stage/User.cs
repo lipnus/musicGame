@@ -10,9 +10,16 @@ public class User : MonoBehaviour
     public float jumpPower;
     public SoundManager soundManager;
     public TutorialFieldManager fieldManager;
-    private bool isJumped;
-    
+    public UIManager uiManager;
 
+    public List<GameObject> icons = new List<GameObject>();
+
+    public GameObject top;
+    public GameObject bottom;
+    public GameObject shoes;
+    
+    
+    private bool isJumped;
     private int groundPosition; //점프하기 전의 y좌표(제일앞 3자리만 비교)
 
     private bool jumpOK=true;
@@ -26,6 +33,8 @@ public class User : MonoBehaviour
     private GameObject cur_top_bg;
     private GameObject cur_bottom_bg;
     private GameObject cur_shoes_bg;
+
+
 
     public bool catCollision = false;
 
@@ -91,34 +100,26 @@ public class User : MonoBehaviour
     }
 
 
-    //Collision박스 영역에서 벗어남
-    private void OnTriggerExit2D(Collider2D col) {
-
-//        if (col.tag.Equals("cat")){
-//            GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
-//            
-//            fieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
-//            string stageType = col.name.Substring(0, 1);
-//
-//            if (stageType.Equals("i")) {
-//                SceneManager.LoadScene("Quiz_initial");
-//            }
-//            else if (stageType.Equals("c")) {
-//                SceneManager.LoadScene("Quiz_choice");
-//            }
-//        }
+    public void startShowIcon(int num) {
+        StartCoroutine(showIcon(num, 4.5f));
     }
+    
+    IEnumerator showIcon(int num, float delayTime) {
+        icons[num].GetComponent<Animator>().SetBool("correct_b", true);
+        yield return new WaitForSeconds(delayTime);
+        icons[num].GetComponent<Animator>().SetBool("correct_b", false);
+        yield return new WaitForSeconds(0.1f);
+    }
+    
+    
     
    
     
 
     //야옹충돌
     private void colCat(Collider2D col){
-
-        GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
-        catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)
-        
-        //화면전환효과
+        icons[0].GetComponent<Animator>().SetBool("cat_b", true); //고앙이아이콘
+        catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)   
         fieldManager.pauseMove();
         soundManager.catPlay();
     }
@@ -128,9 +129,8 @@ public class User : MonoBehaviour
     private void colNote(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
+        uiManager.setScoreText();
         GlobalScript.modifyScore(1);
-        GameObject.Find("UIManager").GetComponent<UIManager>().setScoreText();
-
     }
 
 
@@ -138,8 +138,7 @@ public class User : MonoBehaviour
     private void colLine(Collider2D col){
         col.GetComponent<Animator>().SetTrigger("Die_t");
         GlobalScript.modifyScore(1);
-        GameObject.Find("UIManager").GetComponent<UIManager>().setScoreText();
-
+        uiManager.setScoreText();
     }
 
     
@@ -148,21 +147,21 @@ public class User : MonoBehaviour
         string item_code;
 
         item_code = GlobalScript.getTop().ToString();
-        cur_top = GameObject.Find("Top").transform.Find(item_code).gameObject;
+        cur_top = top.transform.Find(item_code).gameObject;
         cur_top.SetActive(true);
-        cur_top_bg = GameObject.Find("Top").transform.Find(item_code+"_b").gameObject;
+        cur_top_bg = top.transform.Find(item_code+"_b").gameObject;
         cur_top_bg.SetActive(true);
 
         item_code = GlobalScript.getBottom().ToString();
-        cur_bottom = GameObject.Find("Bottom").transform.Find(item_code).gameObject;
+        cur_bottom = bottom.transform.Find(item_code).gameObject;
         cur_bottom.SetActive(true);
-        cur_bottom_bg = GameObject.Find("Bottom").transform.Find(item_code+"_b").gameObject;
+        cur_bottom_bg = bottom.transform.Find(item_code+"_b").gameObject;
         cur_bottom_bg.SetActive(true);
  
         item_code = GlobalScript.getShoes().ToString();
-        cur_shoes = GameObject.Find("Shoes").transform.Find(item_code).gameObject;
+        cur_shoes = shoes.transform.Find(item_code).gameObject;
         cur_shoes.SetActive(true);
-        cur_shoes_bg = GameObject.Find("Shoes").transform.Find(item_code+"_b").gameObject;
+        cur_shoes_bg = shoes.transform.Find(item_code+"_b").gameObject;
         cur_shoes_bg.SetActive(true);
     }
 }

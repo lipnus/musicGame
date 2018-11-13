@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Subway : MonoBehaviour {
+	
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
@@ -17,7 +18,6 @@ public class Subway : MonoBehaviour {
 		
 		//스테이지 관련 값 초기화
 		GlobalScript.resetStage();
-		
 		if(Application.loadedLevelName.Equals("CityScene")) SceneManager.LoadScene("RiverScene");
 
 	}

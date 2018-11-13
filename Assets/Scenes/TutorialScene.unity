@@ -573,8 +573,10 @@ MonoBehaviour:
   - 0.1
   - 0.4
   user: {fileID: 1083332045}
+  uiManager: {fileID: 1833437236}
   soundManager: {fileID: 1913375955}
   star: {fileID: 567891402}
+  fadeEffect: {fileID: 778706381}
 --- !u!1 &84006362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,12 +3262,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 390378016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 163, y: -2.6, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 68.2, y: 0.10000014, z: -100.81471}
   m_LocalScale: {x: 0.788, y: 0.788, z: 0.788}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1759565962}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &393475015
 GameObject:
@@ -4526,6 +4528,8 @@ MonoBehaviour:
   blackBackground: {fileID: 2139681910}
   midText: {fileID: 1568658439}
   sub: {fileID: 1716664660}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!61 &465887379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6477,6 +6481,8 @@ MonoBehaviour:
   blackBackground: {fileID: 1198233038}
   midText: {fileID: 1568658439}
   sub: {fileID: 326081108}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!61 &616913229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8284,6 +8290,8 @@ MonoBehaviour:
   blackBackground: {fileID: 1491449832}
   midText: {fileID: 1568658439}
   sub: {fileID: 491861065}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!61 &803990746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9206,12 +9214,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858137679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 178.79, y: -3.25, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 83.98999, y: -0.54999995, z: -100.81471}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1759565962}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860178275
 GameObject:
@@ -10668,6 +10676,15 @@ MonoBehaviour:
   jumpPower: 380
   soundManager: {fileID: 1913375955}
   fieldManager: {fileID: 83714958}
+  uiManager: {fileID: 1833437238}
+  icons:
+  - {fileID: 833882204}
+  - {fileID: 1623546403}
+  - {fileID: 367999235}
+  - {fileID: 1010431380}
+  top: {fileID: 944305333}
+  bottom: {fileID: 624709048}
+  shoes: {fileID: 1186092586}
   catCollision: 0
 --- !u!50 &1083332048
 Rigidbody2D:
@@ -10885,6 +10902,8 @@ MonoBehaviour:
   blackBackground: {fileID: 489781326}
   midText: {fileID: 1568658439}
   sub: {fileID: 520618198}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!95 &1099585382
 Animator:
   serializedVersion: 3
@@ -13038,6 +13057,8 @@ MonoBehaviour:
   blackBackground: {fileID: 428910867}
   midText: {fileID: 1568658439}
   sub: {fileID: 762095398}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!61 &1240634177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13418,12 +13439,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1292626843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 184.93, y: -2.91, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 90.12999, y: -0.21000004, z: -100.81471}
   m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1759565962}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301915937
 GameObject:
@@ -17811,6 +17832,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 620587233}
+  - {fileID: 1292626845}
+  - {fileID: 858137681}
+  - {fileID: 390378018}
   m_Father: {fileID: 302870170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17999,6 +18023,8 @@ MonoBehaviour:
   blackBackground: {fileID: 1986531912}
   midText: {fileID: 1568658439}
   sub: {fileID: 710590468}
+  user: {fileID: 1083332047}
+  soundManager: {fileID: 1913375955}
 --- !u!61 &1792006675
 BoxCollider2D:
   m_ObjectHideFlags: 0

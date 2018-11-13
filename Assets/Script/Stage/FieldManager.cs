@@ -36,10 +36,10 @@ public class FieldManager : MonoBehaviour {
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
 		
 		//점수표시
-		GameObject.Find("UIManager").GetComponent<UIManager>().setScoreText();
+		GameObject.Find("uiManager").GetComponent<UIManager>().setScoreText();
 		
 		//목숨표시(Life만큼의 칸을 표시해줌)
-		GameObject.Find("UIManager").GetComponent<UIManager>().updateLifeBar();
+		GameObject.Find("uiManager").GetComponent<UIManager>().updateLifeBar();
 		
 		//음악퀴즈를 풀고 돌아온 경우
 		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {			
@@ -51,20 +51,18 @@ public class FieldManager : MonoBehaviour {
 	
 	//음악퀴즈에서 필드로 돌아왔을때의 처리
 	void returnFromMusicQuiz() {
-		string answerStr = GlobalScript.answerStr;
 		
 		//레이어들의 위치를 퀴즈풀기 이전으로 복구
 		loadPosition();
 		
 		//정답표시
-		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long(answerStr);
 		
 		//목숨처리
 		if (GlobalScript.lifeEvent == 0) {//정답
 			StartCoroutine(correctIcon((3f)));
 		}else if (GlobalScript.lifeEvent == -1) {//오답
 			StartCoroutine(wrongIcon((3f)));
-			GameObject.Find("UIManager").GetComponent<UIManager>().decreaseLifeBar();
+			GameObject.Find("uiManager").GetComponent<UIManager>().decreaseLifeBar();
 			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
 			//사망여부확인
@@ -92,14 +90,14 @@ public class FieldManager : MonoBehaviour {
 	IEnumerator userDie(float delayTime) {
 
 		//UI게임오버효과
-		GameObject.Find("UIManager").GetComponent<UIManager>().UIUserDie(); 
+		GameObject.Find("uiManager").GetComponent<UIManager>().UIUserDie(); 
 		yield return new WaitForSeconds(delayTime);
 		
 		//기력딸려서 속도느려짐
 		GameObject.Find("User").GetComponent<User>().userSpeed = 0.1f;
 		
 		//죽음을 직감한 멘트
-		GameObject.Find("UIManager").GetComponent<UIManager>().showText_Long("텐션이 떨어진다...");
+		GameObject.Find("uiManager").GetComponent<UIManager>().showText_Long("텐션이 떨어진다...");
 	}
 
  

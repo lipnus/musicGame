@@ -13,6 +13,9 @@ public class GuideObject : MonoBehaviour {
 	public GameObject blackBackground;
 	public GameObject midText;
 	public GameObject sub;
+
+	public User user;
+	public SoundManager soundManager;
 	
 	
 	public enum GuideType {
@@ -62,7 +65,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "야~옹\n고양이를 터치해 퀴즈를 확인하세요!";
 		
-		GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
+		user.startShowIcon(0); //야옹아이콘
 		GameObject.Find("SoundManager").GetComponent<SoundManager>().catPlay();
 	}
 	
@@ -74,7 +77,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "또다시 야~옹\n고양이를 터치하세요!";
 		
-		GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
+		user.startShowIcon(0); //야옹아이콘
 		GameObject.Find("SoundManager").GetComponent<SoundManager>().catPlay();
 	}
 
@@ -87,7 +90,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "지하철역에 도착하면 다음스테이지로 이동합니다!";
 		
-		GameObject.Find("subway_icon").GetComponent<Animator>().SetBool("subway_b", true);
+		user.startShowIcon(3); //지하철아이콘
 	}
 	
 	
