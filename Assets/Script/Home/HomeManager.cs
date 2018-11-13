@@ -14,10 +14,10 @@ public class HomeManager : MonoBehaviour {
 	public GameObject dark1;
 	public GameObject dark2;
 
-
 	public AudioSource switchSound;
 	public AudioSource tickingSound;
 	public AudioSource blanketSound;
+
 
 	public UIManager uiManager;
 
@@ -57,8 +57,7 @@ public class HomeManager : MonoBehaviour {
 		StartCoroutine("walking", 0);
 		
 		yield return new WaitForSeconds(4);
-		SceneManager.LoadSceneAsync("TutorialScene");
-//		SceneManager.LoadScene("CityScene");		
+		SceneManager.LoadScene("CityScene");		
 //		SceneManager.LoadScene("TutorialScene");
 
 	}
