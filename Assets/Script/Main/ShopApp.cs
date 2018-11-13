@@ -17,6 +17,9 @@ public class ShopApp : MonoBehaviour {
 	public GameObject purchase_btn;
 	public GameObject wear_btn;
 	public GameObject wore_img;
+	public SoundManager2 soundManager;
+
+	public Text pointText;
 	
 	public GameObject moneyEffect;
 
@@ -32,7 +35,17 @@ public class ShopApp : MonoBehaviour {
 //		GlobalScript.firstGift();
 //		GlobalScript.setScore(10000);
 		setInitialProduct();
+
+		StartCoroutine(showPoint(0.1f));
 	}
+
+	IEnumerator showPoint(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		pointText.text = GlobalScript.getScore().ToString();
+		pointText.rectTransform.sizeDelta = new Vector2(pointText.preferredWidth, pointText.preferredHeight);
+	}
+	
+	
 	
 	//구매하기
 	public void onClick_purchase() {
@@ -58,7 +71,7 @@ public class ShopApp : MonoBehaviour {
 
 	//착용하기
 	public void onClick_wear() {
-//		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
+		soundManager.playSound(1); //클릭소리
 
 		if (curCode / 100 == 1) {
 			GlobalScript.setTop(curCode);
@@ -94,8 +107,8 @@ public class ShopApp : MonoBehaviour {
 	
 	//하트터치
 	public void onClick_heart() {
-		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
-
+		soundManager.playSound(1);
+		
 		if (!heartSelected) {
 			heart_img.GetComponent<Image>().sprite = GameObject.Find("app_heart_img").
 				transform.Find("full_heart_img").GetComponent<Image>().sprite;

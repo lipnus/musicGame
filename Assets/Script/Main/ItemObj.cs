@@ -13,6 +13,8 @@ public class ItemObj : MonoBehaviour {
 	public GameObject product;
 	public GameObject locked;
 
+	public SoundManager2 soundManager;
+
 	
 	public int curCode; //이 옷의 코드
 
@@ -55,7 +57,8 @@ public class ItemObj : MonoBehaviour {
 	}
 
 	public void onClick_product() {
-//		GameObject.Find("SoundManager").GetComponent<SoundManager>().clickPlay();
+		soundManager.playSound(1); //클릭소리
+
 		
 		//앱화면
 		shopApp.setCode(curCode);

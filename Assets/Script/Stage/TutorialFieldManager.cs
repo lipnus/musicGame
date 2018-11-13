@@ -25,9 +25,6 @@ public class TutorialFieldManager : MonoBehaviour {
 				layer[i].transform.Translate(Vector3.right * (userSpeed-layer_speed[i]) * Time.deltaTime);
 			}
 		}
-		else {
-			
-		}
 		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
@@ -35,12 +32,8 @@ public class TutorialFieldManager : MonoBehaviour {
 			if (user.GetComponent<User>().catCollision) { //야옹충돌 이벤트 이후
 				if (hit.collider.gameObject.name.Equals("catArea_init")) quizStart("Quiz_initial");
 				else if (hit.collider.gameObject.name.Equals("catArea_choice")) quizStart("Quiz_choice");
-
 			}
-
 		}
-		
-		
 	}
 	
 	
@@ -78,14 +71,13 @@ public class TutorialFieldManager : MonoBehaviour {
 		//정답표시
 		GameObject.Find("UIManager").GetComponent<UIManager>().showAnswer();
 		
-		
 		//정답
 		if (GlobalScript.lifeEvent == 0) {
 			StartCoroutine(correctIcon((4f)));
 			GlobalScript.modifyScore(100); //점수
 			soundManager.correctPlay();
-
 		}
+		
 		//오답
 		else if (GlobalScript.lifeEvent == -1) {
 			StartCoroutine(wrongIcon((4f)));
@@ -139,7 +131,22 @@ public class TutorialFieldManager : MonoBehaviour {
 		stopMoving = false;
 		user.GetComponent<User>().userSpeed = userSpeed;
 	}
-	
+
+
+	//점프할때 배경의 변화
+	public void bgJumpEffect() {
+		Debug.Log("점프이벤트 로드완료");
+		
+		StartCoroutine(bgJump());
+
+	}
+
+	//스테이지별로 저장할 배경 대상을 다르게 지정하면 될듯. 스테이지1에서는 하늘과 빌딩을 움직
+	IEnumerator bgJump() {
+		layer[2].transform.localScale = layer[1].transform.localScale * 0.9f;
+		yield return new WaitForSeconds(0.01f);
+		StartCoroutine(bgJump());
+	}
 
 	//퀴즈씬으로 이동
 	public void quizStart(String quizType) {
@@ -174,6 +181,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		GlobalScript.userPosition = user.transform.position;
 	}
 	
+	
 	//모든 레이어의 위치를 전역에서 불러옴
 	public void loadPosition() {
 		//레이어 복구
@@ -187,7 +195,6 @@ public class TutorialFieldManager : MonoBehaviour {
 		Vector3 uPosition = GlobalScript.userPosition;
 		uPosition.x += BEFORE_QUIZ_POSITION;
 		user.transform.position = uPosition;
-
 	}
 
 

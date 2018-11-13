@@ -5987,7 +5987,7 @@ Transform:
   m_GameObject: {fileID: 567891402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.216, y: -1.07, z: -3.02}
-  m_LocalScale: {x: 0.79777676, y: 0.61968434, z: 1.6088656}
+  m_LocalScale: {x: 0.7435838, y: 0.5775892, z: 1.4995754}
   m_Children: []
   m_Father: {fileID: 851314030}
   m_RootOrder: 0
@@ -10647,7 +10647,7 @@ MonoBehaviour:
   userSpeed: 3
   jumpPower: 380
   soundManager: {fileID: 1913375955}
-  TutorialFieldManager: {fileID: 83714958}
+  fieldManager: {fileID: 83714958}
   catCollision: 0
 --- !u!50 &1083332048
 Rigidbody2D:

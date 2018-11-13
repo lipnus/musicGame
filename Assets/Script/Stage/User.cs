@@ -9,7 +9,7 @@ public class User : MonoBehaviour
     public float userSpeed;
     public float jumpPower;
     public SoundManager soundManager;
-    public TutorialFieldManager TutorialFieldManager;
+    public TutorialFieldManager fieldManager;
     private bool isJumped;
     
 
@@ -50,6 +50,8 @@ public class User : MonoBehaviour
         if (jumpOK) {
             jumpOK = false;
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower);
+            
+            fieldManager.GetComponent<TutorialFieldManager>().bgJumpEffect(); //점프할때 배경효과
             
             cur_top.GetComponent<Animator>().SetTrigger("jump_t");
             cur_top_bg.GetComponent<Animator>().SetTrigger("jump_t");
@@ -95,7 +97,7 @@ public class User : MonoBehaviour
 //        if (col.tag.Equals("cat")){
 //            GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", false);
 //            
-//            TutorialFieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
+//            fieldManager.savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
 //            string stageType = col.name.Substring(0, 1);
 //
 //            if (stageType.Equals("i")) {
@@ -117,7 +119,7 @@ public class User : MonoBehaviour
         catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)
         
         //화면전환효과
-        TutorialFieldManager.pauseMove();
+        fieldManager.pauseMove();
         soundManager.catPlay();
     }
 
