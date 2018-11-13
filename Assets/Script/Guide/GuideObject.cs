@@ -60,7 +60,7 @@ public class GuideObject : MonoBehaviour {
 		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
-		midText.GetComponent<Text>().text = "야~옹\n고양이를 터치하세요!";
+		midText.GetComponent<Text>().text = "야~옹\n고양이를 터치해 퀴즈를 확인하세요!";
 		
 		GameObject.Find("cat_icon").GetComponent<Animator>().SetBool("cat_b", true);
 		GameObject.Find("SoundManager").GetComponent<SoundManager>().catPlay();

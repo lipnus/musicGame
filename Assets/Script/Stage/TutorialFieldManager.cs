@@ -13,6 +13,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	public List<float> layer_speed =new List<float>();
 	public GameObject user;
 	public SoundManager soundManager;
+	public GameObject star;
 
 	private const float BEFORE_QUIZ_POSITION = 8f; //퀴즈 후엔 4만큼 앞으로 가서 고양이 뒤쪽에서 복귀
 	float userSpeed;
@@ -135,18 +136,12 @@ public class TutorialFieldManager : MonoBehaviour {
 
 	//점프할때 배경의 변화
 	public void bgJumpEffect() {
-		Debug.Log("점프이벤트 로드완료");
+		Debug.Log("점프이벤트");
+		star.GetComponent<Animator>().SetTrigger("jump_t");
 		
-		StartCoroutine(bgJump());
-
 	}
 
-	//스테이지별로 저장할 배경 대상을 다르게 지정하면 될듯. 스테이지1에서는 하늘과 빌딩을 움직
-	IEnumerator bgJump() {
-		layer[2].transform.localScale = layer[1].transform.localScale * 0.9f;
-		yield return new WaitForSeconds(0.01f);
-		StartCoroutine(bgJump());
-	}
+
 
 	//퀴즈씬으로 이동
 	public void quizStart(String quizType) {
