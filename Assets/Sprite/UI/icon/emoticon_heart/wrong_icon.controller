@@ -8,7 +8,7 @@ AnimatorController:
   m_Name: wrong_icon
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: correct_b
+  - m_Name: icon_b
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: correct_b
+    m_ConditionEvent: icon_b
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102524085769822284}
@@ -59,7 +59,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: correct_b
+    m_ConditionEvent: icon_b
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102222378089581712}

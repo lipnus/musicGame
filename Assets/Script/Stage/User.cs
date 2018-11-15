@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,9 +16,9 @@ public class User : MonoBehaviour
 
     public List<GameObject> icons = new List<GameObject>();
 
-    public GameObject top;
-    public GameObject bottom;
-    public GameObject shoes;
+    public List<GameObject> tops = new List<GameObject>();
+    public List<GameObject> bottoms = new List<GameObject>();
+    public List<GameObject> shoes = new List<GameObject>();
 
     private bool jumpOK=true; 
     private bool slow = false;
@@ -101,9 +102,9 @@ public class User : MonoBehaviour
     }
     
     IEnumerator showIcon(int num, float delayTime) {
-        icons[num].GetComponent<Animator>().SetBool("correct_b", true);
+        icons[num].GetComponent<Animator>().SetBool("icon_b", true);
         yield return new WaitForSeconds(delayTime);
-        icons[num].GetComponent<Animator>().SetBool("correct_b", false);
+        icons[num].GetComponent<Animator>().SetBool("icon_b", false);
         yield return new WaitForSeconds(0.1f);
     }
     
@@ -111,7 +112,7 @@ public class User : MonoBehaviour
     
     //야옹충돌
     private void colCat(Collider2D col){
-        icons[0].GetComponent<Animator>().SetBool("cat_b", true); //고앙이아이콘
+        icons[0].GetComponent<Animator>().SetBool("icon_b", true); //고앙이아이콘
         catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)   
         fieldManager.pauseMove();
         soundManager.catPlay();
@@ -138,25 +139,63 @@ public class User : MonoBehaviour
 
     
     //무슨 옷을 입고있는지 찾아서 입힌다
-    void wearCloth() {
+    public void wearCloth() {
         string item_code;
 
         item_code = GlobalScript.getTop().ToString();
-        cur_top = top.transform.Find(item_code).gameObject;
-        cur_top.SetActive(true);
-        cur_top_bg = top.transform.Find(item_code+"_b").gameObject;
-        cur_top_bg.SetActive(true);
+        for (int i = 0; i < tops.Count(); i++) {
+            if (tops[i].transform.name.Equals(item_code)) {
+                cur_top = tops[i].gameObject;
+                cur_top.SetActive(true);
+            }
+            
+            if (tops[i].transform.name.Equals(item_code + "_b")){
+                cur_top_bg = tops[i].gameObject;
+                cur_top_bg.SetActive(true);
+            }
+            
+            if(tops[i].gameObject.active && !tops[i].transform.name.Equals(item_code) && !tops[i].transform.name.Equals(item_code + "_b"))
+            {
+                tops[i].gameObject.SetActive(false);
+            }
 
+        }
+        
         item_code = GlobalScript.getBottom().ToString();
-        cur_bottom = bottom.transform.Find(item_code).gameObject;
-        cur_bottom.SetActive(true);
-        cur_bottom_bg = bottom.transform.Find(item_code+"_b").gameObject;
-        cur_bottom_bg.SetActive(true);
- 
+        for (int i = 0; i < bottoms.Count(); i++) {
+            if (bottoms[i].transform.name.Equals(item_code)){
+                cur_bottom = bottoms[i].gameObject;
+                cur_bottom.SetActive(true);
+            }
+
+            if (bottoms[i].transform.name.Equals(item_code + "_b")) {
+                cur_bottom_bg = bottoms[i].gameObject;
+                cur_bottom_bg.SetActive(true);
+            }
+            
+            if(bottoms[i].gameObject.active && !bottoms[i].transform.name.Equals(item_code) && !bottoms[i].transform.name.Equals(item_code + "_b"))
+            {
+                bottoms[i].gameObject.SetActive(false);
+            }
+        }
+        
         item_code = GlobalScript.getShoes().ToString();
-        cur_shoes = shoes.transform.Find(item_code).gameObject;
-        cur_shoes.SetActive(true);
-        cur_shoes_bg = shoes.transform.Find(item_code+"_b").gameObject;
-        cur_shoes_bg.SetActive(true);
+        for (int i = 0; i < shoes.Count(); i++) {
+            if (shoes[i].transform.name.Equals(item_code)) {
+                cur_shoes = shoes[i].gameObject;
+                cur_shoes.SetActive(true);
+            }
+
+            if (shoes[i].transform.name.Equals(item_code + "_b")) {
+                cur_shoes_bg = shoes[i].gameObject;
+                cur_shoes_bg.SetActive(true);
+            }
+            
+            if(shoes[i].gameObject.active && !shoes[i].transform.name.Equals(item_code) && !shoes[i].transform.name.Equals(item_code + "_b"))
+            {
+                shoes[i].gameObject.SetActive(false);
+            }
+        }
+
     }
 }

@@ -76,7 +76,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		
 		//정답
 		if (GlobalScript.lifeEvent == 0) {
-			user.GetComponent<User>().startShowIcon(2); //정답아이콘
+			user.GetComponent<User>().startShowIcon(1); //정답아이콘
 			GlobalScript.modifyScore(100); //점수
 			uiManager.raiseScore(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();
@@ -84,7 +84,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		
 		//오답
 		else if (GlobalScript.lifeEvent == -1) {
-			user.GetComponent<User>().startShowIcon(3); //오답아이콘
+			user.GetComponent<User>().startShowIcon(2); //오답아이콘
 			uiManager.GetComponent<UIManager>().decreaseLifeBar();
 			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
@@ -109,7 +109,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		user.GetComponent<User>().userSpeed = 0.1f;
 		
 		//죽음을 직감한 멘트
-		uiManager.GetComponent<UIManager>().showText_Long("텐션이 떨어진다...");
+		uiManager.GetComponent<UIManager>().showText("텐션이 떨어진다...");
 	}
 
  
@@ -118,6 +118,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		stopMoving = true;
 		user.GetComponent<User>().userSpeed = 0; //정지
 	}
+	
 
 	//다시움직
 	public void resumeMove() {
@@ -141,7 +142,6 @@ public class TutorialFieldManager : MonoBehaviour {
 
 	//모든 레이어의 위치를 전역에 저장
 	public void savePosition() {
-		
 		GlobalScript.sceneName = Application.loadedLevelName; //스테이지 기억
 		
 		//레이어위치 저장

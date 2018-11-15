@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class GuideObject : MonoBehaviour {
 	
 	
 	public enum GuideType {
-		FirstNote, Jump, Cat1, Cat2, Subway, End
+		FirstNote, Jump, Cat1, Cat2, Subway, End, textEnd
 	}
 
 	
@@ -35,6 +36,7 @@ public class GuideObject : MonoBehaviour {
 		else if (guideType == GuideType.Cat2) cat2();
 		else if (guideType == GuideType.Subway) subway();
 		else if (guideType == GuideType.End) endGuide();
+		else if (guideType == GuideType.textEnd) textEnd();
 	}
 
 
@@ -66,7 +68,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Text>().text = "야~옹\n고양이를 터치해 퀴즈를 확인하세요!";
 		
 		user.startShowIcon(0); //야옹아이콘
-		GameObject.Find("SoundManager").GetComponent<SoundManager>().catPlay();
+		soundManager.catPlay();
 	}
 	
 	//고양이를 만났을 때(3지선다)
@@ -78,7 +80,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Text>().text = "또다시 야~옹\n고양이를 터치하세요!";
 		
 		user.startShowIcon(0); //야옹아이콘
-		GameObject.Find("SoundManager").GetComponent<SoundManager>().catPlay();
+		soundManager.catPlay();
 	}
 
 	
@@ -94,8 +96,18 @@ public class GuideObject : MonoBehaviour {
 	}
 	
 	
-	//가이드 종료(퀴즈에서 더이상 가이드가 나오지 않음)
+	//튜토리얼 완료
 	void endGuide() {
+		sub.active = true;
+		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 플레이해주셔서 감사합니다.";
+		midText.GetComponent<Animator>().SetBool("showText", true);
+		
+		GlobalScript.resetGame();
+	}
+
+	//퀴즈에서 가이드텍스트 끝
+	void textEnd() {
 		GlobalScript.endGuide();
 	}
 }

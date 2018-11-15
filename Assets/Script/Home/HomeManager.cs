@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class HomeManager : MonoBehaviour {
 
 	public float userSpeed;
-	public GameObject cloud;
 	public GameObject user;
 	public GameObject stand_light_on;
 	public GameObject stand_light_off;
@@ -22,17 +21,13 @@ public class HomeManager : MonoBehaviour {
 	public UIManager uiManager;
 
 
-	void Update() {
-		cloud.transform.Translate(Vector3.left * 0.6f * Time.deltaTime);
-	}
-	
 	// Use this for initialization
 	void Start () {
 		tickingSound.Play();
-		StartCoroutine("Scenario", 5);
+		StartCoroutine("Scenario");
 	}
 
-	IEnumerator Scenario(float delayTime) { 
+	IEnumerator Scenario() { 
 		yield return new WaitForSeconds(1);
 		uiManager.showText("잠이 오지 않아..");
 		yield return new WaitForSeconds(2);
@@ -57,7 +52,9 @@ public class HomeManager : MonoBehaviour {
 		StartCoroutine("walking", 0);
 		
 		yield return new WaitForSeconds(4);
-		SceneManager.LoadScene("CityScene");		
+		SceneManager.LoadSceneAsync("TutorialScene");
+
+//		SceneManager.LoadScene("CityScene");		
 //		SceneManager.LoadScene("TutorialScene");
 
 	}

@@ -17,13 +17,16 @@ public class MainPageManager : MonoBehaviour {
 
 	public GameObject messageCircle;
 
+	public AudioSource backgroundMusic;
 
 	public SoundManager2 soundManager;
 	private const float BACK_OPPACITY=0.7f;
 
 	void Start() {
+		GlobalScript.resetGame();
+
 		GlobalScript.firstGift();
-		GlobalScript.setScore(10000);
+		GlobalScript.setScore(100);
 	}
 	
 	//카메라 페이지
@@ -111,8 +114,22 @@ public class MainPageManager : MonoBehaviour {
 	public void onClick_gamestart() {
 		soundManager.playSound(1); //클릭소리
 		GlobalScript.startGame(); //게임초기화
-		SceneManager.LoadScene("HomeScene");
-	}	
+		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(1f, 1f);
+		StartCoroutine(bgMusicFadeOut(0.1f));
+		StartCoroutine(startGame(1.5f));
+		
+	}
+	
+	IEnumerator bgMusicFadeOut(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		backgroundMusic.volume-= 0.1f;
+		StartCoroutine(bgMusicFadeOut(0.1f));
+	}
+
+	IEnumerator startGame(float delayTime) {
+		yield return new WaitForSeconds(delayTime);
+		SceneManager.LoadScene("HomeScene");		
+	}
 }
 
 	

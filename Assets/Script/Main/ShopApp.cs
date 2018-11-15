@@ -18,6 +18,7 @@ public class ShopApp : MonoBehaviour {
 	public GameObject wear_btn;
 	public GameObject wore_img;
 	public SoundManager2 soundManager;
+	public GameObject user;
 
 	public Text pointText;
 	
@@ -47,19 +48,22 @@ public class ShopApp : MonoBehaviour {
 	
 	//구매하기
 	public void onClick_purchase() {
+		soundManager.playSound(1); //클릭소리
+		user.GetComponent<User>().startShowIcon(1);
+
 		ItemInfo item = GlobalScript.getItemInfo(curCode);
 		int score = GlobalScript.getScore();
 		
 		if (score >= item.Price) {
 
 			score -= item.Price;
-			moneyEffect.GetComponent<Animator>().SetTrigger("money_t");
+//			moneyEffect.GetComponent<Animator>().SetTrigger("money_t");
 			
-			
-			GlobalScript.setScore(score);
+			soundManager.playSound(3); //구매
 			GlobalScript.addMyItem(curCode); //새로 산 아이템 표시
+			GlobalScript.modifyScore( -1 * item.Price);
+			pointText.text = GlobalScript.getScore().ToString();
 			showBtn(); //버튼이 바뀌겠지
-			Debug.Log("구매완료");
 		}
 		else {
 			Debug.Log("돈이없다. 가진돈: " + GlobalScript.getScore());
@@ -71,12 +75,13 @@ public class ShopApp : MonoBehaviour {
 	public void onClick_wear() {
 		soundManager.playSound(1); //클릭소리
 
-		if (curCode / 100 == 1) {
-			GlobalScript.setTop(curCode);
-			Debug.Log("상의교체");
-		}
+		if (curCode / 100 == 1) GlobalScript.setTop(curCode);
 		else if (curCode / 100 == 2) GlobalScript.setBottom(curCode);
 		else if (curCode / 100 == 3) GlobalScript.setShoes(curCode);
+		
+		user.active = false;
+		user.active = true;
+		user.GetComponent<User>().wearCloth();
 
 		showBtn(); //버튼변경
 		updateAllItemState();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class GuideManager : MonoBehaviour {
 	public GameObject user;
 	
 	private bool touchOK; //그냥 슉 지나가는거 방지하기 위해 좀 딜레이를 준 다음 보여준다.
-	private const float TOUCH_DELAY = 0.6f;//터치 딜레이
+	private const float TOUCH_DELAY = 0.5f;//터치 딜레이
 
 
 	public void enrollGuideObj(GameObject guideObj) {
@@ -44,10 +45,13 @@ public class GuideManager : MonoBehaviour {
 			else if(guideObj.transform.name.Equals("Guide-cat1")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_initial");
 			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_choice");
 			else if(guideObj.transform.name.Equals("Guide-subway")) GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(3f); //페이드아웃
+			else if (guideObj.transform.name.Equals("Guide-end")) {
+				GlobalScript.resetGame();
+				SceneManager.LoadScene("MainScene");
+			}
+			
 
 				
-				
-			Debug.Log("가이드 파괴");
 			midText.GetComponent<Animator>().SetBool("showText", false);
 			fieldManager.GetComponent<TutorialFieldManager>().resumeMove();
 			Destroy(guideObj);		

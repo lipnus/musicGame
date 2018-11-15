@@ -15,6 +15,9 @@ public class QuizManager2 : MonoBehaviour{
 	public List<Image> button = new List<Image>();
 	public List<Image> selectedImg = new List<Image>();
 	public List<Text> choiceText = new List<Text>();
+	public SoundManager2 soundManager;
+	public GameObject loadingText;
+
 
 
 	public GameObject midText;
@@ -98,7 +101,10 @@ public class QuizManager2 : MonoBehaviour{
 	}
 
 	public void onClick_choice(int choice) {
-		Debug.Log("초이스: " + choice);
+		
+		soundManager.playSound(0);
+		soundManager.playSound(1);
+		loadingText.active = true; //로딩
 		
 		//다른 버튼은 없어짐
 		for (int i = 0; i < button.Count; i++) {
@@ -133,7 +139,7 @@ public class QuizManager2 : MonoBehaviour{
 		else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 			
 		//복귀
-		SceneManager.LoadScene( GlobalScript.sceneName );
+		SceneManager.LoadSceneAsync( GlobalScript.sceneName );
 	}
 
 	

@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour {
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
 	
 	
-
 	public void showText(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
@@ -44,6 +43,7 @@ public class UIManager : MonoBehaviour {
 		FadeOut(midText, 0.5f);
 	}
 
+	
 	//정답을 표시
 	public void showAnswer() {
 		answerImg.SetActive(true);
@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour {
 		StartCoroutine(hideAnswer(5f));
 	}
 
+	
 	IEnumerator hideAnswer(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 		answerImg.GetComponent<Animator>().SetTrigger("answerHide_t");
@@ -79,6 +80,7 @@ public class UIManager : MonoBehaviour {
 		StartCoroutine(modifyLifeBarSize(0, -1));
 	}
 
+	
 	//라이프바 한칸 올림
 	public void increaseLifeBar() {
 		lifebarCount = 0;

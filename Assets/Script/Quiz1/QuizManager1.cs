@@ -14,6 +14,7 @@ public class QuizManager1 : MonoBehaviour{
 	public GameObject midText;
 	public GameObject midBack;
 	public SoundManager2 soundManager;
+	public GameObject loadingText;
 
 	private bool isSountPlay = false;
 
@@ -107,7 +108,9 @@ public class QuizManager1 : MonoBehaviour{
 		}
 
 		//칸을 다 채운경우, 정답이 맞는지 확인
-		if (completeSubmit){
+		if (completeSubmit) {
+
+			loadingText.active = true; //로딩
 			
 			bool result = true;
 			for (int i = 0; i < answerInitial.Length; i++){
@@ -122,7 +125,7 @@ public class QuizManager1 : MonoBehaviour{
 			else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 			
 			//복귀
-			SceneManager.LoadScene( GlobalScript.sceneName );
+			SceneManager.LoadSceneAsync( GlobalScript.sceneName );
 		}
 		StartCoroutine(AnswerCheck(0.1f, answerInitial));
 	}
@@ -166,8 +169,9 @@ public class QuizManager1 : MonoBehaviour{
 	//포기
 	public void onClick_giveUp() {
 		soundManager.playSound(0);
+		loadingText.active = true; //로딩
 		GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
-		SceneManager.LoadScene( GlobalScript.sceneName );
+		SceneManager.LoadSceneAsync( GlobalScript.sceneName );
 	}
 
 

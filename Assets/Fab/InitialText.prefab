@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224841567709270464}
   - component: {fileID: 222558817376964884}
   - component: {fileID: 114895174329134082}
-  - component: {fileID: 114637349056460328}
   - component: {fileID: 114493274046453494}
   - component: {fileID: 61993689668189744}
   - component: {fileID: 50990933053712322}
@@ -45,7 +44,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.001
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -92,20 +91,6 @@ MonoBehaviour:
   collision: 0
   submit: 0
   soundManager: {fileID: 0}
---- !u!114 &114637349056460328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1155756893124084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 4, y: 4}
-  m_UseGraphicAlpha: 1
 --- !u!114 &114895174329134082
 MonoBehaviour:
   m_ObjectHideFlags: 1
