@@ -1153,7 +1153,7 @@ Transform:
   - {fileID: 548482562}
   - {fileID: 1816665499}
   m_Father: {fileID: 990135218}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &139324685
 SpriteRenderer:
@@ -1871,8 +1871,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 462414299
-  m_SortingLayer: 5
+  m_SortingLayerID: -1429728999
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3542b0796fa5a45729a1c8b2a84b2d5a, type: 3}
   m_Color: {r: 0.9647059, g: 0.2901961, b: 0.32156864, a: 1}
@@ -2803,7 +2803,7 @@ MonoBehaviour:
   wear_btn: {fileID: 1860168170}
   wore_img: {fileID: 621487768}
   soundManager: {fileID: 1711820869}
-  user: {fileID: 0}
+  user: {fileID: 990135213}
   pointText: {fileID: 128727244}
   moneyEffect: {fileID: 2014467256}
   items: []
@@ -6903,7 +6903,7 @@ Transform:
   - {fileID: 1164741464}
   - {fileID: 1225108617}
   m_Father: {fileID: 990135218}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &698367639
 SpriteRenderer:
@@ -9269,7 +9269,6 @@ Transform:
   m_LocalPosition: {x: -7.23, y: -1.81, z: 0}
   m_LocalScale: {x: 0.29977062, y: 0.29977062, z: 0.29977062}
   m_Children:
-  - {fileID: 1658694050}
   - {fileID: 1661222244}
   - {fileID: 139324684}
   - {fileID: 698367638}
@@ -14943,87 +14942,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1658694049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1861993766070890, guid: fcebfb57702214afd98b61c4751e6ff6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1658694050}
-  - component: {fileID: 1658694052}
-  - component: {fileID: 1658694051}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1658694050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4538716416031410, guid: fcebfb57702214afd98b61c4751e6ff6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1658694049}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3, y: 7.1, z: -10}
-  m_LocalScale: {x: 3.8022234, y: 3.8022234, z: 3.8022234}
-  m_Children: []
-  m_Father: {fileID: 990135218}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1658694051
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 81902556866716700, guid: fcebfb57702214afd98b61c4751e6ff6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1658694049}
-  m_Enabled: 1
---- !u!20 &1658694052
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 20399754507497352, guid: fcebfb57702214afd98b61c4751e6ff6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1658694049}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.10196079, g: 0.10196079, b: 0.10196079, a: 1}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 35, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 6
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 126.8699
-  orthographic: 1
-  orthographic size: 4.663316
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 0
-  m_HDR: 1
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &1659334469
 GameObject:
   m_ObjectHideFlags: 0
@@ -15089,7 +15007,7 @@ Transform:
   - {fileID: 1407798232}
   - {fileID: 1257034524}
   m_Father: {fileID: 990135218}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1680964484
 GameObject:
@@ -19627,7 +19545,7 @@ Transform:
   - {fileID: 775737532}
   - {fileID: 1242629038}
   m_Father: {fileID: 990135218}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2084247902
 SpriteRenderer:

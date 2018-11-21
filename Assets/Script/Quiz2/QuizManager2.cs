@@ -134,6 +134,12 @@ public class QuizManager2 : MonoBehaviour{
 	//답안제출
 	void endQuiz(int choice) {
 		
+		//인터네션결이 끊겼을때
+		if (quiz == null) {
+			GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+			SceneManager.LoadSceneAsync( GlobalScript.sceneName );
+		}
+		
 		//정답일 때
 		if ( quiz.choices[choice].truth==1 ) GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
 		else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음

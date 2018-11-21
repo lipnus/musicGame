@@ -78,7 +78,7 @@ public class ShopApp : MonoBehaviour {
 		if (curCode / 100 == 1) GlobalScript.setTop(curCode);
 		else if (curCode / 100 == 2) GlobalScript.setBottom(curCode);
 		else if (curCode / 100 == 3) GlobalScript.setShoes(curCode);
-		
+
 		user.active = false;
 		user.active = true;
 		user.GetComponent<User>().wearCloth();
