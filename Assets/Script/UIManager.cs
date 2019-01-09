@@ -16,25 +16,24 @@ public class UIManager : MonoBehaviour {
 	public GameObject answerImg; //답변페이지
 	public Text answerTitle; //노래제목
 	public Text answerSinger; //가수
-
+	
 	public GameObject userScore;
 	
 	private const int LIFE_UNIT = 116; //목숨 한칸의 양
 	private const int LIFE_MAX = 350; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
 	
-	
 	public void showText(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
-		StartCoroutine("stayText", 1.5f);		
+		StartCoroutine("stayText", 1.5f);
 	}
 	
 	
 	public void showText_Long(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
-		StartCoroutine("stayText", 4f);		
+		StartCoroutine("stayText", 4f);
 	}
 
 	
@@ -118,11 +117,13 @@ public class UIManager : MonoBehaviour {
 		
 		StartCoroutine(DieEvent(4));
 	}
+	
 
 	IEnumerator DieEvent(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 		SceneManager.LoadScene("DieScene");
 	}
+	
 	
 	//현재 점수 표시
 	public void setScoreText() {
@@ -131,6 +132,7 @@ public class UIManager : MonoBehaviour {
 		//글씨크기에 맞게 박스크기 조정
 		scoreText.rectTransform.sizeDelta = new Vector2(scoreText.preferredWidth, scoreText.preferredHeight); 
 	}
+	
 	
 	//캐릭터 위에 점수상승 이펙트
 	public void raiseScore(int score) {

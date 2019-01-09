@@ -8,6 +8,7 @@ TagManager:
   - cat
   - score
   - answerBox
+  - Fire
   layers:
   - Default
   - TransparentFX

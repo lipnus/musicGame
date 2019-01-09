@@ -7,46 +7,49 @@ using UnityEngine.UI;
 
 public class User : MonoBehaviour
 {
-
+    
+    //캐릭터 움직임
     public float userSpeed;
     public float jumpPower;
+    private bool jumpOK=true; 
+    private bool slow = false;
+    
+    //Manager
     public SoundManager soundManager;
     public TutorialFieldManager fieldManager;
     public UIManager uiManager;
-
+    
+    //머리 위의 아이콘
     public List<GameObject> icons = new List<GameObject>();
 
+    //착용할 수 있는 옷
     public List<GameObject> tops = new List<GameObject>();
     public List<GameObject> bottoms = new List<GameObject>();
     public List<GameObject> shoes = new List<GameObject>();
-
-    private bool jumpOK=true; 
-    private bool slow = false;
     
     //현재 입고있는 옷
     private GameObject cur_top;
     private GameObject cur_bottom;
     private GameObject cur_shoes;
-    
     private GameObject cur_top_bg;
     private GameObject cur_bottom_bg;
     private GameObject cur_shoes_bg;
 
-
-
+    public GameObject particleEffect;
+    
     public bool catCollision = false;
 
     
-    // Use this for initialization
     void Start(){
-        Time.timeScale = 1f; //시간은 정상적으로 흐른다	
         
-        //옷을 입는다
+        //시간은 정상적으로 흐른다	
+        Time.timeScale = 1f; 
+        
+        //옷입기
         wearCloth();
     }
 
     
-    // Update is called once per frame
     void Update(){
         transform.Translate(Vector3.right * userSpeed * Time.deltaTime);
     }
@@ -95,8 +98,9 @@ public class User : MonoBehaviour
             else if (type.Equals("n")) colNote(col);
         }
     }
+    
 
-
+    //해당하는 번호(num)에 해당하는 아이콘 출력
     public void startShowIcon(int num) {
         StartCoroutine(showIcon(num, 4.5f));
     }
@@ -109,7 +113,7 @@ public class User : MonoBehaviour
     }
     
     
-    
+  
     //야옹충돌
     private void colCat(Collider2D col){
         icons[0].GetComponent<Animator>().SetBool("icon_b", true); //고앙이아이콘
@@ -126,6 +130,8 @@ public class User : MonoBehaviour
         uiManager.setScoreText();
         uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
         GlobalScript.modifyScore(1);
+
+        Instantiate(particleEffect, col.transform.position, col.transform.rotation);
     }
 
 
@@ -161,6 +167,7 @@ public class User : MonoBehaviour
 
         }
         
+        
         item_code = GlobalScript.getBottom().ToString();
         for (int i = 0; i < bottoms.Count(); i++) {
             if (bottoms[i].transform.name.Equals(item_code)){
@@ -178,6 +185,7 @@ public class User : MonoBehaviour
                 bottoms[i].gameObject.SetActive(false);
             }
         }
+        
         
         item_code = GlobalScript.getShoes().ToString();
         for (int i = 0; i < shoes.Count(); i++) {

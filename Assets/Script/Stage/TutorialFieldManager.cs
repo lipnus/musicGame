@@ -9,15 +9,16 @@ using UnityEngine.SceneManagement;
 
 public class TutorialFieldManager : MonoBehaviour {
 
-	public List<GameObject> layer=new List<GameObject>();
-	public List<float> layer_speed =new List<float>();
+	public List<GameObject> layer = new List<GameObject>();
+	public List<float> layer_speed = new List<float>();
 	public GameObject user;
+	public GameObject star;
+	
 	public UIManager uiManager;
 	public SoundManager soundManager;
-	public GameObject star;
 	public FadeEffect fadeEffect;
 	
-	private const float BEFORE_QUIZ_POSITION = 8f; //퀴즈 후에 앞으로 이동할 거리
+	private const float BEFORE_QUIZ_POSITION = 9f; //퀴즈 후에 돌아와서 더 앞으로 이동할 거리
 	
 	float userSpeed;
 	private bool stopMoving = false;
@@ -50,7 +51,8 @@ public class TutorialFieldManager : MonoBehaviour {
 		//페이드인 효과
 		fadeEffect.FadeIn(1f);
 		
-		userSpeed = user.GetComponent<User>().userSpeed; //속도
+		//속도
+		userSpeed = user.GetComponent<User>().userSpeed; 
 		
 		//점수표시
 		uiManager.GetComponent<UIManager>().setScoreText();
@@ -58,7 +60,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		//목숨표시(Life만큼의 칸을 표시해줌)
 		uiManager.GetComponent<UIManager>().updateLifeBar();
 		
-		//음악퀴즈를 풀고 필드로 복귀
+		//음악퀴즈를 풀고 필드로 복귀한 경우
 		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {			
 			returnFromMusicQuiz();
 		}
@@ -171,15 +173,6 @@ public class TutorialFieldManager : MonoBehaviour {
 	}
 	
 	
-	//카메라 시점변화(사용X)
-	IEnumerator rotateCamera(float delayTime) { 
-		yield return new WaitForSeconds(delayTime);
-//	
-//		Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-//		cam.transform.Rotate(Vector3.up * 0.1f); 
-//		cam.transform.Translate( Vector3.back * 0.005f);
-//		StartCoroutine("rotateCamera", 0.1f);
-	}
 
 
 }

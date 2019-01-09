@@ -37,6 +37,7 @@ public class ConnectServer : MonoBehaviour {
 		StartCoroutine(postToServer(form, "/quiz_2", (www) => {
 				quiz = JsonUtility.FromJson<Quiz>(www.downloadHandler.text);
 				Debug.Log("POST RESONSE callback OK!");
+				Debug.Log("quiz_pk:" + quiz.quiz_pk);
 
 				musicInfo = quiz.musicInfo; //곡 정보 저장
 				GameObject.Find("QuizManager").GetComponent<QuizManager2>().setGame( quiz );
@@ -78,7 +79,6 @@ public class ConnectServer : MonoBehaviour {
 			StartCoroutine(stopMusic(playTime));
 		}
 	}
-
 	
 	IEnumerator stopMusic(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
