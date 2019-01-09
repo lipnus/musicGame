@@ -51,7 +51,6 @@ public class GuideManager : MonoBehaviour {
 			}
 			
 
-				
 			midText.GetComponent<Animator>().SetBool("showText", false);
 			fieldManager.GetComponent<TutorialFieldManager>().resumeMove();
 			Destroy(guideObj);		

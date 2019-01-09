@@ -134,6 +134,7 @@ public class User : MonoBehaviour
         StartCoroutine(ParticleEffect(col, 1));
     }
     
+    
     //음표 먹었을 때 특수효과
     IEnumerator ParticleEffect(Collider2D col, float delayTime) {
         GameObject effect = Instantiate(particlePrefeb, col.transform.position, col.transform.rotation);

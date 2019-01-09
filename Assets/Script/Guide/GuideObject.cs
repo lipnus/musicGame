@@ -18,7 +18,6 @@ public class GuideObject : MonoBehaviour {
 	public User user;
 	public SoundManager soundManager;
 	
-	
 	public enum GuideType {
 		FirstNote, Jump, Cat1, Cat2, Subway, End, textEnd
 	}
@@ -28,6 +27,7 @@ public class GuideObject : MonoBehaviour {
 		guideManager.GetComponent<GuideManager>().enrollGuideObj(gameObject); //가이드매니저에 이 객체를 전달
 		startGuide();
 	}
+	
 	
 	public void startGuide() {
 		if (guideType == GuideType.FirstNote) firstNote();
@@ -40,7 +40,6 @@ public class GuideObject : MonoBehaviour {
 	}
 
 
-
 	//처음 음표를 만났을 때
 	void firstNote() {
 		sub.active = true;
@@ -50,6 +49,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Text>().text = "음표를 모아 아이템을 구입하세요";
 	}
 	
+	
 	//점프 설명
 	void jump() {
 		sub.active = true;
@@ -58,6 +58,7 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "화면을 터치하여 점프하세요";
 	}
+	
 	
 	//고양이를 만났을 때(초성)
 	void cat1() {
@@ -70,6 +71,7 @@ public class GuideObject : MonoBehaviour {
 		user.startShowIcon(0); //야옹아이콘
 		soundManager.catPlay();
 	}
+	
 	
 	//고양이를 만났을 때(3지선다)
 	void cat2() {
@@ -106,6 +108,7 @@ public class GuideObject : MonoBehaviour {
 		GlobalScript.resetGame();
 	}
 
+	
 	//퀴즈에서 가이드텍스트 끝
 	void textEnd() {
 		GlobalScript.endGuide();
