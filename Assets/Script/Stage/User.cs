@@ -35,7 +35,7 @@ public class User : MonoBehaviour
     private GameObject cur_bottom_bg;
     private GameObject cur_shoes_bg;
 
-    public GameObject particleEffect;
+    public GameObject particlePrefeb;
     
     public bool catCollision = false;
 
@@ -131,7 +131,14 @@ public class User : MonoBehaviour
         uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
         GlobalScript.modifyScore(1);
 
-        Instantiate(particleEffect, col.transform.position, col.transform.rotation);
+        StartCoroutine(ParticleEffect(col, 1));
+    }
+    
+    //음표 먹었을 때 특수효과
+    IEnumerator ParticleEffect(Collider2D col, float delayTime) {
+        GameObject effect = Instantiate(particlePrefeb, col.transform.position, col.transform.rotation);
+        yield return new WaitForSeconds(delayTime);
+        Destroy(effect);
     }
 
 
