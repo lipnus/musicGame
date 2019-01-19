@@ -18,7 +18,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	public SoundManager soundManager;
 	public FadeEffect fadeEffect;
 	
-	private const float BEFORE_QUIZ_POSITION = 9f; //퀴즈 후에 돌아와서 더 앞으로 이동할 거리
+	private const float BEFORE_QUIZ_POSITION = 10f; //퀴즈 후에 돌아와서 더 앞으로 이동할 거리
 	
 	float userSpeed;
 	private bool stopMoving = false;
@@ -34,9 +34,10 @@ public class TutorialFieldManager : MonoBehaviour {
 		if (user.GetComponent<User>().catCollision) { //야옹충돌 이벤트 이후
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-			if (hit) {
-				if (hit.collider.gameObject.name.Equals("catArea_init")) quizStart("Quiz_initial");
-				else if (hit.collider.gameObject.name.Equals("catArea_choice")) quizStart("Quiz_choice");
+			if (hit && hit.collider.gameObject.name.Equals("catArea")) {
+				
+				if (hit.collider.GetComponent<CatObject>().quizType==CatObject.QuizType.Initial ) quizStart("Quiz_initial");
+				else if (hit.collider.GetComponent<CatObject>().quizType==CatObject.QuizType.Choice ) quizStart("Quiz_choice");
 			}
 		}
 		

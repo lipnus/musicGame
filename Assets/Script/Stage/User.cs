@@ -80,7 +80,6 @@ public class User : MonoBehaviour
     
     IEnumerator JumpCheck(float delayTime) {
         yield return new WaitForSeconds(delayTime); //표시시간
-        Debug.Log("착지");
         soundManager.jumpPlay(); //효과음(착지)
         jumpOK = true;
     }

@@ -8,15 +8,10 @@ public class NoteObject : MonoBehaviour {
 	public int score=1;
 	public NoteType noteType;
 	
-	
 	public enum NoteType {
 		Note, Line
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
-	{
-		Debug.Log("충돌");
-	}
 
 	
 }
