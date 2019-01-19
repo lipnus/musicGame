@@ -100,7 +100,7 @@ public static class GlobalScript {
     
     //가이드를 봤는지 여부
     public static bool isGuide_Finished() {
-        int result = PlayerPrefs.GetInt("Guide", 0);
+        int result = PlayerPrefs.GetInt("GuideEnd", 0);
         
         if (result == 0) return false;
         else return true;
@@ -108,7 +108,7 @@ public static class GlobalScript {
 
     //가이드를 끝낸다
     public static void endGuide() {
-        PlayerPrefs.SetInt("Guide", 1);
+        PlayerPrefs.SetInt("GuideEnd", 1);
     }
 
     public static void resetGame() {

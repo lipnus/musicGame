@@ -13,8 +13,8 @@ public class QuizManager1 : MonoBehaviour{
 	private int initialTextSize; //보기로 주어진 자음의 개수
 	public GameObject midText;
 	public GameObject midBack;
-	public SoundManager2 soundManager;
 	public GameObject loadingText;
+	public SoundManager soundManager;
 
 	private bool isSountPlay = false;
 
@@ -23,8 +23,8 @@ public class QuizManager1 : MonoBehaviour{
 	void Start() {
 		connectServer.quiz_1(0,0);
 		
-		//첫 퀴즈인 경우, n초후 가이드 텍스트 표시
-		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(3f));
+		//n동안 가이드 텍스트 표시
+		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(1f));
 
 	}
 
@@ -109,8 +109,9 @@ public class QuizManager1 : MonoBehaviour{
 
 		//칸을 다 채운경우, 정답이 맞는지 확인
 		if (completeSubmit) {
-
+			
 			loadingText.active = true; //로딩
+			soundManager.okPlay();
 			
 			bool result = true;
 			for (int i = 0; i < answerInitial.Length; i++){
@@ -139,9 +140,9 @@ public class QuizManager1 : MonoBehaviour{
 	}
 	
 	
-	//스마트폰을 터치하였을 때
+	//스마트폰을 터치
 	public void onClick_smartPhone() {
-		soundManager.playSound(0);
+		soundManager.clickPlay();
 		if(isSountPlay) stopMusic();
 		
 		GameObject.Find("ConnectServer").GetComponent<ConnectServer>().stremingSound();
@@ -158,7 +159,7 @@ public class QuizManager1 : MonoBehaviour{
 		stopMusic();
 	}
 
-	//정지 처리
+	//음악정지
 	void stopMusic() {
 		GameObject.Find("Phone").transform.Find("playBtn").GetComponent<Image>().gameObject.SetActive(true);
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(false);
@@ -168,15 +169,15 @@ public class QuizManager1 : MonoBehaviour{
 	
 	//포기
 	public void onClick_giveUp() {
-		soundManager.playSound(0);
+		soundManager.okPlay();
 		loadingText.active = true; //로딩
 		GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 		SceneManager.LoadSceneAsync( GlobalScript.sceneName );
 	}
 
-
+	//고양이 손 터치
 	public void onClick_CatHand() {
-		soundManager.playSound(1);
+		soundManager.catPlay();
 	}
 	
 }

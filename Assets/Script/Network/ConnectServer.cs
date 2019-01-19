@@ -70,7 +70,9 @@ public class ConnectServer : MonoBehaviour {
 		string musicPath = GlobalScript.musicPath + "/" + musicInfo.path;
 		using (var www = new WWW(musicPath)){			
 			yield return www; //다운받을동안 대기
-
+			
+			Debug.Log("??");
+			
 			source.clip = www.GetAudioClip();
 			source.Play();		
 			

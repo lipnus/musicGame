@@ -5,12 +5,13 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     public List<AudioSource> noteSounds = new List<AudioSource>();
-	public List<AudioSource> catSounds = new List<AudioSource>();
-	public AudioSource footSound;
+	public List<AudioSource> catSounds = new List<AudioSource>(); 
+	public AudioSource jumpSound;
 	public AudioSource fireworkSound1;
 	public AudioSource fireworkSound2;
-	public AudioSource correct;
-	public AudioSource click;
+	public AudioSource correctSound;
+	public AudioSource clickSound;
+	public AudioSource okSound;
 	
 	
 
@@ -26,9 +27,14 @@ public class SoundManager : MonoBehaviour {
 		catSounds[idx].GetComponent<AudioSource>().Play();
 	}
 	
-	//발소리
-	public void footPlay() {
-		footSound.GetComponent<AudioSource>().Play();
+	//점프 후 착지소리
+	public void jumpPlay() {
+		jumpSound.GetComponent<AudioSource>().Play();
+	}
+	
+	//띠리링~
+	public void okPlay() {
+		okSound.GetComponent<AudioSource>().Play();
 	}
 	
 	//폭죽소리
@@ -42,12 +48,12 @@ public class SoundManager : MonoBehaviour {
 
 	//정답
 	public void correctPlay() {
-		correct.GetComponent<AudioSource>().Play();
+		correctSound.GetComponent<AudioSource>().Play();
 	}
 	
 	//클릭
 	public void clickPlay() {
-		click.GetComponent<AudioSource>().Play();
+		clickSound.GetComponent<AudioSource>().Play();
 
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HomeManager : MonoBehaviour {
 
@@ -16,8 +17,9 @@ public class HomeManager : MonoBehaviour {
 	public AudioSource switchSound;
 	public AudioSource tickingSound;
 	public AudioSource blanketSound;
+	public AudioSource okSound;
 
-
+	public Button skipButton;
 	public UIManager uiManager;
 
 
@@ -52,11 +54,27 @@ public class HomeManager : MonoBehaviour {
 		StartCoroutine("walking", 0);
 		
 		yield return new WaitForSeconds(4);
-		SceneManager.LoadSceneAsync("TutorialScene");
+		
+		//튜토리얼의 완료유무에 따른 스테이지 이동
+		if (GlobalScript.isGuide_Finished() == true) {
+			Debug.Log("튜토리얼 이미 봤음");
+			SceneManager.LoadSceneAsync("TutorialScene");
+			
+		}
+		else {
+			Debug.Log("튜토리얼 봐야함");
+			SceneManager.LoadSceneAsync("TutorialScene");
+		}
+	}
 
 //		SceneManager.LoadScene("CityScene");		
 //		SceneManager.LoadScene("TutorialScene");
 
+
+	public void onClick_Skip() {
+		skipButton.enabled = false;
+		okSound.Play();
+		SceneManager.LoadSceneAsync("TutorialScene");
 	}
 	
 	
@@ -66,5 +84,5 @@ public class HomeManager : MonoBehaviour {
 		user.transform.Translate(Vector3.right * userSpeed);
 		StartCoroutine("walking", 0.01f);
 	}
-	 
+	
 }

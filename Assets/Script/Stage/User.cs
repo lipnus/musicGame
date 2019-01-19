@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -79,7 +80,8 @@ public class User : MonoBehaviour
     
     IEnumerator JumpCheck(float delayTime) {
         yield return new WaitForSeconds(delayTime); //표시시간
-        soundManager.footPlay(); //효과음(발소리)
+        Debug.Log("착지");
+        soundManager.jumpPlay(); //효과음(착지)
         jumpOK = true;
     }
     
