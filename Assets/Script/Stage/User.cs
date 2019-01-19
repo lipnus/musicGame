@@ -86,19 +86,13 @@ public class User : MonoBehaviour
     }
     
     
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        //고양이는 tag가 cat, 첫글자가 i(init,초성)인지 c(choice,선택)인지로 구분
+    private void OnTriggerEnter2D(Collider2D col) {
+       
+        //고양이
         if(col.tag.Equals("cat")) colCat(col);
 
         //음표
-        if (col.tag.Equals("score")){
-            string type = col.name.Substring(0, 1);
-
-            //어떤 것과 충돌했는지 판단(l:라인, n:음표, c:collidar)
-            if (type.Equals("l")) colLine(col);
-            else if (type.Equals("n")) colNote(col);
-        }
+        if (col.tag.Equals("score")) colNote(col);
     }
     
 
@@ -127,13 +121,21 @@ public class User : MonoBehaviour
     
     //음표충돌
     private void colNote(Collider2D col){
+        
+        NoteObject noteObj = col.GetComponent<NoteObject>();
+        
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
+        
+        uiManager.raiseScore( noteObj.score ); //캐릭터 위에 오버랩되는 효과
+        GlobalScript.modifyScore( noteObj.score );
         uiManager.setScoreText();
-        uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
-        GlobalScript.modifyScore(1);
 
-        StartCoroutine(ParticleEffect(col, 1));
+
+        if (noteObj.noteType == NoteObject.NoteType.Note) {
+            StartCoroutine(ParticleEffect(col, 1));
+
+        }
     }
     
     
@@ -145,13 +147,7 @@ public class User : MonoBehaviour
     }
 
 
-    //라인충돌
-    private void colLine(Collider2D col){
-        col.GetComponent<Animator>().SetTrigger("Die_t");
-        uiManager.raiseScore(1); //캐릭터 위에 오버랩되는 효과
-        GlobalScript.modifyScore(1);
-        uiManager.setScoreText();
-    }
+
 
     
     //무슨 옷을 입고있는지 찾아서 입힌다
