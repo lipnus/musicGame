@@ -37,8 +37,8 @@ public class ItemObj : MonoBehaviour {
 		applied.active = false;
 		locked.active = false;
 
-		if (GlobalScript.isHaveItem(curCode)) {
-			if (GlobalScript.isWearItem(curCode)) { //입고있다
+		if (Utils.isHaveItem(curCode)) {
+			if (Utils.isWearItem(curCode)) { //입고있다
 				applied.active = true;
 			}
 			else{ //가지고만 있다

@@ -46,8 +46,8 @@ public class UIManager : MonoBehaviour {
 	//정답을 표시
 	public void showAnswer() {
 		answerImg.SetActive(true);
-		answerTitle.text = GlobalScript.getAnswerTitle();
-		answerSinger.text = GlobalScript.getAnswerSinger();
+		answerTitle.text = Utils.getAnswerTitle();
+		answerSinger.text = Utils.getAnswerSinger();
 		
 		//정답창 5초후에 끈다
 		StartCoroutine(hideAnswer(5f));
@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour {
 	//라이프바 값에 맞게 업데이트
 	public void updateLifeBar() {
 		RectTransform rt = lifeBar.rectTransform;
-		float nowWidth = GlobalScript.getLife() * LIFE_UNIT;
+		float nowWidth = Utils.getLife() * LIFE_UNIT;
 		float nowHeight = rt.rect.height;
 		rt.sizeDelta = new Vector2 (nowWidth, nowHeight);
 	}

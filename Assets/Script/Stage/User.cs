@@ -127,7 +127,7 @@ public class User : MonoBehaviour
         soundManager.notePlay(); //효과음
         
         uiManager.raiseScore( noteObj.score ); //캐릭터 위에 오버랩되는 효과
-        GlobalScript.modifyScore( noteObj.score );
+        Utils.modifyScore( noteObj.score );
         uiManager.setScoreText();
 
 
@@ -153,7 +153,7 @@ public class User : MonoBehaviour
     public void wearCloth() {
         string item_code;
 
-        item_code = GlobalScript.getTop().ToString();
+        item_code = Utils.getTop().ToString();
         for (int i = 0; i < tops.Count(); i++) {
             if (tops[i].transform.name.Equals(item_code)) {
                 cur_top = tops[i].gameObject;
@@ -173,7 +173,7 @@ public class User : MonoBehaviour
         }
         
         
-        item_code = GlobalScript.getBottom().ToString();
+        item_code = Utils.getBottom().ToString();
         for (int i = 0; i < bottoms.Count(); i++) {
             if (bottoms[i].transform.name.Equals(item_code)){
                 cur_bottom = bottoms[i].gameObject;
@@ -192,7 +192,7 @@ public class User : MonoBehaviour
         }
         
         
-        item_code = GlobalScript.getShoes().ToString();
+        item_code = Utils.getShoes().ToString();
         for (int i = 0; i < shoes.Count(); i++) {
             if (shoes[i].transform.name.Equals(item_code)) {
                 cur_shoes = shoes[i].gameObject;

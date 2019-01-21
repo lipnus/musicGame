@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RiverScene.unity
     guid: 68da88c4fcc354535a4d9ce524c197e8
+  - enabled: 1
+    path: Assets/Scenes/BetweenScene.unity
+    guid: f01d4e5f495834a17b88aa41a478af8e
   m_configObjects: {}

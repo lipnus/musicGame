@@ -17,7 +17,7 @@ public class Subway : MonoBehaviour {
 		yield return new WaitForSeconds(delayTime);
 		
 		//스테이지 관련 값 초기화
-		GlobalScript.resetStage();
+		Utils.resetStage();
 		if(Application.loadedLevelName.Equals("CityScene")) SceneManager.LoadScene("RiverScene");
 
 	}

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public static class GlobalScript {
+public static class Utils {
     
     //서버경로정보
     public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
@@ -23,6 +24,28 @@ public static class GlobalScript {
     private static string answer_title="";
     private static string answer_singer="";
     
+    
+    
+    
+    
+    //씬 이동
+    private static string stageStr;
+    private static string titleStr;
+    private static string subTitleStr;
+    private static string sceneNameStr;
+
+    public static void changeScene(string stage, string title, string subtitle, string sceneName) {
+        stageStr = stage;
+        titleStr = title;
+        subTitleStr = subtitle;
+        sceneNameStr = sceneName;
+        SceneManager.LoadSceneAsync("BetweenScene");
+    }
+
+    public static string getStageStr() { return stageStr; }
+    public static string getTitleStr() { return titleStr; }
+    public static string getsubTitleStr() { return subTitleStr; }
+    public static string getsceneNameStr() { return sceneNameStr; }
     
 
     //==========================================================

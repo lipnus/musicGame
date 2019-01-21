@@ -47,7 +47,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	void Start () {
 		
 		//테스트용, 반드시 지울것
-//		GlobalScript.setLife(3);
+//		Utils.setLife(3);
 		
 		//페이드인 효과
 		fadeEffect.FadeIn(1f);
@@ -62,7 +62,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		uiManager.GetComponent<UIManager>().updateLifeBar();
 		
 		//음악퀴즈를 풀고 필드로 복귀한 경우
-		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {			
+		if (!Utils.userPosition.Equals(new Vector3(0, 0, 0))) {			
 			returnFromMusicQuiz();
 		}
 	}
@@ -78,21 +78,21 @@ public class TutorialFieldManager : MonoBehaviour {
 		uiManager.GetComponent<UIManager>().showAnswer();
 		
 		//정답
-		if (GlobalScript.lifeEvent == 0) {
+		if (Utils.lifeEvent == 0) {
 			user.GetComponent<User>().startShowIcon(1); //정답아이콘
-			GlobalScript.modifyScore(100); //점수
+			Utils.modifyScore(100); //점수
 			uiManager.raiseScore(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();
 		}
 		
 		//오답
-		else if (GlobalScript.lifeEvent == -1) {
+		else if (Utils.lifeEvent == -1) {
 			user.GetComponent<User>().startShowIcon(2); //오답아이콘
 			uiManager.GetComponent<UIManager>().decreaseLifeBar();
-			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
+			Utils.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
 			//사망여부확인
-			if (GlobalScript.getLife() <= 0) {
+			if (Utils.getLife() <= 0) {
 				savePosition(); //부활을 대비해서 현제상태 기억
 				StartCoroutine(userDie(1));
 			}
@@ -145,16 +145,16 @@ public class TutorialFieldManager : MonoBehaviour {
 
 	//모든 레이어의 위치를 전역에 저장
 	public void savePosition() {
-		GlobalScript.sceneName = Application.loadedLevelName; //스테이지 기억
+		Utils.sceneName = Application.loadedLevelName; //스테이지 기억
 		
 		//레이어위치 저장
-		GlobalScript.positionHolder.Clear();
+		Utils.positionHolder.Clear();
 		for (int i = 0; i < layer.Count; i++) {
-			GlobalScript.positionHolder.Add( layer[i].transform.position );
+			Utils.positionHolder.Add( layer[i].transform.position );
 		}
 		
 		//유저위치 저장
-		GlobalScript.userPosition = user.transform.position;
+		Utils.userPosition = user.transform.position;
 	}
 	
 	
@@ -162,13 +162,13 @@ public class TutorialFieldManager : MonoBehaviour {
 	public void loadPosition() {
 		//레이어 복구
 		for (int i = 0; i < layer.Count; i++) {
-			Vector3 lPosition = GlobalScript.positionHolder[i];
+			Vector3 lPosition = Utils.positionHolder[i];
 			lPosition.x += BEFORE_QUIZ_POSITION;
 			layer[i].transform.position = lPosition;
 		}
 		
 		//유저위치 복구
-		Vector3 uPosition = GlobalScript.userPosition;
+		Vector3 uPosition = Utils.userPosition;
 		uPosition.x += BEFORE_QUIZ_POSITION;
 		user.transform.position = uPosition;
 	}

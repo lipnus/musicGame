@@ -49,7 +49,7 @@ public class ConnectServer : MonoBehaviour {
 	//서버로 데이터를 post하는 코루틴
 	IEnumerator postToServer(WWWForm form, string path, Action<UnityWebRequest> callback) {
 
-		UnityWebRequest www = UnityWebRequest.Post(GlobalScript.serverPath + path, form);
+		UnityWebRequest www = UnityWebRequest.Post(Utils.serverPath + path, form);
 		yield return www.SendWebRequest();
 		
 		if(www.isNetworkError || www.isHttpError) {
@@ -67,7 +67,7 @@ public class ConnectServer : MonoBehaviour {
 	
 	
 	IEnumerator streamingSound() {
-		string musicPath = GlobalScript.musicPath + "/" + musicInfo.path;
+		string musicPath = Utils.musicPath + "/" + musicInfo.path;
 		using (var www = new WWW(musicPath)){			
 			yield return www; //다운받을동안 대기
 			
@@ -77,7 +77,7 @@ public class ConnectServer : MonoBehaviour {
 			source.Play();		
 			
 			//지정된 시간만큼 음악을 틀어준다
-			float playTime = GlobalScript.getPlayTime();
+			float playTime = Utils.getPlayTime();
 			StartCoroutine(stopMusic(playTime));
 		}
 	}

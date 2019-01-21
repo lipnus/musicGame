@@ -46,7 +46,7 @@ public class GuideManager : MonoBehaviour {
 			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_choice");
 			else if(guideObj.transform.name.Equals("Guide-subway")) GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(3f); //페이드아웃
 			else if (guideObj.transform.name.Equals("Guide-end")) {
-				GlobalScript.resetGame();
+				Utils.resetGame();
 				SceneManager.LoadScene("MainScene");
 			}
 			
@@ -60,7 +60,7 @@ public class GuideManager : MonoBehaviour {
 
 	//가이드 종료(퀴즈에서 더이상 가이드가 안나온다)
 	public void endGuide() {
-		GlobalScript.endGuide();
+		Utils.endGuide();
 	}
 	 
 }

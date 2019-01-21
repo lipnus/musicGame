@@ -56,25 +56,25 @@ public class HomeManager : MonoBehaviour {
 		yield return new WaitForSeconds(4);
 		
 		//튜토리얼의 완료유무에 따른 스테이지 이동
-		if (GlobalScript.isGuide_Finished() == true) {
+		if (Utils.isGuide_Finished() == true) {
 			Debug.Log("튜토리얼 이미 봤음");
-			SceneManager.LoadSceneAsync("TutorialScene");
+			Utils.changeScene("tutorial stage", "Seoul Stage", "서울도심", "TutorialSCene" );
 			
 		}
 		else {
 			Debug.Log("튜토리얼 봐야함");
-			SceneManager.LoadSceneAsync("TutorialScene");
+			Utils.changeScene("tutorial stage", "Seoul Stage", "서울도심", "TutorialSCene" );
+//			SceneManager.LoadSceneAsync("TutorialScene");
 		}
 	}
 
-//		SceneManager.LoadScene("CityScene");		
-//		SceneManager.LoadScene("TutorialScene");
 
 
 	public void onClick_Skip() {
 		skipButton.enabled = false;
 		okSound.Play();
-		SceneManager.LoadSceneAsync("TutorialScene");
+		Utils.changeScene("tutorial stage", "Seoul Stage", "서울도심", "TutorialSCene" );
+//		SceneManager.LoadSceneAsync("TutorialScene");
 	}
 	
 	

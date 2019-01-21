@@ -40,7 +40,7 @@ public class ShopApp : MonoBehaviour {
 
 	IEnumerator showPoint(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
-		pointText.text = GlobalScript.getScore().ToString();
+		pointText.text = Utils.getScore().ToString();
 		pointText.rectTransform.sizeDelta = new Vector2(pointText.preferredWidth, pointText.preferredHeight);
 	}
 	
@@ -51,8 +51,8 @@ public class ShopApp : MonoBehaviour {
 		soundManager.playSound(1); //클릭소리
 		user.GetComponent<User>().startShowIcon(1);
 
-		ItemInfo item = GlobalScript.getItemInfo(curCode);
-		int score = GlobalScript.getScore();
+		ItemInfo item = Utils.getItemInfo(curCode);
+		int score = Utils.getScore();
 		
 		if (score >= item.Price) {
 
@@ -60,13 +60,13 @@ public class ShopApp : MonoBehaviour {
 //			moneyEffect.GetComponent<Animator>().SetTrigger("money_t");
 			
 			soundManager.playSound(3); //구매
-			GlobalScript.addMyItem(curCode); //새로 산 아이템 표시
-			GlobalScript.modifyScore( -1 * item.Price);
-			pointText.text = GlobalScript.getScore().ToString();
+			Utils.addMyItem(curCode); //새로 산 아이템 표시
+			Utils.modifyScore( -1 * item.Price);
+			pointText.text = Utils.getScore().ToString();
 			showBtn(); //버튼이 바뀌겠지
 		}
 		else {
-			Debug.Log("돈이없다. 가진돈: " + GlobalScript.getScore());
+			Debug.Log("돈이없다. 가진돈: " + Utils.getScore());
 		}
 		updateAllItemState();
 	}
@@ -75,9 +75,9 @@ public class ShopApp : MonoBehaviour {
 	public void onClick_wear() {
 		soundManager.playSound(1); //클릭소리
 
-		if (curCode / 100 == 1) GlobalScript.setTop(curCode);
-		else if (curCode / 100 == 2) GlobalScript.setBottom(curCode);
-		else if (curCode / 100 == 3) GlobalScript.setShoes(curCode);
+		if (curCode / 100 == 1) Utils.setTop(curCode);
+		else if (curCode / 100 == 2) Utils.setBottom(curCode);
+		else if (curCode / 100 == 3) Utils.setShoes(curCode);
 
 		user.active = false;
 		user.active = true;
@@ -103,7 +103,7 @@ public class ShopApp : MonoBehaviour {
 	
 	//초기세팅(입고있는 상의를 표시)
 	public void setInitialProduct() {
-		int topCode = GlobalScript.getTop();
+		int topCode = Utils.getTop();
 		showInfo(topCode);
 	}
 	
@@ -147,7 +147,7 @@ public class ShopApp : MonoBehaviour {
 	
 	//정보표시
 	public void showInfo(int curCode) {
-		ItemInfo itemInfo = GlobalScript.getItemInfo(curCode);
+		ItemInfo itemInfo = Utils.getItemInfo(curCode);
 		category_text.GetComponent<Text>().text = itemInfo.ShoppingCategory;
 		title_text.GetComponent<Text>().text = itemInfo.Name;
 		price_text.GetComponent<Text>().text = itemInfo.Price.ToString();
@@ -175,8 +175,8 @@ public class ShopApp : MonoBehaviour {
 		wear_btn.active = false;
 		wore_img.active = false;
 		
-		if (GlobalScript.isHaveItem(curCode)) {
-			if (GlobalScript.isWearItem(curCode)) wore_img.active = true;
+		if (Utils.isHaveItem(curCode)) {
+			if (Utils.isWearItem(curCode)) wore_img.active = true;
 			else wear_btn.active = true;
 		}
 		else {

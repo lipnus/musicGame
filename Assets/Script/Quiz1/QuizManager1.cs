@@ -24,7 +24,7 @@ public class QuizManager1 : MonoBehaviour{
 		connectServer.quiz_1(0,0);
 		
 		//n동안 가이드 텍스트 표시
-		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(1f));
+		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(1f));
 
 	}
 
@@ -45,7 +45,7 @@ public class QuizManager1 : MonoBehaviour{
 	public void setGame( MusicInfo musicInfo) {
 		
 		//필드에서 표시해줄 답안등록
-		GlobalScript.setAnswer(musicInfo.title, musicInfo.singer);
+		Utils.setAnswer(musicInfo.title, musicInfo.singer);
 		
 		string answerInitial = musicInfo.initial;
 		
@@ -122,11 +122,11 @@ public class QuizManager1 : MonoBehaviour{
 			}
 			
 			//정답일 때
-			if (result) GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-			else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+			if (result) Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+			else Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 			
 			//복귀
-			SceneManager.LoadSceneAsync( GlobalScript.sceneName );
+			SceneManager.LoadSceneAsync( Utils.sceneName );
 		}
 		StartCoroutine(AnswerCheck(0.1f, answerInitial));
 	}
@@ -150,7 +150,7 @@ public class QuizManager1 : MonoBehaviour{
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;
 
-		float playTime = GlobalScript.getPlayTime();
+		float playTime = Utils.getPlayTime();
 		StartCoroutine(stopMusic(playTime));
 	}
 	
@@ -171,8 +171,8 @@ public class QuizManager1 : MonoBehaviour{
 	public void onClick_giveUp() {
 		soundManager.okPlay();
 		loadingText.active = true; //로딩
-		GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
-		SceneManager.LoadSceneAsync( GlobalScript.sceneName );
+		Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+		SceneManager.LoadSceneAsync( Utils.sceneName );
 	}
 
 	//고양이 손 터치

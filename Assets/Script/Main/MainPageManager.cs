@@ -23,10 +23,10 @@ public class MainPageManager : MonoBehaviour {
 	private const float BACK_OPPACITY=0.7f;
 
 	void Start() {
-		GlobalScript.resetGame();
+		Utils.resetGame();
 
-		GlobalScript.firstGift();
-		GlobalScript.setScore(100);
+		Utils.firstGift();
+		Utils.setScore(100);
 	}
 	
 	//카메라 페이지
@@ -113,7 +113,7 @@ public class MainPageManager : MonoBehaviour {
 	//게임시작
 	public void onClick_gamestart() {
 		soundManager.playSound(1); //클릭소리
-		GlobalScript.startGame(); //게임초기화
+		Utils.startGame(); //게임초기화
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(1f, 1f);
 		StartCoroutine(bgMusicFadeOut(0.1f));
 		StartCoroutine(startGame(1.5f));

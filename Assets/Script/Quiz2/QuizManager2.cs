@@ -38,7 +38,7 @@ public class QuizManager2 : MonoBehaviour{
 		}
 		
 		//첫 퀴즈인 경우 가이드 텍스트 표시
-		if(!GlobalScript.isGuide_Finished()) StartCoroutine(showGuideText(3f));
+		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(3f));
 
 	}
 
@@ -93,7 +93,7 @@ public class QuizManager2 : MonoBehaviour{
 		quiz = q; //전역에 할당
 		
 		//필드에서 표시해줄 답안등록
-		GlobalScript.setAnswer(quiz.musicInfo.title, quiz.musicInfo.singer);
+		Utils.setAnswer(quiz.musicInfo.title, quiz.musicInfo.singer);
 
 		for (int i = 0; i < choiceText.Count; i++) {
 			choiceText[i].text = quiz.choices[i].choice;
@@ -136,16 +136,16 @@ public class QuizManager2 : MonoBehaviour{
 		
 		//인터네션결이 끊겼을때
 		if (quiz == null) {
-			GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-			SceneManager.LoadSceneAsync( GlobalScript.sceneName );
+			Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+			SceneManager.LoadSceneAsync( Utils.sceneName );
 		}
 		
 		//정답일 때
-		if ( quiz.choices[choice].truth==1 ) GlobalScript.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-		else GlobalScript.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+		if ( quiz.choices[choice].truth==1 ) Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+		else Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 			
 		//복귀
-		SceneManager.LoadSceneAsync( GlobalScript.sceneName );
+		SceneManager.LoadSceneAsync( Utils.sceneName );
 	}
 
 	
@@ -158,7 +158,7 @@ public class QuizManager2 : MonoBehaviour{
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;
 
-		float playTime = GlobalScript.getPlayTime();
+		float playTime = Utils.getPlayTime();
 		StartCoroutine(stopMusic(playTime));
 	}
 	

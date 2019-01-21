@@ -28,7 +28,7 @@ public class FieldManager : MonoBehaviour {
 	void Start () {
 		
 		//테스트용, 반드시 지울것
-//		GlobalScript.setLife(3);
+//		Utils.setLife(3);
 		
 		//페이드인 효과
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(1f);
@@ -42,7 +42,7 @@ public class FieldManager : MonoBehaviour {
 		GameObject.Find("uiManager").GetComponent<UIManager>().updateLifeBar();
 		
 		//음악퀴즈를 풀고 돌아온 경우
-		if (!GlobalScript.userPosition.Equals(new Vector3(0, 0, 0))) {			
+		if (!Utils.userPosition.Equals(new Vector3(0, 0, 0))) {			
 			Debug.Log("Quiz에서 복귀");
 			returnFromMusicQuiz();
 		}
@@ -58,15 +58,15 @@ public class FieldManager : MonoBehaviour {
 		//정답표시
 		
 		//목숨처리
-		if (GlobalScript.lifeEvent == 0) {//정답
+		if (Utils.lifeEvent == 0) {//정답
 			StartCoroutine(correctIcon((3f)));
-		}else if (GlobalScript.lifeEvent == -1) {//오답
+		}else if (Utils.lifeEvent == -1) {//오답
 			StartCoroutine(wrongIcon((3f)));
 			GameObject.Find("uiManager").GetComponent<UIManager>().decreaseLifeBar();
-			GlobalScript.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
+			Utils.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
 			//사망여부확인
-			if (GlobalScript.getLife() <= 0) {
+			if (Utils.getLife() <= 0) {
 				savePosition(); //부활을 대비해서 현제상태 기억
 				StartCoroutine(userDie(1));
 			}
@@ -129,16 +129,16 @@ public class FieldManager : MonoBehaviour {
 	//모든 레이어의 위치를 전역에 저장
 	public void savePosition() {
 		
-		GlobalScript.sceneName = Application.loadedLevelName; //스테이지 기억
+		Utils.sceneName = Application.loadedLevelName; //스테이지 기억
 		
 		//레이어위치 저장
-		GlobalScript.positionHolder.Clear();
+		Utils.positionHolder.Clear();
 		for (int i = 0; i < layer.Count; i++) {
-			GlobalScript.positionHolder.Add( layer[i].transform.position );
+			Utils.positionHolder.Add( layer[i].transform.position );
 		}
 		
 		//유저위치 저장
-		GlobalScript.userPosition = user.transform.position;
+		Utils.userPosition = user.transform.position;
 	}
 	
 	//모든 레이어의 위치를 전역에서 불러옴
@@ -146,13 +146,13 @@ public class FieldManager : MonoBehaviour {
 
 		//레이어 복구
 		for (int i = 0; i < layer.Count; i++) {
-			Vector3 lPosition = GlobalScript.positionHolder[i];
+			Vector3 lPosition = Utils.positionHolder[i];
 			lPosition.x += BEFORE_QUIZ_POSITION;
 			layer[i].transform.position = lPosition;
 		}
 		
 		//유저위치 복구
-		Vector3 uPosition = GlobalScript.userPosition;
+		Vector3 uPosition = Utils.userPosition;
 		uPosition.x += BEFORE_QUIZ_POSITION;
 		user.transform.position = uPosition;
 

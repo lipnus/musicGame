@@ -59,7 +59,7 @@ public class DieScene : MonoBehaviour {
 
 	//광고보고 부활(광고에서 콜백으로 여기 호출)
 	public void respone() {
-		GlobalScript.responeGame();
-		SceneManager.LoadScene( GlobalScript.sceneName );
+		Utils.responeGame();
+		SceneManager.LoadScene( Utils.sceneName );
 	}
 }

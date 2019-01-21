@@ -105,12 +105,12 @@ public class GuideObject : MonoBehaviour {
 		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 플레이해주셔서 감사합니다.";
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		
-		GlobalScript.resetGame();
+		Utils.resetGame();
 	}
 
 	
 	//퀴즈에서 가이드텍스트 끝
 	void textEnd() {
-		GlobalScript.endGuide();
+		Utils.endGuide();
 	}
 }
