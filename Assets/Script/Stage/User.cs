@@ -28,6 +28,9 @@ public class User : MonoBehaviour
     public List<GameObject> bottoms = new List<GameObject>();
     public List<GameObject> shoes = new List<GameObject>();
     
+    //착용할 수 있는 악세사리
+    public List<Image> accesories = new List<Image>();
+    
     //현재 입고있는 옷
     private GameObject cur_top;
     private GameObject cur_bottom;
@@ -48,6 +51,9 @@ public class User : MonoBehaviour
         
         //옷입기
         wearCloth();
+        
+        //악세사리(패시브아이템) 착용
+        wearAccesory();
     }
 
     
@@ -210,5 +216,20 @@ public class User : MonoBehaviour
             }
         }
 
+    }
+
+    
+    //무슨 악세사리(패시브아이템)을 착용하고 있는지 찾아서 표시한다
+    public void wearAccesory() {
+
+        const double INACTIVE = 0.2f;
+        
+        //아이팟
+        if (Utils.isHaveItem(400)) accesories[0].color = new Color (1f, 1f, 1f, 1f);
+        else accesories[0].color = new Color (1f, 1f, 1f, INACTIVE);
+        
+        //샤넬 No.5
+        if (Utils.isHaveItem(401)) accesories[1].color = new Color (1f, 1f, 1f, 1f);
+        else accesories[1].color = new Color (1f, 1f, 1f, INACTIVE);
     }
 }

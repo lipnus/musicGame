@@ -53,18 +53,17 @@ public class HomeManager : MonoBehaviour {
 		user.GetComponent<Animator>().SetTrigger("walking_t");
 		StartCoroutine("walking", 0);
 		
-		yield return new WaitForSeconds(4);
+		yield return new WaitForSeconds(5);
 		
 		//튜토리얼의 완료유무에 따른 스테이지 이동
 		if (Utils.isGuide_Finished() == true) {
 			Debug.Log("튜토리얼 이미 봤음");
-			Utils.changeScene("tutorial stage", "Seoul Stage", "서울도심", "TutorialSCene" );
+			Utils.changeScene("tutorial stage", "Seoul City", "서울도심", "TutorialSCene" );
 			
 		}
 		else {
 			Debug.Log("튜토리얼 봐야함");
-			Utils.changeScene("tutorial stage", "Seoul Stage", "서울도심", "TutorialSCene" );
-//			SceneManager.LoadSceneAsync("TutorialScene");
+			Utils.changeScene("tutorial stage", "Seoul City", "서울도심", "TutorialSCene" );
 		}
 	}
 

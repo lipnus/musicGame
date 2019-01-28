@@ -220,6 +220,8 @@ public static class Utils {
     public static int getShoes() {
         return PlayerPrefs.GetInt("wear_shoes", 0);
     }
+    
+    
 
     
     
@@ -232,23 +234,31 @@ public static class Utils {
         ItemInfo item;
         
         //상의
-        item = new ItemInfo(0, 100, "유니클로 무지반팔", 10, "전체보기 > 상의 > 반팔티셔츠");
+        item = new ItemInfo(0, 100, "유니클로 무지반팔", 8000, "전체보기 > 상의 > 반팔티셔츠");
         items.Add(item);
         item = new ItemInfo(0, 101, "아크네 맨투맨", 10, "전체보기 > 상의 > 맨투맨");
         items.Add(item);
                 
         //하의
-        item = new ItemInfo(0, 200, "지오다노 슬랙스", 1, "전체보기 > 하의 > 슬랙스");
+        item = new ItemInfo(0, 200, "지오다노 슬랙스", 12000, "전체보기 > 하의 > 슬랙스");
+        items.Add(item);
+        item = new ItemInfo(0, 201, "파타고니아 반바지", 25000, "전체보기 > 하의 > 반바지");
         items.Add(item);
         
+        
         //신발
-        item = new ItemInfo(0, 300, "락포트 페니로퍼", 10, "전체보기 > 신발 > 구두");
+        item = new ItemInfo(0, 300, "락포트 페니로퍼", 45000, "전체보기 > 신발 > 구두");
         items.Add(item);
         item = new ItemInfo(0, 301, "꼼데 스니커즈", 10, "전체보기 > 신발 > 스니커즈");
         items.Add(item);
         item = new ItemInfo(0, 302, "이지 부스트", 10, "전체보기 > 신발 > 운동화");
         items.Add(item);
-
+        
+        //패시브아이템
+        item = new ItemInfo(1, 400, "샤넬 No.5 (+1초)", 1000, "#듣는시간을 1초 증가");
+        items.Add(item);
+        item = new ItemInfo(1, 401, "AirPod (+1.5초)", 1500, "#듣는시간을 1.5초 증가");
+        items.Add(item);
 
         ItemInfo returnObj = new ItemInfo(0, 0, "투명한 옷", 10, "전체보기 > 상의 > 투명망토");
         for (int i = 0; i < items.Count(); i++) {

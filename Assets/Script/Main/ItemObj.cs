@@ -73,7 +73,12 @@ public class ItemObj : MonoBehaviour {
 			hideActivatedImg();
 			focused.active = true;
 			shopApp.showHeart();
-			shopApp.showNote();
+			
+			//일반템인지 캐쉬템인지 노트와 코인아이콘으로 표시해서 구분
+			ItemInfo itemInfo = Utils.getItemInfo(curCode);
+			if (itemInfo.Perchase == 1) shopApp.showCoin();
+			else shopApp.showNote();
+
 			
 			//구매,착용 유무에 맞게 버튼출력
 			shopApp.showBtn();

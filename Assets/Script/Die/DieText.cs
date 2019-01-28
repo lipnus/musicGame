@@ -16,6 +16,9 @@ public class DieText{
        
         list.Add("누구와 닮았다는 이야기는 곧 신랄한 비판과도 같다.\n내 스타일을, 음악을 모욕하는 언사다.\n\nSnoop Dogg");
         list.Add("가사에 허황된 이야기를 쓰지 않는다.\n내가 하는 음악은 내 삶이 닮긴 결과물이다.\n\nScHoolboy Q");
+        list.Add("돈까스 좋아하세요?\n\nSwings");
+        list.Add("인간에게 가장 해로운 벌레는 '대충'\n\nYou know yunho");
+        list.Add("한국 힙합 망해라!!\n\nMOMMY SON");
         list.Add("내 생에 최고의 순간은 아직 오지 않았다.\n\nFrank Sinatra");
         list.Add("그리고 내 노래의 고동은 이어진다.\n\nSalvatore Phillip Bono");
         list.Add("난 이 세상의 밑바닥이 아닌 밑받침.\n\nTablo");

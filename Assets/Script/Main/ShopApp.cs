@@ -13,6 +13,7 @@ public class ShopApp : MonoBehaviour {
 	public GameObject price_text;
 	public GameObject product_img;
 	public GameObject note_img;
+	public GameObject coin_img;
 	public GameObject heart_img;
 	public GameObject purchase_btn;
 	public GameObject wear_btn;
@@ -135,6 +136,7 @@ public class ShopApp : MonoBehaviour {
 	public void removeInfo() {
 		heart_img.active = false;
 		note_img.active = false;
+		coin_img.active = false;
 		category_text.GetComponent<Text>().text = "";
 		title_text.GetComponent<Text>().text = "";
 		price_text.GetComponent<Text>().text = "";
@@ -166,7 +168,14 @@ public class ShopApp : MonoBehaviour {
 
 	//음표출력
 	public void showNote() {
+		coin_img.active = false;
 		note_img.active = true;
+	}
+	
+	//코인출력
+	public void showCoin() {
+		note_img.active = false;
+		coin_img.active = true;
 	}
 
 	//버튼출력(구매,착용,착용중)

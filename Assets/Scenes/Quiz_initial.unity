@@ -1151,7 +1151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -2061,7 +2061,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -3062,7 +3062,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -3751,6 +3751,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114493274046453494, guid: 3a05f0e538f244a7abb05cd0df71fd68,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -3882,7 +3887,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_Constraints
@@ -4200,8 +4205,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6c99940f4d83a4cfba486db460cb0037, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 379dca8df52f74f84808d751a22a598f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5008,7 +5013,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -5190,7 +5195,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag
@@ -5342,10 +5347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: initText0
       objectReference: {fileID: 0}
-    - target: {fileID: 1155756893124084, guid: 3a05f0e538f244a7abb05cd0df71fd68, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5384,6 +5385,21 @@ PrefabInstance:
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224841567709270464, guid: 3a05f0e538f244a7abb05cd0df71fd68,
@@ -5440,7 +5456,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a05f0e538f244a7abb05cd0df71fd68, type: 3}
 --- !u!1 &1967359371
@@ -5911,7 +5927,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737690019}
     - target: {fileID: 50990933053712322, guid: 3a05f0e538f244a7abb05cd0df71fd68,
         type: 3}
       propertyPath: m_AngularDrag

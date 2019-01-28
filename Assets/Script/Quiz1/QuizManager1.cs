@@ -24,7 +24,7 @@ public class QuizManager1 : MonoBehaviour{
 		connectServer.quiz_1(0,0);
 		
 		//n동안 가이드 텍스트 표시
-		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(1f));
+		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(0.8f));
 
 	}
 
@@ -36,7 +36,7 @@ public class QuizManager1 : MonoBehaviour{
 		yield return new WaitForSeconds(delayTime);
 	
 		midText.GetComponent<Animator>().SetBool("showText", false);
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.3f);
 		midBack.active = false;
 	}
 
@@ -128,7 +128,7 @@ public class QuizManager1 : MonoBehaviour{
 			//복귀
 			SceneManager.LoadSceneAsync( Utils.sceneName );
 		}
-		StartCoroutine(AnswerCheck(0.1f, answerInitial));
+		else StartCoroutine(AnswerCheck(0.1f, answerInitial));
 	}
 
 	
@@ -149,7 +149,7 @@ public class QuizManager1 : MonoBehaviour{
 		GameObject.Find("Phone").transform.Find("playBtn").GetComponent<Image>().gameObject.SetActive(false);
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;
-
+		
 		float playTime = Utils.getPlayTime();
 		StartCoroutine(stopMusic(playTime));
 	}

@@ -11,11 +11,11 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public bool collision = false; //답안칸과 접촉여부
     public bool submit = false; //답안칸에 제출된상태인지
     Vector3 startPosition; //초기 생성위치
-    public SoundManager2 soundManager;
+    public SoundManager soundManager;
 
     
     public void OnBeginDrag(PointerEventData eventData){
-        soundManager.playSound(0);
+        soundManager.clickPlay();
         dragging = true;
     }
 
@@ -29,6 +29,7 @@ public class InitialText : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData){
         //회전값 복구
         transform.Rotate(0, 0, -transform.eulerAngles.z);
+        soundManager.clickPlay();
         
         //답안칸 밖에서 시작한 드래그의 끝
         if (!submit){
