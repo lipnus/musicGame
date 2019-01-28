@@ -55,23 +55,45 @@ public class ShopApp : MonoBehaviour {
 		ItemInfo item = Utils.getItemInfo(curCode);
 		int score = Utils.getScore();
 		
-		if (score >= item.Price) {
+		Debug.Log("구매구매" + item.Code);
+		
+		if (item.Perchase == 0) {	//의류구매
+			buyColth(item, score);
+		}else if (item.Perchase == 1) {	 //악세사리 구매
+			buyAccessory(item, score);
+		}
+		
+		pointText.text = Utils.getScore().ToString(); //포인트 새로고침
+		showBtn(); //버튼상태 새로고침
+		updateAllItemState(); //아이템 상태 새로고침
+	}
+	
 
+	public void buyAccessory(ItemInfo item, int score) {
+		
+		//캐쉬로 사야하지만 지금은 무조건 살 수 있게 함
+		Debug.Log("악세사리 구매");
+		
+		soundManager.playSound(3); //구매
+		Utils.addMyItem(curCode); //구매목록에 추가
+	}
+
+	
+	public void buyColth(ItemInfo item, int score) {
+		
+		if (score >= item.Price) {
 			score -= item.Price;
-//			moneyEffect.GetComponent<Animator>().SetTrigger("money_t");
-			
-			soundManager.playSound(3); //구매
-			Utils.addMyItem(curCode); //새로 산 아이템 표시
+			soundManager.playSound(3); 
+			Utils.addMyItem(curCode); //구매목록에 추가
 			Utils.modifyScore( -1 * item.Price);
-			pointText.text = Utils.getScore().ToString();
-			showBtn(); //버튼이 바뀌겠지
 		}
 		else {
 			Debug.Log("돈이없다. 가진돈: " + Utils.getScore());
 		}
-		updateAllItemState();
+		
 	}
 
+	
 	//착용하기
 	public void onClick_wear() {
 		soundManager.playSound(1); //클릭소리

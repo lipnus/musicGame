@@ -222,7 +222,8 @@ public class User : MonoBehaviour
     //무슨 악세사리(패시브아이템)을 착용하고 있는지 찾아서 표시한다
     public void wearAccesory() {
 
-        const double INACTIVE = 0.2f;
+        if (accesories[0] == null) return;
+        const float INACTIVE = 0.2f;
         
         //아이팟
         if (Utils.isHaveItem(400)) accesories[0].color = new Color (1f, 1f, 1f, 1f);

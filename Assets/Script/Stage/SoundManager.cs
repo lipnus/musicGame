@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource correctSound;
 	public AudioSource clickSound;
 	public AudioSource okSound;
+	public AudioSource voodooMusic;
 	
 	
 
@@ -54,6 +55,10 @@ public class SoundManager : MonoBehaviour {
 	//클릭
 	public void clickPlay() {
 		clickSound.GetComponent<AudioSource>().Play();
-
+	}
+	
+	//voodoo배경음악
+	public void voodooPlay() {
+		voodooMusic.GetComponent<AudioSource>().Play();
 	}
 }

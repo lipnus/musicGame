@@ -56,10 +56,10 @@ public class ItemObj : MonoBehaviour {
 		}catch (Exception e) {}  
 	}
 
+	
 	public void onClick_product() {
 		soundManager.playSound(1); //클릭소리
 
-		
 		//앱화면
 		shopApp.setCode(curCode);
 //		shopApp.cancelHeart();
@@ -79,7 +79,6 @@ public class ItemObj : MonoBehaviour {
 			if (itemInfo.Perchase == 1) shopApp.showCoin();
 			else shopApp.showNote();
 
-			
 			//구매,착용 유무에 맞게 버튼출력
 			shopApp.showBtn();
 			

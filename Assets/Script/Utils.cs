@@ -118,7 +118,10 @@ public static class Utils {
     
     //음악재생시간
     public static float getPlayTime() {
-        return PlayerPrefs.GetFloat("PlayTime", 4f); //기본값
+        float playTime = 1f;
+        if (Utils.isHaveItem(400)) playTime += 1f;
+        if (Utils.isHaveItem(401)) playTime += 1.5f;
+        return playTime;
     }
     
     //가이드를 봤는지 여부
@@ -175,9 +178,9 @@ public static class Utils {
         return isHave;
     }
     
-    //옷을 입고있는지 확인
+    //옷을 입고있는지 확인(악세사리는 구매만 해도 입고 있는 걸로 간주
     public static bool isWearItem(int code) {
-        if (code == getTop() || code == getBottom() || code == getShoes()) {
+        if (code == getTop() || code == getBottom() || code == getShoes() || code/100==4) {
             return true;
         }
         else {
