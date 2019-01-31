@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -9,21 +8,26 @@ public class ConnectServer : MonoBehaviour {
 	public AudioSource source;
 	private MusicInfo musicInfo;
 	private Quiz quiz;
-	//테스트용경로: "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music/likeit.mp3";
+
+	public QuizManager1 quizManager1;
+	public QuizManager2 quizManager2;
+
+	public GameObject networkDialog;
+	
 
 	
 	//초성맞히기
-	public void quiz_1(int genre, int order) {
+	public void quiz_1(int difficulty) {
 		WWWForm form = new WWWForm();
-		form.AddField("genre", genre);
-		form.AddField("order", order);
+		form.AddField("genre", difficulty);
+		form.AddField("order", 0);
+
 		
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/quiz_1", (www) => {
-				musicInfo = JsonUtility.FromJson<MusicInfo>(www.downloadHandler.text);
 				Debug.Log("POST RESONSE callback OK!");
-
-				GameObject.Find("QuizManager").GetComponent<QuizManager1>().setGame( musicInfo );
+				musicInfo = JsonUtility.FromJson<MusicInfo>(www.downloadHandler.text);
+				quizManager1.setGame( musicInfo );
 			}
 		));
 	}
@@ -40,7 +44,7 @@ public class ConnectServer : MonoBehaviour {
 				Debug.Log("quiz_pk:" + quiz.quiz_pk);
 
 				musicInfo = quiz.musicInfo; //곡 정보 저장
-				GameObject.Find("QuizManager").GetComponent<QuizManager2>().setGame( quiz );
+				quizManager2.setGame( quiz );
 			}
 		));
 	}
@@ -53,11 +57,13 @@ public class ConnectServer : MonoBehaviour {
 		yield return www.SendWebRequest();
 		
 		if(www.isNetworkError || www.isHttpError) {
-			Debug.Log("[Error]:" + www.error);
+			Debug.Log("[네트워크에러]:" + www.error);
+			networkDialog.active = true;
 		}else {
 			Debug.Log("Form upload complete!");
+			networkDialog.active = false;
+			callback(www);
 		}
-		callback(www);
 	}
 
 
@@ -70,8 +76,6 @@ public class ConnectServer : MonoBehaviour {
 		string musicPath = Utils.musicPath + "/" + musicInfo.path;
 		using (var www = new WWW(musicPath)){			
 			yield return www; //다운받을동안 대기
-			
-			Debug.Log("??");
 			
 			source.clip = www.GetAudioClip();
 			source.Play();		
