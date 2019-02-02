@@ -11,6 +11,7 @@ public class ConnectServer : MonoBehaviour {
 
 	public QuizManager1 quizManager1;
 	public QuizManager2 quizManager2;
+	public NicknameManager nicknameManager;
 
 	public GameObject networkDialog;
 	
@@ -50,6 +51,75 @@ public class ConnectServer : MonoBehaviour {
 	}
 	
 	
+	//유저정보 업로드
+	public void uploadUserInfo(UserInfo userInfo) {
+		WWWForm form = new WWWForm();
+		form.AddField("uuid", userInfo.uuid);
+		form.AddField("nicknameText", userInfo.nickname);
+		form.AddField("point", userInfo.point);
+		form.AddField("item", userInfo.item);
+		form.AddField("wear_top", userInfo.wear_top);
+		form.AddField("wear_bottom", userInfo.wear_bottom);
+		form.AddField("wear_shoes", userInfo.wear_shoes);
+		
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/user/upload", (www) => {
+				
+			}
+		));
+	}
+	
+	
+	//유저정보 다운로드
+	public void downloadUserInfo(string uuid) {
+		WWWForm form = new WWWForm();
+		form.AddField("uuid", uuid);
+		
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/user/download", (www) => {
+				UserInfo userInfo = JsonUtility.FromJson<UserInfo>(www.downloadHandler.text);
+				
+				//서버에 기존 유저정보가 존재하면 그걸로 게임의 유저데이터를 업데이트
+				if (!userInfo.nickname.Equals("")) {
+					Utils.updateUserInfo( userInfo );
+				}else {
+					Debug.Log("서버에 이 유저의 정보가 없다");
+				}
+				
+			}
+		));
+	}
+
+
+	//등록가능한(중복되지 않은) 닉네임인지 확인
+	public void nicknameCheck(string nickname) {
+		WWWForm form = new WWWForm();
+		form.AddField("nicknameText", nickname);
+		
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/user/nickname_check", (www) => {
+				Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
+				
+				
+				if (res.result.Equals("ok")) {
+					nicknameManager.nicknameOK();
+				}else {
+					nicknameManager.nicknameReject();
+				}
+				
+			}
+		));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//서버로 데이터를 post하는 코루틴
 	IEnumerator postToServer(WWWForm form, string path, Action<UnityWebRequest> callback) {
 
@@ -60,7 +130,7 @@ public class ConnectServer : MonoBehaviour {
 			Debug.Log("[네트워크에러]:" + www.error);
 			networkDialog.active = true;
 		}else {
-			Debug.Log("Form upload complete!");
+			Debug.Log("[POST완료]");
 			networkDialog.active = false;
 			callback(www);
 		}

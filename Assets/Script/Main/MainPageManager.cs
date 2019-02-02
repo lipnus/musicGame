@@ -15,6 +15,8 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject message_page; //메시지
 	public GameObject rankingText;
 
+	public ConnectServer ConnectServer;
+
 	public GameObject messageCircle;
 
 	public AudioSource backgroundMusic;
@@ -23,11 +25,27 @@ public class MainPageManager : MonoBehaviour {
 	private const float BACK_OPPACITY=0.7f;
 
 	void Start() {
+	
 		Utils.resetGame();
+//		synchroUserInfo();
 
 		Utils.firstGift();
 		Utils.setScore(100);
 	}
+
+	//서버와 유저데이터를 동기화
+	public void synchroUserInfo() {
+		
+		if (Utils.getNickname().Equals("empty_nickname")) {
+			Debug.Log("유저정보 다운로드 시도");
+			ConnectServer.downloadUserInfo( Utils.getUUID() );
+		}else {
+			Debug.Log("유저정보 업로드");
+			ConnectServer.uploadUserInfo( Utils.getUserInfo() );
+		}
+		
+	}
+	
 	
 	//카메라 페이지
 	public void onClick_camera() {
@@ -105,7 +123,6 @@ public class MainPageManager : MonoBehaviour {
 
 	//카메라 쵤영버튼
 	public void onClick_shot() {
-		Debug.Log("찰칵");
 		GameObject.Find("shot_img").GetComponent<Animator>().SetTrigger("shot_t");
 		soundManager.playSound(0);//셔터소리
 	}
@@ -128,7 +145,13 @@ public class MainPageManager : MonoBehaviour {
 
 	IEnumerator startGame(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
-		SceneManager.LoadScene("HomeScene");		
+
+		if (Utils.getNickname().Equals("empty_nickname")) {
+			SceneManager.LoadScene("NicknameScene");
+		}
+		else {
+			SceneManager.LoadScene("HomeScene");		
+		}
 	}
 }
 

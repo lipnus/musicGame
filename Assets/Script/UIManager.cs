@@ -8,41 +8,47 @@ public class UIManager : MonoBehaviour {
 
 //	public Image image;
 	public Text midText;
-	
+
+	public Text nicknameText;
+
 	public Image lifeBar; //생명바
 	public Text scoreText; //점수표시
 	public Image userDieBackgroud; //게임오버
-	
+
 	public GameObject answerImg; //답변페이지
 	public Text answerTitle; //노래제목
 	public Text answerSinger; //가수
-	
+
 	public GameObject userScore;
-	
+
 	private const int LIFE_UNIT = 116; //목숨 한칸의 양
 	private const int LIFE_MAX = 350; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
-	
+
 	public void showText(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
 		StartCoroutine("stayText", 1.5f);
 	}
-	
-	
+
+
 	public void showText_Long(string str) {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
 		StartCoroutine("stayText", 4f);
 	}
 
-	
+
 	IEnumerator stayText(float delayTime) {
 		yield return new WaitForSeconds(delayTime); //표시시간
 		FadeOut(midText, 0.5f);
 	}
 
-	
+	//닉네임 표시
+	public void setNickname() {
+		nicknameText.text = Utils.getNickname();
+	}
+
 	//정답을 표시
 	public void showAnswer() {
 		answerImg.SetActive(true);

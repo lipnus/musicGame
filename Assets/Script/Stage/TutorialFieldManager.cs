@@ -55,6 +55,9 @@ public class TutorialFieldManager : MonoBehaviour {
 		//속도
 		userSpeed = user.GetComponent<User>().userSpeed; 
 		
+		//닉네임표시
+		uiManager.GetComponent<UIManager>().setNickname();
+		
 		//점수표시
 		uiManager.GetComponent<UIManager>().setScoreText();
 		

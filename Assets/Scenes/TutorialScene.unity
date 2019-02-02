@@ -7139,6 +7139,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212954185203653646, guid: 153032a95f7124bb3a77e871aeb34f75,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 61711967181225292, guid: 153032a95f7124bb3a77e871aeb34f75,
         type: 3}
       propertyPath: m_Offset.x
@@ -7153,11 +7158,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UsedByEffector
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212954185203653646, guid: 153032a95f7124bb3a77e871aeb34f75,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 153032a95f7124bb3a77e871aeb34f75, type: 3}
@@ -20723,6 +20723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midText: {fileID: 1568658442}
+  nicknameText: {fileID: 656531956}
   lifeBar: {fileID: 2064924285}
   scoreText: {fileID: 792727243}
   userDieBackgroud: {fileID: 699390949}
@@ -21528,6 +21529,7 @@ MonoBehaviour:
   correctSound: {fileID: 1124603216}
   clickSound: {fileID: 0}
   okSound: {fileID: 0}
+  voodooMusic: {fileID: 0}
 --- !u!4 &1913375956
 Transform:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public static class Utils {
     
     //서버경로정보
-    public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
+//    public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
+    public static string serverPath = "http://localhost:9000/dduroon";
     public static string musicPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
 
     
@@ -28,7 +29,10 @@ public static class Utils {
     
     
     
-    //씬 이동
+    //==========================================================
+    // 씬 이동
+    //==========================================================
+    
     private static string stageStr;
     private static string titleStr;
     private static string subTitleStr;
@@ -46,6 +50,8 @@ public static class Utils {
     public static string getTitleStr() { return titleStr; }
     public static string getsubTitleStr() { return subTitleStr; }
     public static string getsceneNameStr() { return sceneNameStr; }
+    
+    
     
 
     //==========================================================
@@ -102,7 +108,7 @@ public static class Utils {
         PlayerPrefs.SetInt("Life", lf);
     }
 
-
+    
     public static void setAnswer(string title, string singer) {
         answer_title = title;
         answer_singer = singer;
@@ -148,9 +154,13 @@ public static class Utils {
     
     
     
+    
+    
+    
     //==========================================================
     // 아이템관련함수
     //==========================================================
+        
 
     //소유목록에 새 아이템 추가
     public static void addMyItem(int code) {
@@ -194,6 +204,11 @@ public static class Utils {
         PlayerPrefs.SetString("my_item", item_list);
     }
     
+    //소유목록 불러오기
+    public static string getMyItems() {
+        return PlayerPrefs.GetString("my_item", "empty");
+    }
+    
     
 
     //옷입히기
@@ -228,6 +243,9 @@ public static class Utils {
 
     
     
+    //==========================================================
+    // 아이템정보
+    //==========================================================
     
     //아이템정보를 생성하고 조회한다(사실상 DB역할)
     public static ItemInfo getItemInfo(int code) {
@@ -294,5 +312,56 @@ public static class Utils {
             string jsonStr = JsonUtility.ToJson(mItem);
             setMyItems(jsonStr);   
         }
+    }
+    
+    
+    
+    
+    //==========================================================
+    // 유저정보 Upload & download 에 사용
+    //==========================================================
+
+    //기기의 uuid 반환
+    public static string getUUID() {
+        return SystemInfo.deviceUniqueIdentifier;
+    }
+    
+    
+    //닉네임 설정
+    public static void setNickname(string nickname) {
+        PlayerPrefs.SetString("nicknameText", nickname);
+    }
+    
+    //닉네임 가져오기
+    public static string getNickname() {
+        return PlayerPrefs.GetString("nicknameText", "empty_nickname");
+    }
+
+       
+    //현재 유저정보를 반환
+    public static UserInfo getUserInfo() {
+        
+        UserInfo userInfo = new UserInfo();
+
+        userInfo.uuid = getUUID();
+        userInfo.nickname = getNickname();
+        userInfo.point = getScore();
+        userInfo.item = getMyItems();
+        userInfo.wear_top = getTop();
+        userInfo.wear_bottom = getBottom();
+        userInfo.wear_shoes = getShoes();
+
+        return userInfo;
+    }
+    
+
+    //서버에서 받아온 유저정보를 게임에 반영
+    public static void updateUserInfo(UserInfo userInfo) {
+        setNickname( userInfo.nickname );
+        setScore( userInfo.point );
+        setMyItems( userInfo.item );
+        setTop( userInfo.wear_top );
+        setBottom( userInfo.wear_bottom );
+        setShoes( userInfo.wear_shoes );
     }
 }
