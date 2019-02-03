@@ -141,8 +141,14 @@ public class QuizManager2 : MonoBehaviour{
 		}
 		
 		//정답일 때
-		if ( quiz.choices[choice].truth==1 ) Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-		else Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+		if ( quiz.choices[choice].truth==1 ){
+			Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+			connectServer.feedbackQuiz2(quiz.quiz_pk, 1); //서버로 결과 피드백
+		}else{
+			Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+			connectServer.feedbackQuiz2(quiz.quiz_pk, 0); //서버로 결과 피드백
+
+		}
 			
 		//복귀
 		SceneManager.LoadSceneAsync( Utils.sceneName );

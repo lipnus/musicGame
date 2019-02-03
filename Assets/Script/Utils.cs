@@ -76,6 +76,50 @@ public static class Utils {
         lifeEvent = 0;
     }
     
+    //게임클리어 횟수
+    public static void modifyGameClear(int g) {
+        int gameClear = PlayerPrefs.GetInt("GameClear", 0) + g;
+        PlayerPrefs.SetInt("GameClear", gameClear);
+    }
+    
+    public static void setGameClear(int gameClear) {
+        PlayerPrefs.SetInt("GameClear", gameClear);
+    }
+
+    public static int getGameClear() {
+        return PlayerPrefs.GetInt("GameClear", 0);
+    }
+    
+    
+    
+    //맞은 개수
+    public static void modifyCorrect(int c) {
+        int correct = PlayerPrefs.GetInt("Correct", 0) + c;
+        PlayerPrefs.SetInt("Correct", correct);
+    }
+
+    public static void setCorrect(int correct) {
+        PlayerPrefs.SetInt("Correct", correct);
+    }
+
+    public static int getCorrect() {
+        return PlayerPrefs.GetInt("Correct", 0);
+    }
+    
+    //틀린개수
+    public static void modifyWrong(int w) {
+        int wrong = PlayerPrefs.GetInt("Wrong", 0) + w;
+        PlayerPrefs.SetInt("Wrong", wrong);
+    }
+
+    public static void setWrong(int wrong) {
+        PlayerPrefs.SetInt("Wrong", wrong);
+    }
+
+    public static int getWrong() {
+        return PlayerPrefs.GetInt("Wrong", 0);
+    }
+    
     //점수조작(더하거나 뺌)
     public static void modifyScore(int s) {
         int score = PlayerPrefs.GetInt("Score", 0) + s;
@@ -329,12 +373,12 @@ public static class Utils {
     
     //닉네임 설정
     public static void setNickname(string nickname) {
-        PlayerPrefs.SetString("nicknameText", nickname);
+        PlayerPrefs.SetString("nickname", nickname);
     }
     
     //닉네임 가져오기
     public static string getNickname() {
-        return PlayerPrefs.GetString("nicknameText", "empty_nickname");
+        return PlayerPrefs.GetString("nickname", "empty_nickname");
     }
 
        
@@ -350,6 +394,9 @@ public static class Utils {
         userInfo.wear_top = getTop();
         userInfo.wear_bottom = getBottom();
         userInfo.wear_shoes = getShoes();
+        userInfo.correct = getCorrect();
+        userInfo.wrong = getWrong();
+        userInfo.game_clear = getGameClear();
 
         return userInfo;
     }
@@ -363,5 +410,8 @@ public static class Utils {
         setTop( userInfo.wear_top );
         setBottom( userInfo.wear_bottom );
         setShoes( userInfo.wear_shoes );
+        setCorrect( userInfo.correct );
+        setWrong( userInfo.wrong );
+        setGameClear( userInfo.game_clear );
     }
 }

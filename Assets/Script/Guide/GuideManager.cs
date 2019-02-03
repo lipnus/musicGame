@@ -46,7 +46,6 @@ public class GuideManager : MonoBehaviour {
 			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_choice");
 			else if(guideObj.transform.name.Equals("Guide-subway")) GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(3f); //페이드아웃
 			else if (guideObj.transform.name.Equals("Guide-end")) {
-				Utils.resetGame();
 				SceneManager.LoadScene("MainScene");
 			}
 			

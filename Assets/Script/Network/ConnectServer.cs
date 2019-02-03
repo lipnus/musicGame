@@ -52,22 +52,25 @@ public class ConnectServer : MonoBehaviour {
 	
 	
 	//유저정보 업로드
-	public void uploadUserInfo(UserInfo userInfo) {
-		WWWForm form = new WWWForm();
-		form.AddField("uuid", userInfo.uuid);
-		form.AddField("nicknameText", userInfo.nickname);
-		form.AddField("point", userInfo.point);
-		form.AddField("item", userInfo.item);
-		form.AddField("wear_top", userInfo.wear_top);
-		form.AddField("wear_bottom", userInfo.wear_bottom);
-		form.AddField("wear_shoes", userInfo.wear_shoes);
-		
-		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/user/upload", (www) => {
-				
-			}
-		));
-	}
+    public void uploadUserInfo(UserInfo userInfo) {
+     		WWWForm form = new WWWForm();
+     		form.AddField("uuid", userInfo.uuid);
+     		form.AddField("nickname", userInfo.nickname);
+     		form.AddField("point", userInfo.point);
+     		form.AddField("item", userInfo.item);
+     		form.AddField("wear_top", userInfo.wear_top);
+     		form.AddField("wear_bottom", userInfo.wear_bottom);
+     		form.AddField("wear_shoes", userInfo.wear_shoes);
+     		form.AddField("correct", userInfo.correct);
+     		form.AddField("wrong", userInfo.wrong);
+     		form.AddField("game_clear", userInfo.game_clear);
+     		
+     		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+     		StartCoroutine(postToServer(form, "/user/upload", (www) => {
+     				
+     				
+     		}));
+     	}
 	
 	
 	//유저정보 다운로드
@@ -100,7 +103,6 @@ public class ConnectServer : MonoBehaviour {
 		StartCoroutine(postToServer(form, "/user/nickname_check", (www) => {
 				Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
 				
-				
 				if (res.result.Equals("ok")) {
 					nicknameManager.nicknameOK();
 				}else {
@@ -109,6 +111,32 @@ public class ConnectServer : MonoBehaviour {
 				
 			}
 		));
+	}
+	
+	
+	//퀴즈1 피드백
+	public void feedbackQuiz1(int music_pk, int correct) {
+		WWWForm form = new WWWForm();
+		form.AddField("music_pk", music_pk);
+		form.AddField("correct", correct);
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/feedback/quiz1", (www) => {
+			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
+			Debug.Log("성공스");
+		}));
+	}
+	
+	//퀴즈2 피드백
+	public void feedbackQuiz2(int quiz_pk, int correct) {
+		WWWForm form = new WWWForm();
+		form.AddField("quiz_pk", quiz_pk);
+		form.AddField("correct", correct);
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/feedback/quiz2", (www) => {
+			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
+		}));
 	}
 	
 	
@@ -130,7 +158,7 @@ public class ConnectServer : MonoBehaviour {
 			Debug.Log("[네트워크에러]:" + www.error);
 			networkDialog.active = true;
 		}else {
-			Debug.Log("[POST완료]");
+			Debug.Log("[POST]");
 			networkDialog.active = false;
 			callback(www);
 		}

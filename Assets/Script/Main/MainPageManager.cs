@@ -26,15 +26,17 @@ public class MainPageManager : MonoBehaviour {
 
 	void Start() {
 	
-		Utils.resetGame();
-//		synchroUserInfo();
-
+//		Utils.resetGame();
 		Utils.firstGift();
 		Utils.setScore(100);
+		synchroUserInfo();
+
 	}
 
 	//서버와 유저데이터를 동기화
 	public void synchroUserInfo() {
+		
+		Debug.Log("현제닉네임: " + Utils.getNickname());
 		
 		if (Utils.getNickname().Equals("empty_nickname")) {
 			Debug.Log("유저정보 다운로드 시도");

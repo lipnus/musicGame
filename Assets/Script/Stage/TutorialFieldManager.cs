@@ -84,6 +84,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		if (Utils.lifeEvent == 0) {
 			user.GetComponent<User>().startShowIcon(1); //정답아이콘
 			Utils.modifyScore(100); //점수
+			Utils.modifyCorrect(1); //맞은개수
 			uiManager.raiseScore(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();
 		}
@@ -92,6 +93,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		else if (Utils.lifeEvent == -1) {
 			user.GetComponent<User>().startShowIcon(2); //오답아이콘
 			uiManager.GetComponent<UIManager>().decreaseLifeBar();
+			Utils.modifyWrong(1);
 			Utils.modifyLife(-1); //이건 반드시 decreaseLifeBar뒤에 와야한다
 			
 			//사망여부확인

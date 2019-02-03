@@ -17,6 +17,7 @@ public class QuizManager1 : MonoBehaviour{
 	public SoundManager soundManager;
 
 	private bool isSountPlay = false;
+	private MusicInfo musicInfo;
 
 	public ConnectServer connectServer;
 
@@ -42,7 +43,10 @@ public class QuizManager1 : MonoBehaviour{
 
 	
 	//ConnectServer에서 이곳을 호출하면서 퀴즈 시작
-	public void setGame( MusicInfo musicInfo) {
+	public void setGame( MusicInfo musicInfo ) {
+		
+		//음원정보를 전역변수에 지정		
+		this.musicInfo = musicInfo;
 		
 		//필드에서 표시해줄 답안등록
 		Utils.setAnswer(musicInfo.title, musicInfo.singer);
@@ -122,8 +126,13 @@ public class QuizManager1 : MonoBehaviour{
 			}
 			
 			//정답일 때
-			if (result) Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-			else Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+			if (result){
+				Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
+				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),1);
+			}else{
+				Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0);
+			}
 			
 			//복귀
 			SceneManager.LoadSceneAsync( Utils.sceneName );
@@ -172,6 +181,7 @@ public class QuizManager1 : MonoBehaviour{
 		soundManager.okPlay();
 		loadingText.active = true; //로딩
 		Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
+		connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0); //피드백처리
 		SceneManager.LoadSceneAsync( Utils.sceneName );
 	}
 
