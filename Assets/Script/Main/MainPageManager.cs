@@ -32,6 +32,8 @@ public class MainPageManager : MonoBehaviour {
 		
 		synchroUserInfo();
 		messageManager.updateMessage();
+		
+		Debug.Log("pk: "  + Utils.getUserPk());
 	}
 
 	

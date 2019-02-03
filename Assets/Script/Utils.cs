@@ -75,6 +75,18 @@ public static class Utils {
         setLife(2);
         lifeEvent = 0;
     }
+
+
+    //User의 primary key
+    public static void setUserPk(int user_pk) {
+        PlayerPrefs.SetInt("UserPk", user_pk);
+    }
+
+
+    public static int getUserPk() {
+        return PlayerPrefs.GetInt("UserPk", 0);  
+    }
+    
     
     
     //읽은 미시지 개수
@@ -415,6 +427,7 @@ public static class Utils {
 
     //서버에서 받아온 유저정보를 게임에 반영
     public static void updateUserInfo(UserInfo userInfo) {
+        setUserPk( userInfo.user_pk );
         setNickname( userInfo.nickname );
         setScore( userInfo.point );
         setMyItems( userInfo.item );

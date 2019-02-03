@@ -3,6 +3,7 @@ using System;
 [System.Serializable]
 public class UserInfo {
 
+    public int user_pk;
     public String uuid;
     public String nickname;
     public int point;

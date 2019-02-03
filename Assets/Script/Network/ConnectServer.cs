@@ -69,8 +69,13 @@ public class ConnectServer : MonoBehaviour {
      		
      		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
      		StartCoroutine(postToServer(form, "/user/upload", (www) => {
-     				
-     				
+			     ResponseUserUpload res = JsonUtility.FromJson<ResponseUserUpload>(www.downloadHandler.text);
+
+			     if (res.user_pk != null) {
+				     Debug.Log("pk업데이트");
+				     Utils.setUserPk( int.Parse(res.user_pk) );				     
+			     }
+			     
      		}));
      	}
 	
@@ -90,7 +95,6 @@ public class ConnectServer : MonoBehaviour {
 				}else {
 					Debug.Log("서버에 이 유저의 정보가 없다");
 				}
-				
 			}
 		));
 	}
@@ -141,7 +145,6 @@ public class ConnectServer : MonoBehaviour {
 			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
 		}));
 	}
-	
 	
 	
 	//메시지

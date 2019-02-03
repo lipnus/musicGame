@@ -26,7 +26,7 @@ public class MessageManager : MonoBehaviour {
         
         //읽지 않은 메시지 개수 표시
         int count = messageList[0].message_order - Utils.getMessageLastCount();
-        Debug.Log("count: " + count);
+//        Debug.Log("count: " + count);
         showBulletNum(count);
         
         //메시지 할당
@@ -37,7 +37,6 @@ public class MessageManager : MonoBehaviour {
     }
 
     
-    
     //가장 마지막으로 읽은 메시지번호를 갱신
     public void updateLastReadNum() {
         if (messageList != null) {
@@ -46,7 +45,6 @@ public class MessageManager : MonoBehaviour {
         }
     }
 
-    
     
     private void showBulletNum(int count) {
         if (count < 1) {

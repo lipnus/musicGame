@@ -160,7 +160,7 @@ public class QuizManager2 : MonoBehaviour{
 	public void onClick_smartPhone() {
 		if(isSountPlay) stopMusic();
 		
-		GameObject.Find("connectServer").GetComponent<ConnectServer>().stremingSound();
+		connectServer.stremingSound();
 		GameObject.Find("Phone").transform.Find("playBtn").GetComponent<Image>().gameObject.SetActive(false);
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;

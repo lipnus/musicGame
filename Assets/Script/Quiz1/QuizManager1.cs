@@ -154,7 +154,7 @@ public class QuizManager1 : MonoBehaviour{
 		soundManager.clickPlay();
 		if(isSountPlay) stopMusic();
 		
-		GameObject.Find("connectServer").GetComponent<ConnectServer>().stremingSound();
+		connectServer.stremingSound();
 		GameObject.Find("Phone").transform.Find("playBtn").GetComponent<Image>().gameObject.SetActive(false);
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;
