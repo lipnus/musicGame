@@ -76,6 +76,17 @@ public static class Utils {
         lifeEvent = 0;
     }
     
+    
+    //읽은 미시지 개수
+    public static void setMessageLastCount(int messageCount) {
+        PlayerPrefs.SetInt("MessageLastCount", messageCount);
+    }
+
+    public static int getMessageLastCount() {
+        return PlayerPrefs.GetInt("MessageLastCount", 0);
+    }
+    
+    
     //게임클리어 횟수
     public static void modifyGameClear(int g) {
         int gameClear = PlayerPrefs.GetInt("GameClear", 0) + g;

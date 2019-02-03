@@ -17,14 +17,13 @@ public class QuizManager2 : MonoBehaviour{
 	public List<Text> choiceText = new List<Text>();
 	public SoundManager2 soundManager;
 	public GameObject loadingText;
-
-
-
+	
 	public GameObject midText;
 	public GameObject midBack;
 	
 	private Quiz quiz;
-
+	private bool buttonChecked = false;
+	
 	void Start() {
 		connectServer.quiz_2(0);
 		sightMove();
@@ -101,6 +100,9 @@ public class QuizManager2 : MonoBehaviour{
 	}
 
 	public void onClick_choice(int choice) {
+
+		if (buttonChecked == true) return;
+		buttonChecked = true;
 		
 		soundManager.playSound(0);
 		soundManager.playSound(1);
@@ -147,7 +149,6 @@ public class QuizManager2 : MonoBehaviour{
 		}else{
 			Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 			connectServer.feedbackQuiz2(quiz.quiz_pk, 0); //서버로 결과 피드백
-
 		}
 			
 		//복귀
@@ -159,7 +160,7 @@ public class QuizManager2 : MonoBehaviour{
 	public void onClick_smartPhone() {
 		if(isSountPlay) stopMusic();
 		
-		GameObject.Find("ConnectServer").GetComponent<ConnectServer>().stremingSound();
+		GameObject.Find("connectServer").GetComponent<ConnectServer>().stremingSound();
 		GameObject.Find("Phone").transform.Find("playBtn").GetComponent<Image>().gameObject.SetActive(false);
 		GameObject.Find("Phone").transform.Find("pauseBtn").GetComponent<Image>().gameObject.SetActive(true);
 		isSountPlay = true;

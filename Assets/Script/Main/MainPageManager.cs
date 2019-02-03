@@ -15,24 +15,26 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject message_page; //메시지
 	public GameObject rankingText;
 
-	public ConnectServer ConnectServer;
-
-	public GameObject messageCircle;
-
+	public ConnectServer connectServer;
 	public AudioSource backgroundMusic;
-
 	public SoundManager2 soundManager;
+	public MessageManager messageManager;
+	
 	private const float BACK_OPPACITY=0.7f;
 
 	void Start() {
 	
 //		Utils.resetGame();
+		
+		//유저 초기화
 		Utils.firstGift();
 		Utils.setScore(100);
+		
 		synchroUserInfo();
-
+		messageManager.updateMessage();
 	}
 
+	
 	//서버와 유저데이터를 동기화
 	public void synchroUserInfo() {
 		
@@ -40,10 +42,10 @@ public class MainPageManager : MonoBehaviour {
 		
 		if (Utils.getNickname().Equals("empty_nickname")) {
 			Debug.Log("유저정보 다운로드 시도");
-			ConnectServer.downloadUserInfo( Utils.getUUID() );
+			connectServer.downloadUserInfo( Utils.getUUID() );
 		}else {
 			Debug.Log("유저정보 업로드");
-			ConnectServer.uploadUserInfo( Utils.getUserInfo() );
+			connectServer.uploadUserInfo( Utils.getUserInfo() );
 		}
 		
 	}
@@ -78,8 +80,7 @@ public class MainPageManager : MonoBehaviour {
 		soundManager.playSound(1);
 		message_page.active = true;
 		start_page.active = false;
-		messageCircle.active = false;
-
+		messageManager.updateLastReadNum(); //가장 마지막으로 읽은 메시지번호 갱신
 	}
 	
 	//랭킹 페이지
@@ -88,40 +89,29 @@ public class MainPageManager : MonoBehaviour {
 		rankingText.GetComponent<Animator>().SetTrigger("show_t");
 	}
 
+	
 	//뒤로버튼
 	public void onClick_back() {
 		soundManager.playSound(1); //클릭소리
 		StartCoroutine(ReturnMainScreen(0f));
 	}
-	
-	//뒤로버튼
-	public void onClick_back_fade() {
-		soundManager.playSound(1); //클릭소리
-		StartCoroutine(ReturnMainScreenFadeIn(0f));
-	}
 
 	//페이드인 하면서 메인으로 돌아가기
-	IEnumerator ReturnMainScreenFadeIn(float delayTime) {
+	IEnumerator ReturnMainScreen(float delayTime) {
+		
 		yield return new WaitForSeconds(delayTime);
+		
 		camera_page.active = false;
 		info_page.active = false;
 		shop_page.active = false;
 		message_page.active = false;
-		
 		start_page.active = true;
+		messageManager.updateMessage(); //메시지 업데이트
+		
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,BACK_OPPACITY);
 	}
 	
-	//메인으로 돌아가기
-	IEnumerator ReturnMainScreen(float delayTime) { 
-		yield return new WaitForSeconds(delayTime);
-		camera_page.active = false;
-		info_page.active = false;
-		shop_page.active = false;
-		start_page.active = true;
-		message_page.active = false;
 
-	}
 
 	//카메라 쵤영버튼
 	public void onClick_shot() {

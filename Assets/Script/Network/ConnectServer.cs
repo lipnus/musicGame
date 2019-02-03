@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,7 +13,8 @@ public class ConnectServer : MonoBehaviour {
 	public QuizManager1 quizManager1;
 	public QuizManager2 quizManager2;
 	public NicknameManager nicknameManager;
-
+	public MessageManager messageManager;
+	
 	public GameObject networkDialog;
 	
 
@@ -127,6 +129,7 @@ public class ConnectServer : MonoBehaviour {
 		}));
 	}
 	
+	
 	//퀴즈2 피드백
 	public void feedbackQuiz2(int quiz_pk, int correct) {
 		WWWForm form = new WWWForm();
@@ -136,6 +139,20 @@ public class ConnectServer : MonoBehaviour {
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/feedback/quiz2", (www) => {
 			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
+		}));
+	}
+	
+	
+	
+	//메시지
+	public void requestMessage(int count) {
+		WWWForm form = new WWWForm();
+		form.AddField("m_count", 3); //몇개
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/message", (www) => {
+			MessageList ML = JsonUtility.FromJson< MessageList >(www.downloadHandler.text);
+			messageManager.setMessage( ML.messageList );
 		}));
 	}
 	
