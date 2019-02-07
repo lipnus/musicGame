@@ -14,6 +14,7 @@ public class ConnectServer : MonoBehaviour {
 	public QuizManager2 quizManager2;
 	public NicknameManager nicknameManager;
 	public MessageManager messageManager;
+	public RankingManager rankingManager;
 	
 	public GameObject networkDialog;
 	
@@ -93,8 +94,11 @@ public class ConnectServer : MonoBehaviour {
 				if (!userInfo.nickname.Equals("")) {
 					Utils.updateUserInfo( userInfo );
 				}else {
-					Debug.Log("서버에 이 유저의 정보가 없다");
+					Debug.Log("서버에 이 유저의 정보가 없습니다");
 				}
+				
+				//서버동기화 했다는 것을 기록
+				Utils.setSyncServer(1);
 			}
 		));
 	}
@@ -160,6 +164,43 @@ public class ConnectServer : MonoBehaviour {
 	}
 	
 	
+	//유저 플레이데이터를 랭킹에 업로드
+	public void uploadRanking(PlayData playData) {
+		WWWForm form = new WWWForm();
+		form.AddField("user_pk", Utils.getUserPk());
+		form.AddField("correct", playData.correct);
+		form.AddField("wrong", playData.wrong);
+		form.AddField("point", playData.point);
+		form.AddField("clear", playData.clear);
+
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/ranking/upload", (www) => {
+			Response res = JsonUtility.FromJson< Response >(www.downloadHandler.text);
+		}));
+	}
+	
+	//내 등수 얻기
+	public void requestUserRank(int score) {
+		WWWForm form = new WWWForm();
+		form.AddField("score", score);
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/ranking/user_rank", (www) => {
+			MyRanking res = JsonUtility.FromJson< MyRanking >(www.downloadHandler.text);
+			
+			rankingManager.setRankingText( res.ranking );
+		}));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -188,6 +229,7 @@ public class ConnectServer : MonoBehaviour {
 	public void stremingSound() {
 		if (musicInfo!=null) StartCoroutine("streamingSound");
 	}
+	
 	
 	
 	IEnumerator streamingSound() {

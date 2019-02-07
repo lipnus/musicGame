@@ -32,16 +32,14 @@ public class ShopApp : MonoBehaviour {
 
 
 	void Start() {
-//		
 
 		setInitialProduct();
-
 		StartCoroutine(showPoint(0.1f));
 	}
 
 	IEnumerator showPoint(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
-		pointText.text = Utils.getScore().ToString();
+		pointText.text = Utils.getPoint().ToString();
 		pointText.rectTransform.sizeDelta = new Vector2(pointText.preferredWidth, pointText.preferredHeight);
 	}
 	
@@ -53,23 +51,23 @@ public class ShopApp : MonoBehaviour {
 		user.GetComponent<User>().startShowIcon(1);
 
 		ItemInfo item = Utils.getItemInfo(curCode);
-		int score = Utils.getScore();
+		int point = Utils.getPoint();
 		
 		Debug.Log("구매구매" + item.Code);
 		
 		if (item.Perchase == 0) {	//의류구매
-			buyColth(item, score);
+			buyColth(item, point);
 		}else if (item.Perchase == 1) {	 //악세사리 구매
-			buyAccessory(item, score);
+			buyAccessory(item, point);
 		}
 		
-		pointText.text = Utils.getScore().ToString(); //포인트 새로고침
+		pointText.text = Utils.getPoint().ToString(); //포인트 새로고침
 		showBtn(); //버튼상태 새로고침
 		updateAllItemState(); //아이템 상태 새로고침
 	}
 	
 
-	public void buyAccessory(ItemInfo item, int score) {
+	public void buyAccessory(ItemInfo item, int point) {
 		
 		//캐쉬로 사야하지만 지금은 무조건 살 수 있게 함
 		Debug.Log("악세사리 구매");
@@ -79,16 +77,16 @@ public class ShopApp : MonoBehaviour {
 	}
 
 	
-	public void buyColth(ItemInfo item, int score) {
+	public void buyColth(ItemInfo item, int point) {
 		
-		if (score >= item.Price) {
-			score -= item.Price;
+		if (point >= item.Price) {
+			point -= item.Price;
 			soundManager.playSound(3); 
 			Utils.addMyItem(curCode); //구매목록에 추가
 			Utils.modifyScore( -1 * item.Price);
 		}
 		else {
-			Debug.Log("돈이없다. 가진돈: " + Utils.getScore());
+			Debug.Log("돈이없다. 가진돈: " + Utils.getPoint());
 		}
 		
 	}

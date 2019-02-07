@@ -13,12 +13,14 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject info_page; //정보
 	public GameObject shop_page; //쇼핑
 	public GameObject message_page; //메시지
+	public GameObject ranking_page; //랭킹
 	public GameObject rankingText;
 
 	public ConnectServer connectServer;
 	public AudioSource backgroundMusic;
 	public SoundManager2 soundManager;
 	public MessageManager messageManager;
+	public RankingManager rankingManager;
 	
 	private const float BACK_OPPACITY=0.7f;
 
@@ -28,21 +30,22 @@ public class MainPageManager : MonoBehaviour {
 		
 		//유저 초기화
 		Utils.firstGift();
-		Utils.setScore(100);
+		Utils.setPoint(100);
 		
 		synchroUserInfo();
 		messageManager.updateMessage();
 		
 		Debug.Log("pk: "  + Utils.getUserPk());
+		
 	}
 
 	
 	//서버와 유저데이터를 동기화
 	public void synchroUserInfo() {
 		
-		Debug.Log("현제닉네임: " + Utils.getNickname());
+		Debug.Log("서버동기화: " + Utils.getSyncServer());
 		
-		if (Utils.getNickname().Equals("empty_nickname")) {
+		if ( Utils.getSyncServer()==0 ) {
 			Debug.Log("유저정보 다운로드 시도");
 			connectServer.downloadUserInfo( Utils.getUUID() );
 		}else {
@@ -77,7 +80,7 @@ public class MainPageManager : MonoBehaviour {
 	}
 	
 	
-	//메시지
+	//메시지 페이지
 	public void onClick_message() {
 		soundManager.playSound(1);
 		message_page.active = true;
@@ -88,7 +91,10 @@ public class MainPageManager : MonoBehaviour {
 	//랭킹 페이지
 	public void onClick_ranking() {
 		soundManager.playSound(1);
-		rankingText.GetComponent<Animator>().SetTrigger("show_t");
+		ranking_page.active = true;
+		start_page.active = false;
+		rankingManager.initRank();
+//		rankingText.GetComponent<Animator>().SetTrigger("show_t");
 	}
 
 	
@@ -97,6 +103,7 @@ public class MainPageManager : MonoBehaviour {
 		soundManager.playSound(1); //클릭소리
 		StartCoroutine(ReturnMainScreen(0f));
 	}
+	
 
 	//페이드인 하면서 메인으로 돌아가기
 	IEnumerator ReturnMainScreen(float delayTime) {
@@ -107,6 +114,8 @@ public class MainPageManager : MonoBehaviour {
 		info_page.active = false;
 		shop_page.active = false;
 		message_page.active = false;
+		ranking_page.active = false;
+
 		start_page.active = true;
 		messageManager.updateMessage(); //메시지 업데이트
 		
@@ -124,7 +133,9 @@ public class MainPageManager : MonoBehaviour {
 	//게임시작
 	public void onClick_gamestart() {
 		soundManager.playSound(1); //클릭소리
+		
 		Utils.startGame(); //게임초기화
+		
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(1f, 1f);
 		StartCoroutine(bgMusicFadeOut(0.1f));
 		StartCoroutine(startGame(1.5f));

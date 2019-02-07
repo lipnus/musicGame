@@ -18,8 +18,9 @@ public static class Utils {
     //퀴즈 <-> 필드 사이의 데이터 전달을 위한 변수들
     //public static int userPosition=0;
     public static Vector3 userPosition = new Vector3(0,0,0); //위치 기억
-    public static int lifeEvent; // -1:오답 , 0:정답 1:보너스
+    public static int lifeEvent; // -1:오답, 0:정답, 1:보너스
     public static string sceneName;
+    
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
     
     private static string answer_title="";
@@ -53,10 +54,31 @@ public static class Utils {
     
     
     
+    
+    
+    
 
     //==========================================================
     // 게임진행과 관련된 함수
     //==========================================================
+    
+    public static PlayData playData = new PlayData();
+
+    public static void resetPlayData() {
+        playData.reset();
+    }
+    
+    
+    //최초실행 시 서버와의 동기화 여부
+    public static void setSyncServer(int sync) {
+        PlayerPrefs.SetFloat("SyncServer", sync);
+    }
+
+    public static int getSyncServer() {
+        return PlayerPrefs.GetInt("SyncServer", 0);  
+    }
+    
+    
     
     //위치 초기화(스테이지 이동할 떼 호출)
     public static void resetStage() {
@@ -65,6 +87,7 @@ public static class Utils {
     
     //게임초기화
     public static void startGame() {
+        resetPlayData();
         setLife(3);
         lifeEvent = 0;
         userPosition = new Vector3(0,0,0);
@@ -82,7 +105,6 @@ public static class Utils {
         PlayerPrefs.SetInt("UserPk", user_pk);
     }
 
-
     public static int getUserPk() {
         return PlayerPrefs.GetInt("UserPk", 0);  
     }
@@ -99,10 +121,13 @@ public static class Utils {
     }
     
     
+    
     //게임클리어 횟수
     public static void modifyGameClear(int g) {
         int gameClear = PlayerPrefs.GetInt("GameClear", 0) + g;
         PlayerPrefs.SetInt("GameClear", gameClear);
+
+        playData.clear += g;
     }
     
     public static void setGameClear(int gameClear) {
@@ -119,6 +144,8 @@ public static class Utils {
     public static void modifyCorrect(int c) {
         int correct = PlayerPrefs.GetInt("Correct", 0) + c;
         PlayerPrefs.SetInt("Correct", correct);
+
+        playData.correct += c;
     }
 
     public static void setCorrect(int correct) {
@@ -129,10 +156,14 @@ public static class Utils {
         return PlayerPrefs.GetInt("Correct", 0);
     }
     
+    
+    
     //틀린개수
     public static void modifyWrong(int w) {
         int wrong = PlayerPrefs.GetInt("Wrong", 0) + w;
         PlayerPrefs.SetInt("Wrong", wrong);
+
+        playData.wrong += w;
     }
 
     public static void setWrong(int wrong) {
@@ -143,21 +174,26 @@ public static class Utils {
         return PlayerPrefs.GetInt("Wrong", 0);
     }
     
+    
+    
     //점수조작(더하거나 뺌)
-    public static void modifyScore(int s) {
-        int score = PlayerPrefs.GetInt("Score", 0) + s;
-        PlayerPrefs.SetInt("Score", score);
+    public static void modifyScore(int p) {
+        int point = PlayerPrefs.GetInt("Point", 0) + p;
+        PlayerPrefs.SetInt("Point", point);
+
+        playData.point += p;
     }
 
-    public static void setScore(int score) {
-        PlayerPrefs.SetInt("Score", score);
+    public static void setPoint(int point) {
+        PlayerPrefs.SetInt("Point", point);
 
     }
 
-    public static int getScore() {
-        return PlayerPrefs.GetInt("Score", 0);
+    public static int getPoint() {
+        return PlayerPrefs.GetInt("Point", 0);
     }
 
+    
     
     //목숨초기화
     public static void setLife(int life) {
@@ -176,6 +212,7 @@ public static class Utils {
     }
 
     
+    //답 임시저장
     public static void setAnswer(string title, string singer) {
         answer_title = title;
         answer_singer = singer;
@@ -188,6 +225,8 @@ public static class Utils {
     public static string getAnswerSinger() {
         return answer_singer;
     }
+    
+    
     
     //음악재생시간
     public static float getPlayTime() {
@@ -210,13 +249,7 @@ public static class Utils {
         PlayerPrefs.SetInt("GuideEnd", 1);
     }
 
-    public static void resetGame() {
-        PlayerPrefs.DeleteAll();
-    }
 
-    public static bool soundOn() {
-        return true;
-    }
 
     
     
@@ -412,7 +445,7 @@ public static class Utils {
 
         userInfo.uuid = getUUID();
         userInfo.nickname = getNickname();
-        userInfo.point = getScore();
+        userInfo.point = getPoint();
         userInfo.item = getMyItems();
         userInfo.wear_top = getTop();
         userInfo.wear_bottom = getBottom();
@@ -429,7 +462,7 @@ public static class Utils {
     public static void updateUserInfo(UserInfo userInfo) {
         setUserPk( userInfo.user_pk );
         setNickname( userInfo.nickname );
-        setScore( userInfo.point );
+        setPoint( userInfo.point );
         setMyItems( userInfo.item );
         setTop( userInfo.wear_top );
         setBottom( userInfo.wear_bottom );
