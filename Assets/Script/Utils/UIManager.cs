@@ -132,17 +132,17 @@ public class UIManager : MonoBehaviour {
 	
 	
 	//현재 점수 표시
-	public void setScoreText() {
-		int score = PlayerPrefs.GetInt("Score", 0);		
-		scoreText.text = score.ToString();
+	public void setPointText() {
+		scoreText.text = Utils.getPoint().ToString();
+		
 		//글씨크기에 맞게 박스크기 조정
 		scoreText.rectTransform.sizeDelta = new Vector2(scoreText.preferredWidth, scoreText.preferredHeight); 
 	}
 	
 	
 	//캐릭터 위에 점수상승 이펙트
-	public void raiseScore(int score) {
-		userScore.GetComponent<Text>().text = "+" + score;
+	public void raisePoint(int point) {
+		userScore.GetComponent<Text>().text = "+" + point;
 		userScore.GetComponent<Animator>().SetTrigger("score_t");
 	}
 

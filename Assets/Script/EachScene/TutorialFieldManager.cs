@@ -59,7 +59,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		uiManager.GetComponent<UIManager>().setNickname();
 		
 		//점수표시
-		uiManager.GetComponent<UIManager>().setScoreText();
+		uiManager.GetComponent<UIManager>().setPointText();
 		
 		//목숨표시(Life만큼의 칸을 표시해줌)
 		uiManager.GetComponent<UIManager>().updateLifeBar();
@@ -85,7 +85,7 @@ public class TutorialFieldManager : MonoBehaviour {
 			user.GetComponent<User>().startShowIcon(1); //정답아이콘
 			Utils.modifyScore(100); //점수
 			Utils.modifyCorrect(1); //맞은개수
-			uiManager.raiseScore(100); //캐릭터 위에 오버랩되는 효과
+			uiManager.raisePoint(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();
 		}
 		

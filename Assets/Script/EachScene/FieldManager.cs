@@ -36,7 +36,7 @@ public class FieldManager : MonoBehaviour {
 		userSpeed = GameObject.Find("User").GetComponent<User>().userSpeed; //속도
 		
 		//점수표시
-		GameObject.Find("uiManager").GetComponent<UIManager>().setScoreText();
+		GameObject.Find("uiManager").GetComponent<UIManager>().setPointText();
 		
 		//목숨표시(Life만큼의 칸을 표시해줌)
 		GameObject.Find("uiManager").GetComponent<UIManager>().updateLifeBar();

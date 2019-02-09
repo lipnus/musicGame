@@ -132,9 +132,9 @@ public class User : MonoBehaviour
         col.GetComponent<Animator>().SetTrigger("Die_t");
         soundManager.notePlay(); //효과음
         
-        uiManager.raiseScore( noteObj.score ); //캐릭터 위에 오버랩되는 효과
+        uiManager.raisePoint( noteObj.score ); //캐릭터 위에 오버랩되는 효과
         Utils.modifyScore( noteObj.score );
-        uiManager.setScoreText();
+        uiManager.setPointText();
 
 
         if (noteObj.noteType == NoteObject.NoteType.Note) {
