@@ -36,6 +36,7 @@ public class ConnectServer : MonoBehaviour {
 		));
 	}
 	
+	
 	//3지선다퀴즈
 	public void quiz_2(int difficulty) {
 		WWWForm form = new WWWForm();
@@ -158,7 +159,7 @@ public class ConnectServer : MonoBehaviour {
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/message", (www) => {
-			MessageList ML = JsonUtility.FromJson< MessageList >(www.downloadHandler.text);
+			Messages ML = JsonUtility.FromJson< Messages >(www.downloadHandler.text);
 			messageManager.setMessage( ML.messageList );
 		}));
 	}
@@ -184,15 +185,32 @@ public class ConnectServer : MonoBehaviour {
 	public void requestUserRank(int score) {
 		WWWForm form = new WWWForm();
 		form.AddField("score", score);
+		
+		Debug.Log("몇점?: " + score);
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
 		StartCoroutine(postToServer(form, "/ranking/user_rank", (www) => {
 			MyRanking res = JsonUtility.FromJson< MyRanking >(www.downloadHandler.text);
 			
-			rankingManager.setRankingText( res.ranking );
+			rankingManager.setUserRankingText( res.ranking );
 		}));
 	}
 	
+	
+	
+	
+	//누적랭킹 리스트 얻기
+	public void requestAccumulateRanking(int count) {
+		WWWForm form = new WWWForm();
+		form.AddField("count", count );
+		
+
+		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
+		StartCoroutine(postToServer(form, "/ranking/accumulate", (www) => {
+			AccumulateRankings res = JsonUtility.FromJson< AccumulateRankings >(www.downloadHandler.text);
+			rankingManager.setRankBox( res.ranking );
+		}));
+	}
 	
 	
 	

@@ -79,7 +79,6 @@ public class MainPageManager : MonoBehaviour {
 		shop_page.active = true;
 	}
 	
-	
 	//메시지 페이지
 	public void onClick_message() {
 		soundManager.playSound(1);

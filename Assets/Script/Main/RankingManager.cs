@@ -23,33 +23,40 @@ public class RankingManager : MonoBehaviour {
         setPercentText();
         setGameClearText();
     }
-
+    
+    //메인에서 아이콘을 누를때 호출
     public void initRank() {
         
         int correct = Utils.getCorrect();
         int wrong = Utils.getWrong();
         int gameClear = Utils.getGameClear();
-        int score = 10 * gameClear + correct + wrong;
+        int score = 10 * gameClear + correct - wrong;
+        
         connectServer.requestUserRank( score );
+        connectServer.requestAccumulateRanking( rankBox.Count );
         
     }
 
-    public void setRankBox() {
+    //connectServer에서 호출
+    public void setRankBox( List<Ranking> rankings ) {
 
         for (int i = 0; i < rankBox.Count; i++) {
-            rankBox[i].transform.Find("nicknameText");
-            rankBox[i].transform.Find("scoreText");
+            rankBox[i].transform.Find("nicknameText").GetComponent<Text>().text = rankings[i].nickname;
+            rankBox[i].transform.Find("scoreText").GetComponent<Text>().text = rankings[i].score.ToString();
+
             
-            if (3 < i) {
-                rankBox[i].transform.Find("rankText").GetComponent<Text>().text = (i+1)+"";
+            if (2 < i) {
+                rankBox[i].transform.Find("rankText").GetComponent<Text>().text = (i+1).ToString();
+                rankBox[i].transform.Find("nicknameText").GetComponent<Text>().text = rankings[i].nickname;
+                rankBox[i].transform.Find("scoreText").GetComponent<Text>().text = rankings[i].score.ToString();
             }
         }
-        
+
     }
     
     
-    //connectText에서 호출
-    public void setRankingText(int ranking) {
+    //connectServer에서 호출
+    public void setUserRankingText(int ranking) {
         rankingText.text = ranking + "등";
     }
     
