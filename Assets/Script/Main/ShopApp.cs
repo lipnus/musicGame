@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Script.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,8 @@ public class ShopApp : MonoBehaviour {
 	public GameObject wore_img;
 	public SoundManager2 soundManager;
 	public GameObject user;
+
+	public IAPManager iapManager;
 
 	public Text pointText;
 	
@@ -72,8 +75,10 @@ public class ShopApp : MonoBehaviour {
 		//캐쉬로 사야하지만 지금은 무조건 살 수 있게 함
 		Debug.Log("악세사리 구매");
 		
+		iapManager.purchaseItem(item.Code);
 		soundManager.playSound(3); //구매
-		Utils.addMyItem(curCode); //구매목록에 추가
+		
+//		Utils.addMyItem(curCode); //구매목록에 추가
 	}
 
 	
