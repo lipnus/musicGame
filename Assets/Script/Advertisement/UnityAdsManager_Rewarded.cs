@@ -4,8 +4,31 @@ using UnityEngine.Advertisements;
 
 public class UnityAdsManager_Rewarded : MonoBehaviour
 {
+	
+	private string androidGameId = "2887674";
+	private string iosGameId = "2887673";
+	private bool testMode;
+	
+	private void Awake() {
+	
+		Debug.Log("ad init");
+		string gameId = null;
+     
+			#if UNITY_ANDROID
+			gameId = androidGameId;
+			#elif UNITY_IOS
+            gameId = iosGameId;
+			#endif
+     
+		if (Advertisement.isSupported && !Advertisement.isInitialized) {
+			Advertisement.Initialize(gameId, testMode);
+		}
+	}
+	
+
 	public void ShowRewardedAd()
 	{
+		Debug.Log("ShowRewardedAd()");
 		if (Advertisement.IsReady("rewardedVideo"))
 		{
             // 광고가 끝난 뒤 콜백함수 "HandleShowResult" 호출

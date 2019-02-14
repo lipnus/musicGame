@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public static class Utils {
     
     //서버경로정보
-//    public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
-    public static string serverPath = "http://localhost:9000/dduroon";
+    public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
+//    public static string serverPath = "http://localhost:9000/dduroon";
     public static string musicPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
 
     
@@ -71,7 +71,7 @@ public static class Utils {
     
     //최초실행 시 서버와의 동기화 여부
     public static void setSyncServer(int sync) {
-        PlayerPrefs.SetFloat("SyncServer", sync);
+        PlayerPrefs.SetInt("SyncServer", sync);
     }
 
     public static int getSyncServer() {

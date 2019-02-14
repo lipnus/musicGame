@@ -24,9 +24,13 @@ public class MainPageManager : MonoBehaviour {
 	
 	private const float BACK_OPPACITY=0.7f;
 
+	
 	void Start() {
 	
-//		Utils.resetGame();
+//		PlayerPrefs.DeleteAll();
+//		Debug.Log("닉네임: " + Utils.getNickname());
+		
+		Debug.Log("유유아이디: " + Utils.getUUID() );
 		
 		//유저 초기화
 		Utils.firstGift();
@@ -35,7 +39,7 @@ public class MainPageManager : MonoBehaviour {
 		synchroUserInfo();
 		messageManager.updateMessage();
 		
-		Debug.Log("pk: "  + Utils.getUserPk());
+		Debug.Log("pk: " + Utils.getUserPk());
 		
 	}
 
@@ -47,7 +51,7 @@ public class MainPageManager : MonoBehaviour {
 		
 		if ( Utils.getSyncServer()==0 ) {
 			Debug.Log("유저정보 다운로드 시도");
-			connectServer.downloadUserInfo( Utils.getUUID() );
+			connectServer.downloadUserInfo( "AAA" );
 		}else {
 			Debug.Log("유저정보 업로드");
 			connectServer.uploadUserInfo( Utils.getUserInfo() );
