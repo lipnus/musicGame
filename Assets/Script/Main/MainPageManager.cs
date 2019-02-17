@@ -30,34 +30,30 @@ public class MainPageManager : MonoBehaviour {
 //		PlayerPrefs.DeleteAll();
 //		Debug.Log("닉네임: " + Utils.getNickname());
 		
-		Debug.Log("유유아이디: " + Utils.getUUID() );
 		
 		//유저 초기화
 		Utils.firstGift();
 		Utils.setPoint(100);
 		
-		synchroUserInfo();
-		messageManager.updateMessage();
 		
-		Debug.Log("pk: " + Utils.getUserPk());
+		uploadUserInfo();
+		downloadMessage();
 		
 	}
 
-	
-	//서버와 유저데이터를 동기화
-	public void synchroUserInfo() {
-		
-		Debug.Log("서버동기화: " + Utils.getSyncServer());
-		
-		if ( Utils.getSyncServer()==0 ) {
-			Debug.Log("유저정보 다운로드 시도");
-			connectServer.downloadUserInfo( "AAA" );
-		}else {
-			Debug.Log("유저정보 업로드");
-			connectServer.uploadUserInfo( Utils.getUserInfo() );
+	public void uploadUserInfo() {
+
+		if (!Utils.getNickname().Equals("empty_nickname")) {
+			connectServer.uploadUserInfo( Utils.getUserInfo() ); //서버로 정보 업로드
+			Debug.Log("서버로 정보 업로드, user_pk: " + Utils.getUserPk());
 		}
-		
 	}
+
+	public void downloadMessage() {
+		messageManager.downloadMessage();
+	}
+	
+	
 	
 	
 	//카메라 페이지
@@ -120,7 +116,7 @@ public class MainPageManager : MonoBehaviour {
 		ranking_page.active = false;
 
 		start_page.active = true;
-		messageManager.updateMessage(); //메시지 업데이트
+		messageManager.downloadMessage(); //메시지 업데이트
 		
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,BACK_OPPACITY);
 	}

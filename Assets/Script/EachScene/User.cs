@@ -98,6 +98,9 @@ public class User : MonoBehaviour
 
         //음표
         if (col.tag.Equals("score")) colNote(col);
+        
+        //지하철
+        if (col.tag.Equals("subway")) colSubway(col);
     }
     
 
@@ -141,6 +144,16 @@ public class User : MonoBehaviour
             StartCoroutine(ParticleEffect(col, 1));
 
         }
+    }
+
+
+    //지하철과 충돌
+    private void colSubway(Collider2D col) {
+        
+        icons[3].GetComponent<Animator>().SetBool("icon_b", true); //지하철
+        SubwayObject subwayObj = col.GetComponent<SubwayObject>();
+        subwayObj.startSubway();
+
     }
     
     

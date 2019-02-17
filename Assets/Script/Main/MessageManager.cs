@@ -16,7 +16,7 @@ public class MessageManager : MonoBehaviour {
 
 
     //서버에서 메시지를 받아온다
-    public void updateMessage() {
+    public void downloadMessage() {
         connectServer.requestMessage(3);
     }
     
@@ -41,7 +41,6 @@ public class MessageManager : MonoBehaviour {
     public void updateLastReadNum() {
         if (messageList != null) {
             Utils.setMessageLastCount( messageList[0].message_order );
-            Debug.Log("이거 제대로 처리되었나?");
         }
     }
 

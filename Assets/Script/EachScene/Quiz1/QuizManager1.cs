@@ -22,7 +22,7 @@ public class QuizManager1 : MonoBehaviour{
 	public ConnectServer connectServer;
 
 	void Start() {
-		connectServer.quiz_1(0);
+		connectServer.quiz_1( Utils.difficulty );
 		
 		//n동안 가이드 텍스트 표시
 		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(0.8f));

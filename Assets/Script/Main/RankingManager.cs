@@ -64,11 +64,11 @@ public class RankingManager : MonoBehaviour {
     public void setNicknameText() {
         string nickname = Utils.getNickname();
 
-        if (nickname != "") {
+        if (nickname != "empty_nickname") {
             nicknameText.text = nickname;
         }
         else {
-            nicknameText.text = "게임을 시작해주세요";
+            nicknameText.text = "Noname";
         }
     }
     

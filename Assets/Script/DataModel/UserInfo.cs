@@ -4,7 +4,7 @@ using System;
 public class UserInfo {
 
     public int user_pk;
-    public String uuid;
+    public String playgame_id;
     public String nickname;
     public int point;
     public String item;

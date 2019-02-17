@@ -9,10 +9,7 @@ using UnityEngine.UI;
 
 public static class Utils {
     
-    //서버경로정보
-    public static string serverPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
-//    public static string serverPath = "http://localhost:9000/dduroon";
-    public static string musicPath = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
+
 
     
     //퀴즈 <-> 필드 사이의 데이터 전달을 위한 변수들
@@ -25,7 +22,8 @@ public static class Utils {
     
     private static string answer_title="";
     private static string answer_singer="";
-    
+
+    public static int difficulty; //난이도
     
     
     
@@ -44,6 +42,8 @@ public static class Utils {
         titleStr = title;
         subTitleStr = subtitle;
         sceneNameStr = sceneName;
+        
+        resetStage();
         SceneManager.LoadSceneAsync("BetweenScene");
     }
 
@@ -426,6 +426,14 @@ public static class Utils {
         return SystemInfo.deviceUniqueIdentifier;
     }
     
+    //플레이게임 아이디저장
+    public static void setPlayGameId(string id) {
+        PlayerPrefs.SetString("playgame_id", id);
+    }
+
+    public static string getPlayGameId() {
+        return PlayerPrefs.GetString("playgame_id", "empty_paygame_id");
+    }
     
     //닉네임 설정
     public static void setNickname(string nickname) {
@@ -438,12 +446,12 @@ public static class Utils {
     }
 
        
-    //현재 유저정보를 반환
+    //클라이언트의 유저정보를 반환
     public static UserInfo getUserInfo() {
         
         UserInfo userInfo = new UserInfo();
 
-        userInfo.uuid = getUUID();
+        userInfo.playgame_id = getPlayGameId();
         userInfo.nickname = getNickname();
         userInfo.point = getPoint();
         userInfo.item = getMyItems();
@@ -458,7 +466,7 @@ public static class Utils {
     }
     
 
-    //서버에서 받아온 유저정보를 게임에 반영
+    //서버에서 받아온 유저정보를 클라이언트 게임에 반영
     public static void updateUserInfo(UserInfo userInfo) {
         setUserPk( userInfo.user_pk );
         setNickname( userInfo.nickname );

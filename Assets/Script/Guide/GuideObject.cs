@@ -19,7 +19,7 @@ public class GuideObject : MonoBehaviour {
 	public SoundManager soundManager;
 	
 	public enum GuideType {
-		FirstNote, Jump, Cat1, Cat2, Subway, End, textEnd
+		FirstNote, Jump, Cat1, Cat2, Subway, End
 	}
 
 	
@@ -36,7 +36,6 @@ public class GuideObject : MonoBehaviour {
 		else if (guideType == GuideType.Cat2) cat2();
 		else if (guideType == GuideType.Subway) subway();
 		else if (guideType == GuideType.End) endGuide();
-		else if (guideType == GuideType.textEnd) textEnd();
 	}
 
 
@@ -63,6 +62,7 @@ public class GuideObject : MonoBehaviour {
 	//고양이를 만났을 때(초성)
 	void cat1() {
 		sub.active = true;
+		Utils.difficulty = 1; //난이도
 		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
@@ -76,6 +76,7 @@ public class GuideObject : MonoBehaviour {
 	//고양이를 만났을 때(3지선다)
 	void cat2() {
 		sub.active = true;
+		Utils.difficulty = 1; //난이도
 		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
@@ -102,15 +103,11 @@ public class GuideObject : MonoBehaviour {
 	void endGuide() {
 		sub.active = true;
 		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
-		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 플레이해주셔서 감사합니다.";
+		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 다음 스테이지로 이동합니다.";
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		
-//		Utils.resetGame();
 	}
 
 	
-	//퀴즈에서 가이드텍스트 끝
-	void textEnd() {
-		Utils.endGuide();
-	}
+ 
 }

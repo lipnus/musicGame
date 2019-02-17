@@ -9,6 +9,7 @@ TagManager:
   - score
   - answerBox
   - Fire
+  - subway
   layers:
   - Default
   - TransparentFX

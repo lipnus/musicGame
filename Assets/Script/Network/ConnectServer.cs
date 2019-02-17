@@ -15,20 +15,26 @@ public class ConnectServer : MonoBehaviour {
 	public NicknameManager nicknameManager;
 	public MessageManager messageManager;
 	public RankingManager rankingManager;
+	public LoginManager loginManager;
 	
 	public GameObject networkDialog;
 	
-
+	/**
+	 * 서버경로
+	 */
+//	public static string SERVER_PATH = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
+    public static string SERVER_PATH = "http://localhost:9000/dduroon";
+	public static string MUSIC_SERVER_PATH = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
+	
 	
 	//초성맞히기
 	public void quiz_1(int difficulty) {
 		WWWForm form = new WWWForm();
-		form.AddField("genre", difficulty);
-		form.AddField("order", 0);
+		form.AddField("difficulty", difficulty);
 
 		
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/quiz_1", (www) => {
+		StartCoroutine(postToServer(form, "/quiz_1", true, (www) => {
 				Debug.Log("POST RESONSE callback OK!");
 				musicInfo = JsonUtility.FromJson<MusicInfo>(www.downloadHandler.text);
 				quizManager1.setGame( musicInfo );
@@ -43,7 +49,7 @@ public class ConnectServer : MonoBehaviour {
 		form.AddField("difficulty", difficulty);
 		
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/quiz_2", (www) => {
+		StartCoroutine(postToServer(form, "/quiz_2", true, (www) => {
 				quiz = JsonUtility.FromJson<Quiz>(www.downloadHandler.text);
 				Debug.Log("POST RESONSE callback OK!");
 				Debug.Log("quiz_pk:" + quiz.quiz_pk);
@@ -58,7 +64,7 @@ public class ConnectServer : MonoBehaviour {
 	//유저정보 업로드
     public void uploadUserInfo(UserInfo userInfo) {
      		WWWForm form = new WWWForm();
-     		form.AddField("uuid", userInfo.uuid);
+     		form.AddField("playgame_id", userInfo.playgame_id);
      		form.AddField("nickname", userInfo.nickname);
      		form.AddField("point", userInfo.point);
      		form.AddField("item", userInfo.item);
@@ -70,11 +76,11 @@ public class ConnectServer : MonoBehaviour {
      		form.AddField("game_clear", userInfo.game_clear);
      		
      		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-     		StartCoroutine(postToServer(form, "/user/upload", (www) => {
+     		StartCoroutine(postToServer(form, "/user/upload", false, (www) => {
 			     ResponseUserUpload res = JsonUtility.FromJson<ResponseUserUpload>(www.downloadHandler.text);
 
 			     if (res.user_pk != null) {
-				     Debug.Log("pk업데이트");
+				     Debug.Log("서버로부터 pk정보를 다운받아 저장");
 				     Utils.setUserPk( int.Parse(res.user_pk) );				     
 			     }
 			     
@@ -83,12 +89,12 @@ public class ConnectServer : MonoBehaviour {
 	
 	
 	//유저정보 다운로드
-	public void downloadUserInfo(string uuid) {
+	public void downloadUserInfo(string playgame_id) {
 		WWWForm form = new WWWForm();
-		form.AddField("uuid", uuid);
+		form.AddField("playgame_id", playgame_id);
 		
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/user/download", (www) => {
+		StartCoroutine(postToServer(form, "/user/download", true, (www) => {
 				UserInfo userInfo = JsonUtility.FromJson<UserInfo>(www.downloadHandler.text);
 				
 				//서버에 기존 유저정보가 존재하면 그걸로 게임의 유저데이터를 업데이트
@@ -100,6 +106,7 @@ public class ConnectServer : MonoBehaviour {
 				
 				//서버동기화 했다는 것을 기록
 				Utils.setSyncServer(1);
+				loginManager.goToMainScene();
 			}
 		));
 	}
@@ -108,10 +115,10 @@ public class ConnectServer : MonoBehaviour {
 	//등록가능한(중복되지 않은) 닉네임인지 확인
 	public void nicknameCheck(string nickname) {
 		WWWForm form = new WWWForm();
-		form.AddField("nicknameText", nickname);
+		form.AddField("nickname", nickname);
 		
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/user/nickname_check", (www) => {
+		StartCoroutine(postToServer(form, "/user/nickname_check", true, (www) => {
 				Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
 				
 				if (res.result.Equals("ok")) {
@@ -132,7 +139,7 @@ public class ConnectServer : MonoBehaviour {
 		form.AddField("correct", correct);
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/feedback/quiz1", (www) => {
+		StartCoroutine(postToServer(form, "/feedback/quiz1", false, (www) => {
 			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
 			Debug.Log("성공스");
 		}));
@@ -146,7 +153,7 @@ public class ConnectServer : MonoBehaviour {
 		form.AddField("correct", correct);
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/feedback/quiz2", (www) => {
+		StartCoroutine(postToServer(form, "/feedback/quiz2", false, (www) => {
 			Response res = JsonUtility.FromJson<Response>(www.downloadHandler.text);
 		}));
 	}
@@ -158,7 +165,7 @@ public class ConnectServer : MonoBehaviour {
 		form.AddField("m_count", 3); //몇개
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/message", (www) => {
+		StartCoroutine(postToServer(form, "/message", false, (www) => {
 			Messages ML = JsonUtility.FromJson< Messages >(www.downloadHandler.text);
 			messageManager.setMessage( ML.messageList );
 		}));
@@ -176,7 +183,7 @@ public class ConnectServer : MonoBehaviour {
 
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/ranking/upload", (www) => {
+		StartCoroutine(postToServer(form, "/ranking/upload", true,(www) => {
 			Response res = JsonUtility.FromJson< Response >(www.downloadHandler.text);
 		}));
 	}
@@ -189,7 +196,7 @@ public class ConnectServer : MonoBehaviour {
 		Debug.Log("몇점?: " + score);
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/ranking/user_rank", (www) => {
+		StartCoroutine(postToServer(form, "/ranking/user_rank", true, (www) => {
 			MyRanking res = JsonUtility.FromJson< MyRanking >(www.downloadHandler.text);
 			
 			rankingManager.setUserRankingText( res.ranking );
@@ -206,7 +213,7 @@ public class ConnectServer : MonoBehaviour {
 		
 
 		//코루틴으로 서버에 접속하고 완료 시, 콜백으로 받아온다
-		StartCoroutine(postToServer(form, "/ranking/accumulate", (www) => {
+		StartCoroutine(postToServer(form, "/ranking/accumulate", true, (www) => {
 			AccumulateRankings res = JsonUtility.FromJson< AccumulateRankings >(www.downloadHandler.text);
 			rankingManager.setRankBox( res.ranking );
 		}));
@@ -228,14 +235,14 @@ public class ConnectServer : MonoBehaviour {
 	
 	
 	//서버로 데이터를 post하는 코루틴
-	IEnumerator postToServer(WWWForm form, string path, Action<UnityWebRequest> callback) {
+	IEnumerator postToServer(WWWForm form, string path, Boolean showDialogOnError, Action<UnityWebRequest> callback) {
 
-		UnityWebRequest www = UnityWebRequest.Post(Utils.serverPath + path, form);
+		UnityWebRequest www = UnityWebRequest.Post(SERVER_PATH + path, form);
 		yield return www.SendWebRequest();
 		
 		if(www.isNetworkError || www.isHttpError) {
 			Debug.Log("[네트워크에러]:" + www.error);
-			networkDialog.active = true;
+			if(showDialogOnError==true) networkDialog.active = true;
 		}else {
 			Debug.Log("[POST]");
 			networkDialog.active = false;
@@ -251,7 +258,7 @@ public class ConnectServer : MonoBehaviour {
 	
 	
 	IEnumerator streamingSound() {
-		string musicPath = Utils.musicPath + "/" + musicInfo.path;
+		string musicPath = MUSIC_SERVER_PATH + "/" + musicInfo.path;
 		using (var www = new WWW(musicPath)){			
 			yield return www; //다운받을동안 대기
 			

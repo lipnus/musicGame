@@ -32,6 +32,7 @@ namespace Script.Utils {
         public void purchaseItem(int item) {
 
             if (storeControler == null) {
+                initStore();
                 Debug.Log("결재실패. 결재기능 초기화 실패");
             }
             else {

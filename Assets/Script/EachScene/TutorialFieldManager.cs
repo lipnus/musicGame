@@ -35,9 +35,14 @@ public class TutorialFieldManager : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 			if (hit && hit.collider.gameObject.name.Equals("catArea")) {
+
+				CatObject catObj = hit.collider.GetComponent<CatObject>();
 				
-				if (hit.collider.GetComponent<CatObject>().quizType==CatObject.QuizType.Initial ) quizStart("Quiz_initial");
-				else if (hit.collider.GetComponent<CatObject>().quizType==CatObject.QuizType.Choice ) quizStart("Quiz_choice");
+				Debug.Log("고양이난이도:" + catObj.difficulty);
+				Utils.difficulty = catObj.difficulty;
+				
+				if ( catObj.quizType==CatObject.QuizType.Initial ) quizStart("Quiz_initial");
+				else if ( catObj.quizType==CatObject.QuizType.Choice ) quizStart("Quiz_choice");
 			}
 		}
 		

@@ -25,7 +25,7 @@ public class QuizManager2 : MonoBehaviour{
 	private bool buttonChecked = false;
 	
 	void Start() {
-		connectServer.quiz_2(0);
+		connectServer.quiz_2( Utils.difficulty );
 		sightMove();
 				
 		//초기화(올라가기 전엔 안보임)
