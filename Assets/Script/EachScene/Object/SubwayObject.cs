@@ -18,7 +18,15 @@ public class SubwayObject : MonoBehaviour {
 		
 		//스테이지 이동
 		if (Application.loadedLevelName.Equals("CityScene")) {
-			Utils.changeScene("Stage 2", "Mountain", "청계산", "ForestScene" );
+			Utils.changeScene( "Stage 2", "Seoul Forest Park", "서울숲 공원", "ParkScene" );
+		}
+		
+		if (Application.loadedLevelName.Equals("ParkScene")) {
+			Utils.changeScene( "Stage 3", "Mountain", "청계산", "ForestScene" );
+		}
+		
+		if (Application.loadedLevelName.Equals("ForestScene")) {
+			Utils.changeScene( "Final Stage", "River", "여의도 한강공원", "RivertScene" );
 		}
 
 	}

@@ -4047,11 +4047,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkDialog
       objectReference: {fileID: 0}
-    - target: {fileID: 1087730207672974372, guid: 915ff5c09ea9d446aac4b0688b31c421,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1087730207672974375, guid: 915ff5c09ea9d446aac4b0688b31c421,
         type: 3}
       propertyPath: m_LocalPosition.x
