@@ -4,15 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DieScene : MonoBehaviour {
+public class DieManager : MonoBehaviour {
 
 	public Image spotLight;
 	public Image note;
 	public Text text;
 	public Image black;
+	public UnityAdsManager_Rewarded ad_reward;
+
+	public GameObject rivivalButton;
+	public GameObject pointButton;
+	public GameObject normalButton;
 	
 	// Use this for initialization
 	void Start () {
+
+		if (Utils.playData.ad > 0) ad_reward.ShowRewardedAd(); //광고 봐야될거 있으면 광고튼다
+		else initScene();
+	}
+
+	
+	public void initScene() {
 		
 		//검정 페이드아웃
 		uiFadeOut(black,1f);
@@ -26,9 +38,33 @@ public class DieScene : MonoBehaviour {
 		DieText dieText = new DieText();
 		text.text = dieText.getDieText();
 		
+		//보너스 버튼 초기화
+		initBonusButton();
+		
 		//코루틴시작
 		StartCoroutine(dieScenario(0f));
+	}
+	
+	
+	
+	//랜덤으로 보너스 버튼을 띄운다
+	public void initBonusButton() {
 
+		//한번 부활한 경우 보너스는 없다
+		if (Utils.playData.isRivival) {
+			normalButton.active = true;
+			return;
+		}
+		
+		int lotto = Random.Range(0, 10);
+		if (8 < lotto) {
+			rivivalButton.active = true;
+			Utils.playData.isRivival = true;
+		}else if (4 < lotto) {
+			pointButton.active = true;		
+		}else {
+			normalButton.active = true;
+		}
 	}
 
 	//스포트라이트 먼저
@@ -57,6 +93,9 @@ public class DieScene : MonoBehaviour {
 		SceneManager.LoadScene("MainScene");
 	}
 
+	
+	
+	
 	//광고보고 부활(광고에서 콜백으로 여기 호출)
 	public void respone() {
 		Utils.responeGame();

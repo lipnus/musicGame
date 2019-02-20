@@ -380,6 +380,8 @@ public static class Utils {
         items.Add(item);
         item = new ItemInfo(1, 401, "AirPod (+1.5초)", 1500, "#듣는시간을 1.5초 증가");
         items.Add(item);
+        item = new ItemInfo(1, 402, "스벅 텀블러 (광고스킵)", 1000, "#게임 내 광고를 제거");
+        items.Add(item);
 
         ItemInfo returnObj = new ItemInfo(0, 0, "투명한 옷", 10, "전체보기 > 상의 > 투명망토");
         for (int i = 0; i < items.Count(); i++) {

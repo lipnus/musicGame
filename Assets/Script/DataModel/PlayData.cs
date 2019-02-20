@@ -10,11 +10,17 @@ public class PlayData {
     public int wrong;
     public int clear;
     public int point;
+    public int ad;
+    public bool isRivival;
 
     public void reset() {
         correct = 0;
         wrong = 0;
         clear = 0;
         point = 0;
+        isRivival = false;
+
+        if (Utils.isHaveItem(402)) ad = 0;
+        else ad = 1;
     }
 }

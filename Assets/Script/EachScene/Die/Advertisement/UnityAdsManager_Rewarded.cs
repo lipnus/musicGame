@@ -8,6 +8,8 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 	private string androidGameId = "2887674";
 	private string iosGameId = "2887673";
 	private bool testMode;
+
+	public DieManager dieManager;
 	
 	private void Awake() {
 	
@@ -32,6 +34,7 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		if (Advertisement.IsReady("rewardedVideo"))
 		{
             // 광고가 끝난 뒤 콜백함수 "HandleShowResult" 호출
+			Utils.playData.ad--; //시청해야 되는 광고횟수 -1
             var options = new ShowOptions { resultCallback = HandleShowResult };
 			Advertisement.Show("rewardedVideo", options);
 		}
@@ -45,7 +48,7 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		case ShowResult.Finished:
             // 광고를 성공적으로 시청한 경우 보상 지급
 			Debug.Log ("The ad was successfully shown.");
-			GameObject.Find("DieManager").GetComponent<DieScene>().respone(); //부활
+			GameObject.Find("DieManager").GetComponent<DieManager>().respone(); //부활
 			
 			break;
 		case ShowResult.Skipped:
@@ -55,5 +58,7 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 			Debug.LogError("The ad failed to be shown.");
 			break;
 		}
+		
+		dieManager.initScene();
 	}
 }

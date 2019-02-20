@@ -245,5 +245,9 @@ public class User : MonoBehaviour
         //샤넬 No.5
         if (Utils.isHaveItem(401)) accesories[1].color = new Color (1f, 1f, 1f, 1f);
         else accesories[1].color = new Color (1f, 1f, 1f, INACTIVE);
+        
+        //스벅 텀블러
+        if (Utils.isHaveItem(402)) accesories[2].color = new Color (1f, 1f, 1f, 1f);
+        else accesories[2].color = new Color (1f, 1f, 1f, INACTIVE);
     }
 }

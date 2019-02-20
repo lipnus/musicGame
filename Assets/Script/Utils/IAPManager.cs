@@ -14,7 +14,7 @@ namespace Script.Utils {
             
             if (storeControler==null) {
                 Debug.Log("Awake()");
-                sProductIds = new string[] {"item_passive_number5", "item_passive_airpods" };
+                sProductIds = new string[] {"item_passive_number5", "item_passive_airpods", "item_passive_tumbler" };
                 initStore();
             }
             
@@ -25,6 +25,7 @@ namespace Script.Utils {
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             builder.AddProduct(sProductIds[0], ProductType.NonConsumable, new IDs{ {sProductIds[0], GooglePlay.Name} });
             builder.AddProduct(sProductIds[1], ProductType.NonConsumable, new IDs{ {sProductIds[1], GooglePlay.Name} });
+            builder.AddProduct(sProductIds[2], ProductType.NonConsumable, new IDs{ {sProductIds[2], GooglePlay.Name} });
             
             UnityPurchasing.Initialize(this, builder);
         }
@@ -33,7 +34,7 @@ namespace Script.Utils {
 
             if (storeControler == null) {
                 initStore();
-                Debug.Log("결재실패. 결재기능 초기화 실패");
+                Debug.Log("결재실패. 결재기능 초기화 실패, 재시도함");
             }
             else {
 
@@ -41,6 +42,8 @@ namespace Script.Utils {
                 
                 if (item == 400) index = 0; //샤넬No5
                 else if (item == 401) index = 1; //에어팟
+                else if (item == 402) index = 2; //스벅텀블러
+                
                 else return;
                 
                 storeControler.InitiatePurchase(sProductIds[index]);                
@@ -73,12 +76,15 @@ namespace Script.Utils {
 
             if (isSuccess == true) {
                 Debug.Log("구매완료");
+                
                 if(e.purchasedProduct.definition.id.Equals(sProductIds[0])){ //샤넬 넘버5
                     buyNumber5();
                 }
                 else if(e.purchasedProduct.definition.id.Equals(sProductIds[1])){ //에어팟
                     buyAirPods();                    
 
+                }else if (e.purchasedProduct.definition.id.Equals(sProductIds[2])) { //스벅텀블러
+                    buyTumbler();
                 }
             }
 
@@ -96,7 +102,11 @@ namespace Script.Utils {
         private void buyAirPods() {
             Debug.Log("에어팟 삼");
             global::Utils.addMyItem(401);
+        }
 
+        private void buyTumbler() {
+            Debug.Log("텀블러 삼");
+            global::Utils.addMyItem(402);
         }
 
         
