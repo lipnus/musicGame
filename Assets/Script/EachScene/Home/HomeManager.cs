@@ -59,7 +59,14 @@ public class HomeManager : MonoBehaviour {
 		
 	}
 
+	
+	//게임을 시작하지
 	public void startStage() {
+		
+		//게임플레이데이터(게임한판에 대한 데이터) 초기화
+		Utils.resetPlayData();
+		
+		
 		//튜토리얼의 완료유무에 따른 스테이지 이동
 		if (Utils.isGuide_Finished() == true) {
 			Debug.Log("튜토리얼 이미 봤음");
@@ -73,7 +80,7 @@ public class HomeManager : MonoBehaviour {
 	}
 
 
-
+	//스킵버튼을 눌렀을 때
 	public void onClick_Skip() {
 		skipButton.enabled = false;
 		okSound.Play();

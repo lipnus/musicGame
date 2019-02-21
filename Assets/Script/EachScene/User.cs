@@ -136,7 +136,7 @@ public class User : MonoBehaviour
         soundManager.notePlay(); //효과음
         
         uiManager.raisePoint( noteObj.score ); //캐릭터 위에 오버랩되는 효과
-        Utils.modifyScore( noteObj.score );
+        Utils.modifyPoint( noteObj.score );
         uiManager.setPointText();
 
 

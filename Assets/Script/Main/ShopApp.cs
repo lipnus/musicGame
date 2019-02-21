@@ -88,7 +88,7 @@ public class ShopApp : MonoBehaviour {
 			point -= item.Price;
 			soundManager.playSound(3); 
 			Utils.addMyItem(curCode); //구매목록에 추가
-			Utils.modifyScore( -1 * item.Price);
+			Utils.modifyPoint( -1 * item.Price);
 		}
 		else {
 			Debug.Log("돈이없다. 가진돈: " + Utils.getPoint());

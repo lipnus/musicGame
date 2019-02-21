@@ -27,7 +27,9 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		}
 	}
 	
-
+	
+	//광고 보여주기
+	//DieScene의 onStart()에서 호출
 	public void ShowRewardedAd()
 	{
 		Debug.Log("ShowRewardedAd()");
@@ -43,13 +45,14 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
     // 광고가 종료된 후 자동으로 호출되는 콜백 함수
 	private void HandleShowResult(ShowResult result)
 	{
+		
+		dieManager.initScene();
+
+		
 		switch (result)
 		{
 		case ShowResult.Finished:
-            // 광고를 성공적으로 시청한 경우 보상 지급
 			Debug.Log ("The ad was successfully shown.");
-			GameObject.Find("DieManager").GetComponent<DieManager>().respone(); //부활
-			
 			break;
 		case ShowResult.Skipped:
 			Debug.Log("The ad was skipped before reaching the end.");
@@ -59,6 +62,6 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 			break;
 		}
 		
-		dieManager.initScene();
+		
 	}
 }

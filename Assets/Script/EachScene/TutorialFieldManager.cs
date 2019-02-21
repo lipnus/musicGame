@@ -88,7 +88,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		//정답
 		if (Utils.lifeEvent == 0) {
 			user.GetComponent<User>().startShowIcon(1); //정답아이콘
-			Utils.modifyScore(100); //점수
+			Utils.modifyPoint(100); //점수
 			Utils.modifyCorrect(1); //맞은개수
 			uiManager.raisePoint(100); //캐릭터 위에 오버랩되는 효과
 			soundManager.correctPlay();

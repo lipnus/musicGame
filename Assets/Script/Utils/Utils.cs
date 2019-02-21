@@ -37,6 +37,7 @@ public static class Utils {
     private static string subTitleStr;
     private static string sceneNameStr;
 
+    
     public static void changeScene(string stage, string title, string subtitle, string sceneName) {
         stageStr = stage;
         titleStr = title;
@@ -64,8 +65,22 @@ public static class Utils {
     
     public static PlayData playData = new PlayData();
 
+    
+    //플레이데이터 초기화
     public static void resetPlayData() {
-        playData.reset();
+        playData.correct = 0;
+        playData.wrong = 0;
+        playData.clear = 0;
+        playData.point = 0;
+        playData.isRivival = false;
+
+        if ( isHaveItem(402) ) playData.ad = 0;
+        else playData.ad = 1;
+    }
+
+
+    public static PlayData getPlayData() {
+        return playData;
     }
     
     
@@ -77,7 +92,6 @@ public static class Utils {
     public static int getSyncServer() {
         return PlayerPrefs.GetInt("SyncServer", 0);  
     }
-    
     
     
     //위치 초기화(스테이지 이동할 떼 호출)
@@ -111,7 +125,7 @@ public static class Utils {
     
     
     
-    //읽은 미시지 개수
+    //읽은 메시지 개수
     public static void setMessageLastCount(int messageCount) {
         PlayerPrefs.SetInt("MessageLastCount", messageCount);
     }
@@ -140,7 +154,7 @@ public static class Utils {
     
     
     
-    //맞은 개수
+    //맞음!
     public static void modifyCorrect(int c) {
         int correct = PlayerPrefs.GetInt("Correct", 0) + c;
         PlayerPrefs.SetInt("Correct", correct);
@@ -158,7 +172,7 @@ public static class Utils {
     
     
     
-    //틀린개수
+    //틀림!
     public static void modifyWrong(int w) {
         int wrong = PlayerPrefs.GetInt("Wrong", 0) + w;
         PlayerPrefs.SetInt("Wrong", wrong);
@@ -177,7 +191,7 @@ public static class Utils {
     
     
     //점수조작(더하거나 뺌)
-    public static void modifyScore(int p) {
+    public static void modifyPoint(int p) {
         int point = PlayerPrefs.GetInt("Point", 0) + p;
         PlayerPrefs.SetInt("Point", point);
 

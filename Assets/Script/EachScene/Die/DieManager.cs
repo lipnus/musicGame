@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class DieManager : MonoBehaviour {
 
 	public Image spotLight;
-	public Image note;
 	public Text text;
 	public Image black;
 	public UnityAdsManager_Rewarded ad_reward;
@@ -15,6 +14,12 @@ public class DieManager : MonoBehaviour {
 	public GameObject rivivalButton;
 	public GameObject pointButton;
 	public GameObject normalButton;
+
+	public GameObject top;
+	public GameObject bottom;
+	public GameObject shoes;
+
+	public Text PlayDataResultText;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,14 +29,21 @@ public class DieManager : MonoBehaviour {
 	}
 
 	
+	//광고종료시에 얘를 호출
 	public void initScene() {
+		
+		//결과표시
+		showPlayData();
+		
+		//시체표시
+		showDeadBody();
 		
 		//검정 페이드아웃
 		uiFadeOut(black,1f);
 		
+		
 		//투명도초기화
 		spotLight.GetComponent<CanvasRenderer>().SetAlpha(0f);
-		note.GetComponent<CanvasRenderer>().SetAlpha(0f);
 		text.GetComponent<CanvasRenderer>().SetAlpha(0f);
 
 		//멘트설정
@@ -48,7 +60,7 @@ public class DieManager : MonoBehaviour {
 	
 	
 	//랜덤으로 보너스 버튼을 띄운다
-	public void initBonusButton() {
+	private void initBonusButton() {
 
 		//한번 부활한 경우 보너스는 없다
 		if (Utils.playData.isRivival) {
@@ -72,7 +84,6 @@ public class DieManager : MonoBehaviour {
 		
 		uiFadeIn(spotLight,2f);
 		yield return new WaitForSeconds(1.5f);
-		uiFadeIn(note, 2f);
 		uiFadeIn(text, 4f);
 	}
 	
@@ -88,17 +99,54 @@ public class DieManager : MonoBehaviour {
 		g.CrossFadeAlpha(0f, t, false);
 	}
 
-	//메인으로
-	public void onClick_main() {
-		SceneManager.LoadScene("MainScene");
-	}
-
 	
+	
+	//시체에 옷을 입혀준다
+	private void showDeadBody() {
+
+		string topItem = Utils.getTop().ToString();
+		top.transform.FindChild( topItem ).gameObject.SetActive(true);
+		top.transform.FindChild( topItem+"_bg" ).gameObject.SetActive(true);
+		
+		string bottomItem = Utils.getBottom().ToString();
+		bottom.transform.FindChild( bottomItem ).gameObject.SetActive(true);
+		bottom.transform.FindChild( bottomItem+"_bg" ).gameObject.SetActive(true);
+		
+		string shoesItem = Utils.getShoes().ToString();
+		shoes.transform.FindChild( shoesItem ).gameObject.SetActive(true);
+		shoes.transform.FindChild( shoesItem+"_bg" ).gameObject.SetActive(true);
+	}
 	
 	
 	//광고보고 부활(광고에서 콜백으로 여기 호출)
-	public void respone() {
+	public void onClick_Rivial() {
 		Utils.responeGame();
 		SceneManager.LoadScene( Utils.sceneName );
+	}
+
+	
+	//처음으로 이동
+	public void onClick_Normal() {
+		SceneManager.LoadSceneAsync("MainScene");
+	}
+
+
+	//보너스 포인트를 받고 메인페이지로 이동
+	public void onClick_BonusPoint() {
+		int bonusPoint = (int)(Utils.getPlayData().point * 0.5f);
+		Utils.modifyPoint( bonusPoint );
+		
+		SceneManager.LoadSceneAsync("MainScene");
+	}
+
+
+	//결과페이지를 보여줌
+	private void showPlayData() {
+		PlayData playData = Utils.getPlayData();
+		
+		PlayDataResultText.text = 
+			"Correct: " + playData.correct 
+			+ "		Wrong:" + playData.wrong
+			+ "		Point:" + playData.point;
 	}
 }
