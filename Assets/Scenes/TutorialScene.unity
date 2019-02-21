@@ -11895,12 +11895,10 @@ MonoBehaviour:
   - {fileID: 1973453151}
   - {fileID: 1682408291}
   jumpSound: {fileID: 1661523857}
-  fireworkSound1: {fileID: 0}
-  fireworkSound2: {fileID: 0}
   correctSound: {fileID: 1124603216}
   clickSound: {fileID: 0}
   okSound: {fileID: 0}
-  voodooMusic: {fileID: 0}
+  backgroundMusic: {fileID: 810815245}
 --- !u!4 &1913375956
 Transform:
   m_ObjectHideFlags: 0

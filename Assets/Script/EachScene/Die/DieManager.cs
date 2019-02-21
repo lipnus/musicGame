@@ -19,14 +19,10 @@ public class DieManager : MonoBehaviour {
 	public GameObject bottom;
 	public GameObject shoes;
 
+	public FadeEffect fadeEffect;
 	public Text PlayDataResultText;
 	
-	// Use this for initialization
-	void Start () {
 
-		if (Utils.playData.ad > 0) ad_reward.ShowRewardedAd(); //광고 봐야될거 있으면 광고튼다
-		else initScene();
-	}
 
 	
 	//광고종료시에 얘를 호출
@@ -49,9 +45,6 @@ public class DieManager : MonoBehaviour {
 		//멘트설정
 		DieText dieText = new DieText();
 		text.text = dieText.getDieText();
-		
-		//보너스 버튼 초기화
-		initBonusButton();
 		
 		//코루틴시작
 		StartCoroutine(dieScenario(0f));
@@ -84,6 +77,10 @@ public class DieManager : MonoBehaviour {
 		
 		uiFadeIn(spotLight,2f);
 		yield return new WaitForSeconds(1.5f);
+		
+		//보너스 버튼 초기화
+		initBonusButton();
+		
 		uiFadeIn(text, 4f);
 	}
 	
@@ -118,16 +115,15 @@ public class DieManager : MonoBehaviour {
 	}
 	
 	
-	//광고보고 부활(광고에서 콜백으로 여기 호출)
+	//부활
 	public void onClick_Rivial() {
 		Utils.responeGame();
-		SceneManager.LoadScene( Utils.sceneName );
 	}
 
 	
 	//처음으로 이동
 	public void onClick_Normal() {
-		SceneManager.LoadSceneAsync("MainScene");
+		StartCoroutine(goToMainScene(2f));
 	}
 
 
@@ -135,8 +131,7 @@ public class DieManager : MonoBehaviour {
 	public void onClick_BonusPoint() {
 		int bonusPoint = (int)(Utils.getPlayData().point * 0.5f);
 		Utils.modifyPoint( bonusPoint );
-		
-		SceneManager.LoadSceneAsync("MainScene");
+		StartCoroutine(goToMainScene(2f));
 	}
 
 
@@ -148,5 +143,13 @@ public class DieManager : MonoBehaviour {
 			"Correct: " + playData.correct 
 			+ "		Wrong:" + playData.wrong
 			+ "		Point:" + playData.point;
+	}
+	
+	
+	
+	IEnumerator goToMainScene(float delayTime) {
+		fadeEffect.FadeOut(1f, 1f);
+		yield return new WaitForSeconds(delayTime);
+		SceneManager.LoadSceneAsync("MainScene");		
 	}
 }

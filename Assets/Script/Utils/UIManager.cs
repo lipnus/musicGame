@@ -127,7 +127,7 @@ public class UIManager : MonoBehaviour {
 
 	IEnumerator DieEvent(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
-		SceneManager.LoadScene("DieManager");
+		SceneManager.LoadScene("DieScene");
 	}
 	
 	

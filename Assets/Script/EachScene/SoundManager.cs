@@ -7,12 +7,11 @@ public class SoundManager : MonoBehaviour {
     public List<AudioSource> noteSounds = new List<AudioSource>();
 	public List<AudioSource> catSounds = new List<AudioSource>(); 
 	public AudioSource jumpSound;
-	public AudioSource fireworkSound1;
-	public AudioSource fireworkSound2;
 	public AudioSource correctSound;
 	public AudioSource clickSound;
 	public AudioSource okSound;
-	public AudioSource voodooMusic;
+	public AudioSource backgroundMusic;
+
 	
 	
 
@@ -38,14 +37,7 @@ public class SoundManager : MonoBehaviour {
 		okSound.GetComponent<AudioSource>().Play();
 	}
 	
-	//폭죽소리
-	public void fireworkPlay1() {
-		fireworkSound1.GetComponent<AudioSource>().Play();
-	}
-	
-	public void fireworkPlay2() {
-		fireworkSound2.GetComponent<AudioSource>().Play();
-	}
+
 
 	//정답
 	public void correctPlay() {
@@ -58,7 +50,7 @@ public class SoundManager : MonoBehaviour {
 	}
 	
 	//voodoo배경음악
-	public void voodooPlay() {
-		voodooMusic.GetComponent<AudioSource>().Play();
+	public void backgroundMusicPlay() {
+		backgroundMusic.GetComponent<AudioSource>().Play();
 	}
 }

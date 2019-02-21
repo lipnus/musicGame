@@ -22,9 +22,14 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
             gameId = iosGameId;
 			#endif
      
+		
 		if (Advertisement.isSupported && !Advertisement.isInitialized) {
 			Advertisement.Initialize(gameId, testMode);
 		}
+		
+		
+		if (Utils.playData.ad > 0) ShowRewardedAd(); //광고 봐야될거 있으면 광고튼다
+		else dieManager.initScene();
 	}
 	
 	
