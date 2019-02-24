@@ -12,5 +12,6 @@ using System;
      public int clear;
      public int point;
      public int ad;
-     public bool isRivival;
+     public bool isRivival; //부활을 한번 했는지
+     public int bossLife; //보스고양이 목숨
  }

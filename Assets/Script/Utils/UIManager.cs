@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour {
 	public GameObject userScore;
 
 	private const int LIFE_UNIT = 116; //목숨 한칸의 양
-	private const int LIFE_MAX = 350; //최대 목숨의 양
 	private int lifebarCount; //코루틴에서 라이프바 수정할때 쓰는 타이머
 
 	public void showText(string str) {
@@ -36,6 +35,12 @@ public class UIManager : MonoBehaviour {
 		midText.text = str;
 		FadeIn(midText, 0.5f);
 		StartCoroutine("stayText", 4f);
+	}
+
+
+	public void showText_hold(string str) {
+		midText.text = str;
+		midText.transform.gameObject.active = true;
 	}
 
 

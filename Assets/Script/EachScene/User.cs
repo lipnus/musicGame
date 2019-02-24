@@ -17,7 +17,7 @@ public class User : MonoBehaviour
     
     //Manager
     public SoundManager soundManager;
-    public TutorialFieldManager fieldManager;
+    public StageFieldManager fieldManager;
     public UIManager uiManager;
     
     //머리 위의 아이콘
@@ -68,7 +68,7 @@ public class User : MonoBehaviour
             jumpOK = false;
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpPower);
             
-            fieldManager.GetComponent<TutorialFieldManager>().bgJumpEffect(); //점프할때 배경효과
+            fieldManager.GetComponent<StageFieldManager>().bgJumpEffect(); //점프할때 배경효과
             
             cur_top.GetComponent<Animator>().SetTrigger("jump_t");
             cur_top_bg.GetComponent<Animator>().SetTrigger("jump_t");
@@ -101,6 +101,9 @@ public class User : MonoBehaviour
         
         //지하철
         if (col.tag.Equals("subway")) colSubway(col);
+        
+        //대왕고양이
+        if(col.tag.Equals("boss")) colBoss();
     }
     
 
@@ -121,6 +124,27 @@ public class User : MonoBehaviour
     //야옹충돌
     private void colCat(Collider2D col){
         icons[0].GetComponent<Animator>().SetBool("icon_b", true); //고앙이아이콘
+        catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)   
+        fieldManager.pauseMove();
+        soundManager.catPlay();
+    }
+
+
+    //대왕고양이
+    private void colBoss() {
+        int bossLife = Utils.getPlayData().bossLife;
+        
+        if (bossLife == 3) {
+            icons[4].GetComponent<Animator>().SetBool("icon_b", true); //왕고양이 아이콘
+            Utils.modifyBossCatLife(-1);
+        }else if (bossLife == 2) {
+            icons[5].GetComponent<Animator>().SetBool("icon_b", true); //중간고양이 아이콘
+            Utils.modifyBossCatLife(-1);
+        }else if (bossLife == 1) {
+            icons[0].GetComponent<Animator>().SetBool("icon_b", true); //작은고양이 아이콘
+            Utils.modifyBossCatLife(-1);
+        }
+        
         catCollision = true; //야옹충돌(이걸 켜면 고양이 터치가 가능해짐)   
         fieldManager.pauseMove();
         soundManager.catPlay();

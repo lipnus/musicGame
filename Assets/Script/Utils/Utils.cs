@@ -63,7 +63,7 @@ public static class Utils {
     // 게임진행과 관련된 함수
     //==========================================================
     
-    public static PlayData playData = new PlayData();
+    private static PlayData playData = new PlayData();
 
     
     //플레이데이터 초기화
@@ -73,11 +73,25 @@ public static class Utils {
         playData.clear = 0;
         playData.point = 0;
         playData.isRivival = false;
+        playData.bossLife = 3;
 
         if ( isHaveItem(402) ) playData.ad = 0;
         else playData.ad = 1;
     }
 
+
+    public static void modifyBossCatLife(int val) {
+        playData.bossLife += val;
+    }
+
+
+    public static void setPlaydataRivival(bool val) {
+        playData.isRivival = val;
+    }
+    
+    public static void modifyPlaydataAd(int val) {
+        playData.ad += val;
+    }
 
     public static PlayData getPlayData() {
         return playData;

@@ -7,7 +7,7 @@ using UnityEngine.Analytics;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class TutorialFieldManager : MonoBehaviour {
+public class StageFieldManager : MonoBehaviour {
 
 	public List<GameObject> layer = new List<GameObject>();
 	public List<float> layer_speed = new List<float>();
@@ -17,7 +17,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	public UIManager uiManager;
 	public SoundManager soundManager;
 	public FadeEffect fadeEffect;
-	
+	public GameObject bossCat;
 	private const float BEFORE_QUIZ_POSITION = 10f; //퀴즈 후에 돌아와서 더 앞으로 이동할 거리
 	
 	float userSpeed;
@@ -38,7 +38,6 @@ public class TutorialFieldManager : MonoBehaviour {
 
 				CatObject catObj = hit.collider.GetComponent<CatObject>();
 				
-				Debug.Log("고양이난이도:" + catObj.difficulty);
 				Utils.difficulty = catObj.difficulty;
 				
 				if ( catObj.quizType==CatObject.QuizType.Initial ) quizStart("Quiz_initial");
@@ -50,10 +49,7 @@ public class TutorialFieldManager : MonoBehaviour {
 	
 	
 	void Start () {
-		
-		//테스트용, 반드시 지울것
-//		Utils.setLife(3);
-		
+
 		//페이드인 효과
 		fadeEffect.FadeIn(1f);
 		
@@ -73,6 +69,12 @@ public class TutorialFieldManager : MonoBehaviour {
 		if (!Utils.userPosition.Equals(new Vector3(0, 0, 0))) {			
 			returnFromMusicQuiz();
 		}
+		
+		
+		//마지막미션인 경우
+		if (Application.loadedLevelName.Equals("RiverScene")) {
+			setBossCat();
+		}
 	}
 	
 	
@@ -80,8 +82,14 @@ public class TutorialFieldManager : MonoBehaviour {
 	void returnFromMusicQuiz() {
 		
 		//레이어들의 위치를 퀴즈풀기 이전으로 복구
-		loadPosition();
-		
+		if (Utils.getPlayData().bossLife == 1 || Utils.getPlayData().bossLife == 2) {
+			loadPositionInfrontOfBossCat();				
+		}
+		else {
+			loadPosition();
+		}
+
+
 		//정답표시
 		uiManager.GetComponent<UIManager>().showAnswer();
 		
@@ -123,6 +131,7 @@ public class TutorialFieldManager : MonoBehaviour {
 		
 		//죽음을 직감한 멘트
 		uiManager.GetComponent<UIManager>().showText("텐션이 떨어진다...");
+		
 	}
 
  
@@ -173,14 +182,63 @@ public class TutorialFieldManager : MonoBehaviour {
 		//레이어 복구
 		for (int i = 0; i < layer.Count; i++) {
 			Vector3 lPosition = Utils.positionHolder[i];
-			lPosition.x += BEFORE_QUIZ_POSITION;
+
+			lPosition.x += BEFORE_QUIZ_POSITION; //위치보정				
 			layer[i].transform.position = lPosition;
 		}
 		
 		//유저위치 복구
 		Vector3 uPosition = Utils.userPosition;
+		
 		uPosition.x += BEFORE_QUIZ_POSITION;
 		user.transform.position = uPosition;
+	}
+
+	
+	
+	//대왕고양이 앞에서는 앞으로 넘어가지 않고 오히려 뒤로 넘어감
+	public void loadPositionInfrontOfBossCat() {
+		
+		Debug.Log("보스목숨:" + Utils.getPlayData().bossLife);
+		
+		//레이어 복구
+		for (int i = 0; i < layer.Count; i++) {
+			Vector3 lPosition = Utils.positionHolder[i];
+
+			lPosition.x -= BEFORE_QUIZ_POSITION; //위치보정				
+			layer[i].transform.position = lPosition;
+		}
+		
+		//유저위치 복구
+		Vector3 uPosition = Utils.userPosition;
+		
+		uPosition.x -= BEFORE_QUIZ_POSITION;
+		user.transform.position = uPosition;
+	}
+
+
+
+	public void setBossCat() {		
+		
+		if (Utils.getPlayData().bossLife == 2) {
+			float catScale = 1.2f;
+			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
+			bossCat.GetComponent<CatObject>().quizType = CatObject.QuizType.Initial;
+
+		}
+
+		if (Utils.getPlayData().bossLife == 1) {
+			float catScale = 0.3f;
+			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
+			bossCat.GetComponent<BoxCollider2D>().size = new Vector2(20f, 5f);
+			bossCat.GetComponent<CatObject>().quizType = CatObject.QuizType.Initial;
+		}
+
+		if (Utils.getPlayData().bossLife == 0) {
+			bossCat.active = false;
+		}
+		
+				
 	}
 	
 	

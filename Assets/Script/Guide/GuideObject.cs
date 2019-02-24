@@ -42,7 +42,7 @@ public class GuideObject : MonoBehaviour {
 	//처음 음표를 만났을 때
 	void firstNote() {
 		sub.active = true;
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "음표를 모아 아이템을 구입하세요";
@@ -52,7 +52,7 @@ public class GuideObject : MonoBehaviour {
 	//점프 설명
 	void jump() {
 		sub.active = true;
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "화면을 터치하여 점프하세요";
@@ -63,7 +63,7 @@ public class GuideObject : MonoBehaviour {
 	void cat1() {
 		sub.active = true;
 		Utils.difficulty = 1; //난이도
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "야~옹\n고양이를 터치해 퀴즈를 확인하세요!";
@@ -77,7 +77,7 @@ public class GuideObject : MonoBehaviour {
 	void cat2() {
 		sub.active = true;
 		Utils.difficulty = 1; //난이도
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "또다시 야~옹\n고양이를 터치하세요!";
@@ -90,7 +90,7 @@ public class GuideObject : MonoBehaviour {
 	//지하철 발견
 	void subway() {
 		sub.active = true;
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		blackBackground.GetComponent<Animator>().SetTrigger("fadein_t");
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		midText.GetComponent<Text>().text = "지하철역에 도착하면 다음스테이지로 이동합니다!";
@@ -102,7 +102,7 @@ public class GuideObject : MonoBehaviour {
 	//튜토리얼 완료
 	void endGuide() {
 		sub.active = true;
-		fieldManager.GetComponent<TutorialFieldManager>().pauseMove();
+		fieldManager.GetComponent<StageFieldManager>().pauseMove();
 		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 다음 스테이지로 이동합니다.";
 		midText.GetComponent<Animator>().SetBool("showText", true);
 		

@@ -28,6 +28,11 @@ public class SubwayObject : MonoBehaviour {
 		if (Application.loadedLevelName.Equals("ForestScene")) {
 			Utils.changeScene( "Final Stage", "River", "여의도 한강공원", "RivertScene" );
 		}
+		
+		if (Application.loadedLevelName.Equals("RiverScene")) {
+			Utils.resetStage();
+			SceneManager.LoadSceneAsync("EndingScene");
+		}
 
 	}
 }

@@ -56,7 +56,7 @@ public class DieManager : MonoBehaviour {
 	private void initBonusButton() {
 
 		//한번 부활한 경우 보너스는 없다
-		if (Utils.playData.isRivival) {
+		if (Utils.getPlayData().isRivival) {
 			normalButton.active = true;
 			return;
 		}
@@ -64,7 +64,7 @@ public class DieManager : MonoBehaviour {
 		int lotto = Random.Range(0, 10);
 		if (8 < lotto) {
 			rivivalButton.active = true;
-			Utils.playData.isRivival = true;
+			Utils.getPlayData().isRivival = true;
 		}else if (4 < lotto) {
 			pointButton.active = true;		
 		}else {

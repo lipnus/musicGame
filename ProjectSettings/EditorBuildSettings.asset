@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DieScene.unity
     guid: 5b0f73c438a374b918b057149d4fa34e
   - enabled: 1
+    path: Assets/Scenes/EndingScene.unity
+    guid: 5452c91521af14c79b25478b5385d491
+  - enabled: 1
     path: Assets/Scenes/CityScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -38,7 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NicknameScene.unity
     guid: 91802b1e3918049a8a919ba10421d7b8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RiverScene.unity
     guid: 68da88c4fcc354535a4d9ce524c197e8
   - enabled: 1

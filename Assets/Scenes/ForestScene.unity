@@ -26152,6 +26152,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: User
       objectReference: {fileID: 0}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1614720142}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: fieldManager
+      value: 
+      objectReference: {fileID: 88709065}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 1059036958}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: accesories.Array.data[0]
+      value: 
+      objectReference: {fileID: 800416542}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: accesories.Array.data[1]
+      value: 
+      objectReference: {fileID: 787533927}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: accesories.Array.data[2]
+      value: 
+      objectReference: {fileID: 1543320395}
     - target: {fileID: 2983513126922725038, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26207,36 +26237,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: soundManager
-      value: 
-      objectReference: {fileID: 1614720142}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: fieldManager
-      value: 
-      objectReference: {fileID: 88709065}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 1059036958}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: accesories.Array.data[0]
-      value: 
-      objectReference: {fileID: 800416542}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: accesories.Array.data[1]
-      value: 
-      objectReference: {fileID: 787533927}
-    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
-        type: 3}
-      propertyPath: accesories.Array.data[2]
-      value: 
-      objectReference: {fileID: 1543320395}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8803b6efbe77c48b1984ed5ba9e91a93, type: 3}
 --- !u!1 &1831001849

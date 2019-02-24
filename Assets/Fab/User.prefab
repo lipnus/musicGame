@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f910f88d5faf4ade928774c4226424a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userSpeed: 5
+  userSpeed: 5.5
   jumpPower: 400
   soundManager: {fileID: 0}
   fieldManager: {fileID: 0}

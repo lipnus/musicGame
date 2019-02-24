@@ -42,15 +42,15 @@ public class GuideManager : MonoBehaviour {
 		if (touchOK) {
 			
 			if (guideObj.transform.name.Equals("Guide-jump")) user.GetComponent<User>().Jump(); //점프퀘스트
-			else if(guideObj.transform.name.Equals("Guide-cat1")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_initial");
-			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<TutorialFieldManager>().quizStart("Quiz_choice");
+			else if(guideObj.transform.name.Equals("Guide-cat1")) fieldManager.GetComponent<StageFieldManager>().quizStart("Quiz_initial");
+			else if(guideObj.transform.name.Equals("Guide-cat2")) fieldManager.GetComponent<StageFieldManager>().quizStart("Quiz_choice");
 			else if(guideObj.transform.name.Equals("Guide-subway")) GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(3f); //페이드아웃
 			else if (guideObj.transform.name.Equals("Guide-end")) {
 				Utils.changeScene("Stage 1", "Seoul City", "잠실인근", "CityScene");
 			}
 			
 			midText.GetComponent<Animator>().SetBool("showText", false);
-			fieldManager.GetComponent<TutorialFieldManager>().resumeMove();
+			fieldManager.GetComponent<StageFieldManager>().resumeMove();
 			Destroy(guideObj);		
 		}
 	}

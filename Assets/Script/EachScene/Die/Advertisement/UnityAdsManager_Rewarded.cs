@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
 public class UnityAdsManager_Rewarded : MonoBehaviour
@@ -28,7 +27,7 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		}
 		
 		
-		if (Utils.playData.ad > 0) ShowRewardedAd(); //광고 봐야될거 있으면 광고튼다
+		if (Utils.getPlayData().ad > 0) ShowRewardedAd(); //광고 봐야될거 있으면 광고튼다
 		else dieManager.initScene();
 	}
 	
@@ -41,7 +40,7 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		if (Advertisement.IsReady("rewardedVideo"))
 		{
             // 광고가 끝난 뒤 콜백함수 "HandleShowResult" 호출
-			Utils.playData.ad--; //시청해야 되는 광고횟수 -1
+			Utils.modifyPlaydataAd(-1); //시청해야 되는 광고횟수 -1
             var options = new ShowOptions { resultCallback = HandleShowResult };
 			Advertisement.Show("rewardedVideo", options);
 		}

@@ -10,6 +10,7 @@ TagManager:
   - answerBox
   - Fire
   - subway
+  - boss
   layers:
   - Default
   - TransparentFX
