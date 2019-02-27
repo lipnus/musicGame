@@ -125,6 +125,7 @@ public static class Utils {
     public static void responeGame() {
         setLife(2);
         lifeEvent = 0;
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
 
@@ -385,7 +386,9 @@ public static class Utils {
         //상의
         item = new ItemInfo(0, 100, "유니클로 무지반팔", 8000, "전체보기 > 상의 > 반팔티셔츠");
         items.Add(item);
-        item = new ItemInfo(0, 101, "아크네 맨투맨", 10, "전체보기 > 상의 > 맨투맨");
+        item = new ItemInfo(0, 101, "아크네 맨투맨", 25000, "전체보기 > 상의 > 맨투맨");
+        items.Add(item);
+        item = new ItemInfo(0, 102, "준지 오버핏셔츠", 10, "전체보기 > 상의 > 맨투맨");
         items.Add(item);
                 
         //하의
@@ -398,9 +401,11 @@ public static class Utils {
         //신발
         item = new ItemInfo(0, 300, "락포트 페니로퍼", 45000, "전체보기 > 신발 > 구두");
         items.Add(item);
-        item = new ItemInfo(0, 301, "꼼데 스니커즈", 10, "전체보기 > 신발 > 스니커즈");
+        item = new ItemInfo(0, 301, "꼼데 스니커즈", 12000, "전체보기 > 신발 > 스니커즈");
         items.Add(item);
-        item = new ItemInfo(0, 302, "이지 부스트", 10, "전체보기 > 신발 > 운동화");
+        item = new ItemInfo(0, 302, "이지 부스트", 40000, "전체보기 > 신발 > 운동화");
+        items.Add(item);
+        item = new ItemInfo(0, 303, "생로랑 첼시부츠", 40000, "전체보기 > 신발 > 부츠");
         items.Add(item);
         
         //패시브아이템

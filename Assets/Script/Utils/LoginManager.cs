@@ -7,9 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour {
 
-	[SerializeField] private Text txtLog;
 	public ConnectServer connectServer;
-
 	private int loginCount = 0; //로그인 재시도 횟수 표시
 
 	private void Awake()
@@ -32,8 +30,6 @@ public class LoginManager : MonoBehaviour {
 		{
 			//로그인 성공
 			Debug.Log(Social.localUser.userName);
-			txtLog.text = "Playgame SignIn Success!";
-
 			Utils.setPlayGameId(Social.localUser.id);
 			synchroUserInfo();
 		}
@@ -43,18 +39,14 @@ public class LoginManager : MonoBehaviour {
 				if (success)
 				{
 					//로그인 성공
-					Debug.Log(Social.localUser.userName);
-					txtLog.text = Social.localUser.id;
-					
+					Debug.Log(Social.localUser.userName);					
 					Utils.setPlayGameId(Social.localUser.id);
 					synchroUserInfo();
 				}
 				else
 				{
 					Debug.Log("로그인 실패");
-					txtLog.text = "로그인 재시도 중입니다 (" + loginCount++ +")";
-					StartCoroutine(reSignIn(2f)); //1초후 재시도
-					
+					StartCoroutine(reSignIn(2f)); //1초후 재시도					
 				}
 			});
 	}
@@ -64,7 +56,6 @@ public class LoginManager : MonoBehaviour {
     //재로그인
 	IEnumerator reSignIn(float delayTime) { 
 		yield return new WaitForSeconds(delayTime);
-		txtLog.text = "유저 정보를 확인중입니다";
 		
 		#if UNITY_ANDROID
 			synchroUserInfo();
@@ -78,19 +69,22 @@ public class LoginManager : MonoBehaviour {
 		
 		Debug.Log("서버동기화: " + Utils.getSyncServer());
 		
-		//동기화가 되지 않은 상태이면 다운로드
+		//동기화가 되지 않은 상태(최초실행)
 		if ( Utils.getSyncServer()==0 ) {
 			Debug.Log("유저정보 다운로드 시도");
-			connectServer.downloadUserInfo( Social.localUser.id );
+			
+			//유저 초기화(서버에서 동기화가 되면 이것들은 덮어씌워짐)
+			Utils.firstGift();
+			Utils.setPoint(1);
+			
+			connectServer.downloadUserInfo( Social.localUser.id ); //connectServer 콜백에서 syncServer변수를 1로만듦
 		}
+		
+		//동기화가 되어있으면 업로드
 		else {
-			goToMainScene();
+			Debug.Log("유저정보 업로드");
+			connectServer.uploadUserInfo( Utils.getUserInfo() );
 		}
 	}
 
-	//connectServer에서 호출
-	public void goToMainScene() {
-		Debug.Log("확인끝");
-		SceneManager.LoadScene("MainScene");
-	}
 }

@@ -15,12 +15,16 @@ public class DieManager : MonoBehaviour {
 	public GameObject pointButton;
 	public GameObject normalButton;
 
+	public SoundManager soundManager;
+
 	public GameObject top;
 	public GameObject bottom;
 	public GameObject shoes;
 
 	public FadeEffect fadeEffect;
 	public Text PlayDataResultText;
+
+	public GameObject bonusButtons;
 	
 
 
@@ -55,6 +59,8 @@ public class DieManager : MonoBehaviour {
 	//랜덤으로 보너스 버튼을 띄운다
 	private void initBonusButton() {
 
+		rivivalButton.active = true;
+		
 		//한번 부활한 경우 보너스는 없다
 		if (Utils.getPlayData().isRivival) {
 			normalButton.active = true;
@@ -117,18 +123,26 @@ public class DieManager : MonoBehaviour {
 	
 	//부활
 	public void onClick_Rivial() {
+		soundManager.clickPlay();
 		Utils.responeGame();
+		Destroy(bonusButtons);
+
 	}
 
 	
 	//처음으로 이동
 	public void onClick_Normal() {
+		soundManager.clickPlay();
+		Destroy(bonusButtons);
 		StartCoroutine(goToMainScene(2f));
 	}
 
 
 	//보너스 포인트를 받고 메인페이지로 이동
 	public void onClick_BonusPoint() {
+		soundManager.clickPlay();
+		Destroy(bonusButtons);
+
 		int bonusPoint = (int)(Utils.getPlayData().point * 0.5f);
 		Utils.modifyPoint( bonusPoint );
 		StartCoroutine(goToMainScene(2f));

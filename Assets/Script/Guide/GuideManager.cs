@@ -13,7 +13,7 @@ public class GuideManager : MonoBehaviour {
 	public GameObject user;
 	
 	private bool touchOK; //그냥 슉 지나가는거 방지하기 위해 좀 딜레이를 준 다음 보여준다.
-	private const float TOUCH_DELAY = 0.5f;//터치 딜레이
+	private const float TOUCH_DELAY = 0.2f;//터치 딜레이
 
 
 	public void enrollGuideObj(GameObject guideObj) {

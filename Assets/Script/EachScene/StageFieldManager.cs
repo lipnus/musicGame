@@ -37,7 +37,6 @@ public class StageFieldManager : MonoBehaviour {
 			if (hit && hit.collider.gameObject.name.Equals("catArea")) {
 
 				CatObject catObj = hit.collider.GetComponent<CatObject>();
-				
 				Utils.difficulty = catObj.difficulty;
 				
 				if ( catObj.quizType==CatObject.QuizType.Initial ) quizStart("Quiz_initial");
@@ -131,7 +130,6 @@ public class StageFieldManager : MonoBehaviour {
 		
 		//죽음을 직감한 멘트
 		uiManager.GetComponent<UIManager>().showText("텐션이 떨어진다...");
-		
 	}
 
  
@@ -221,16 +219,17 @@ public class StageFieldManager : MonoBehaviour {
 	public void setBossCat() {		
 		
 		if (Utils.getPlayData().bossLife == 2) {
-			float catScale = 1.2f;
+			float catScale = 3.3f;
 			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
-			bossCat.GetComponent<CatObject>().quizType = CatObject.QuizType.Initial;
+			bossCat.transform.FindChild("catArea").gameObject.GetComponent<CatObject>().quizType =
+				CatObject.QuizType.Initial;
 
 		}
 
 		if (Utils.getPlayData().bossLife == 1) {
-			float catScale = 0.3f;
+			float catScale = 0.8f;
 			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
-			bossCat.GetComponent<BoxCollider2D>().size = new Vector2(20f, 5f);
+			bossCat.GetComponent<BoxCollider2D>().size = new Vector2(30f, 5f);
 			bossCat.GetComponent<CatObject>().quizType = CatObject.QuizType.Initial;
 		}
 

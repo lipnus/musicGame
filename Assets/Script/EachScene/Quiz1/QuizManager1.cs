@@ -115,7 +115,7 @@ public class QuizManager1 : MonoBehaviour{
 		if (completeSubmit) {
 			
 			loadingText.active = true; //로딩
-			soundManager.okPlay();
+			soundManager.correctPlay();
 			
 			bool result = true;
 			for (int i = 0; i < answerInitial.Length; i++){
@@ -178,7 +178,7 @@ public class QuizManager1 : MonoBehaviour{
 	
 	//포기
 	public void onClick_giveUp() {
-		soundManager.okPlay();
+		soundManager.correctPlay();
 		loadingText.active = true; //로딩
 		Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
 		connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0); //피드백처리

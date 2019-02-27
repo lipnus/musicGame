@@ -69,6 +69,11 @@ public class EndingManager : MonoBehaviour {
         hideAllGroup();
         group[6].active = true;
         yield return new WaitForSeconds(3);
+        
+        
+        
+        yield return new WaitForSeconds(20f);
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
 

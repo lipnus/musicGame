@@ -75,7 +75,7 @@ public class HomeManager : MonoBehaviour {
 		}
 		else {
 			Debug.Log("튜토리얼 봐야함");
-			Utils.changeScene("tutorial stage", "Seoul City", "서울도심 어딘가", "TutorialSCene" );
+			Utils.changeScene("Tutorial stage", "Seoul City", "서울도심 어딘가", "TutorialScene" );
 		}
 	}
 

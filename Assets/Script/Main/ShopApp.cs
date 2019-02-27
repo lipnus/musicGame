@@ -22,11 +22,11 @@ public class ShopApp : MonoBehaviour {
 	public SoundManager2 soundManager;
 	public GameObject user;
 
-	public IAPManager iapManager;
+	public GameObject shopDialog;
 
+	public IAPManager iapManager;
 	public Text pointText;
 	
-	public GameObject moneyEffect;
 
 
 	public List<GameObject> items = new List<GameObject>();
@@ -64,6 +64,13 @@ public class ShopApp : MonoBehaviour {
 			buyAccessory(item, point);
 		}
 		
+		refreshState();
+		
+	}
+
+
+
+	public void refreshState() {
 		pointText.text = Utils.getPoint().ToString(); //포인트 새로고침
 		showBtn(); //버튼상태 새로고침
 		updateAllItemState(); //아이템 상태 새로고침
@@ -72,13 +79,10 @@ public class ShopApp : MonoBehaviour {
 
 	public void buyAccessory(ItemInfo item, int point) {
 		
-		//캐쉬로 사야하지만 지금은 무조건 살 수 있게 함
 		Debug.Log("악세사리 구매");
-		
-		iapManager.purchaseItem(item.Code);
 		soundManager.playSound(3); //구매
+		iapManager.purchaseItem(item.Code);
 		
-//		Utils.addMyItem(curCode); //구매목록에 추가
 	}
 
 	
@@ -91,6 +95,7 @@ public class ShopApp : MonoBehaviour {
 			Utils.modifyPoint( -1 * item.Price);
 		}
 		else {
+			shopDialog.active = true;
 			Debug.Log("돈이없다. 가진돈: " + Utils.getPoint());
 		}
 		
@@ -189,6 +194,9 @@ public class ShopApp : MonoBehaviour {
 	//하트출력
 	public void showHeart() {
 		heart_img.active = true;
+		heart_img.GetComponent<Image>().sprite = GameObject.Find("app_heart_img").
+			transform.Find("empty_heart_img").GetComponent<Image>().sprite;
+		heartSelected = false;
 	}
 
 	//음표출력

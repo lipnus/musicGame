@@ -9,6 +9,9 @@ namespace Script.Utils {
         
         private static IStoreController storeControler = null;
         private string[] sProductIds;
+        public ShopApp shopApp;
+        
+        
 
         private void Awake() {
             
@@ -96,17 +99,20 @@ namespace Script.Utils {
 
         private void buyNumber5() {
             Debug.Log("샤넬No5 삼");
-            global::Utils.addMyItem(400);            
+            global::Utils.addMyItem(400);     
+            shopApp.refreshState();
         }
         
         private void buyAirPods() {
             Debug.Log("에어팟 삼");
             global::Utils.addMyItem(401);
+            shopApp.refreshState();
         }
 
         private void buyTumbler() {
             Debug.Log("텀블러 삼");
             global::Utils.addMyItem(402);
+            shopApp.refreshState();
         }
 
         

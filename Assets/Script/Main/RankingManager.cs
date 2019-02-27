@@ -10,6 +10,7 @@ public class RankingManager : MonoBehaviour {
     public Text correctText;
     public Text percentText;
     public Text gameClearText;
+    public Text levelText;
 
     public List<GameObject> rankBox = new List<GameObject>();
 
@@ -23,6 +24,32 @@ public class RankingManager : MonoBehaviour {
         setPercentText();
         setGameClearText();
     }
+
+
+    void setLevelText(int percent) {
+        if (90 < percent) {
+            levelText.text = "[" + "갓" + "]";
+        }else if (80 < percent) {
+            levelText.text = "[" + "음악 그 자체" + "]";
+        }else if (70 < percent) {
+            levelText.text = "[" + "고인물" + "]";
+        }else if (60 < percent) {
+            levelText.text = "[" + "반타작" + "]";
+        }else if (50 < percent) {
+            levelText.text = "[" + "심해" + "]";
+        }else if (40 < percent) {
+            levelText.text = "[" + "음악 쇄국정책" + "]";
+        }else if (30 < percent) {
+            levelText.text = "[" + "멜로디 알레르기" + "]";
+        }else if (20 < percent) {
+            levelText.text = "[" + "귀가 없음" + "]";
+        }
+        else {
+            levelText.text = "[" + "자, 게임을 시작하지" +"]";
+
+        }
+    }
+    
     
     //메인에서 아이콘을 누를때 호출
     public void initRank() {
@@ -30,7 +57,7 @@ public class RankingManager : MonoBehaviour {
         int correct = Utils.getCorrect();
         int wrong = Utils.getWrong();
         int gameClear = Utils.getGameClear();
-        int score = 10 * gameClear + correct - wrong;
+        int score = 20 * gameClear + correct - wrong;
         
         connectServer.requestUserRank( score );
         connectServer.requestAccumulateRanking( rankBox.Count );
@@ -68,7 +95,7 @@ public class RankingManager : MonoBehaviour {
             nicknameText.text = nickname;
         }
         else {
-            nicknameText.text = "Noname";
+            nicknameText.text = "???";
         }
     }
     
@@ -88,6 +115,8 @@ public class RankingManager : MonoBehaviour {
         double percent = correct / (correct+wrong) * 100;
         percent = Math.Floor(percent);
         percentText.text = "정답률: " + percent  + "%";
+        
+        setLevelText((int)percent);
     }
     
 

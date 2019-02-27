@@ -9,21 +9,25 @@ public class ConnectServer : MonoBehaviour {
 	public AudioSource source;
 	private MusicInfo musicInfo;
 	private Quiz quiz;
+	
 
 	public QuizManager1 quizManager1;
 	public QuizManager2 quizManager2;
 	public NicknameManager nicknameManager;
 	public MessageManager messageManager;
-	public RankingManager rankingManager;
-	public LoginManager loginManager;
-	
+	public RankingManager rankingManager;	
 	public GameObject networkDialog;
+	public User user;
 	
 	/**
 	 * 서버경로
 	 */
-//	public static string SERVER_PATH = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
-    public static string SERVER_PATH = "http://localhost:9000/dduroon";
+	#if UNITY_EDITOR
+		public static string SERVER_PATH = "http://localhost:9000/dduroon";
+	#else
+		public static string SERVER_PATH = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com:9000/dduroon";
+	#endif
+
 	public static string MUSIC_SERVER_PATH = "http://ec2-13-125-247-189.ap-northeast-2.compute.amazonaws.com/music";
 	
 	
@@ -106,7 +110,9 @@ public class ConnectServer : MonoBehaviour {
 				
 				//서버동기화 했다는 것을 기록
 				Utils.setSyncServer(1);
-				loginManager.goToMainScene();
+				
+				//동기화하거나 초기지급받은 옷을 입힌다
+				user.wearCloth();
 			}
 		));
 	}

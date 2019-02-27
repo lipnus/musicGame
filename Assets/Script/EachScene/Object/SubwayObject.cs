@@ -26,7 +26,7 @@ public class SubwayObject : MonoBehaviour {
 		}
 		
 		if (Application.loadedLevelName.Equals("ForestScene")) {
-			Utils.changeScene( "Final Stage", "River", "여의도 한강공원", "RivertScene" );
+			Utils.changeScene( "Final Stage", "River", "여의도 한강공원", "RiverScene" );
 		}
 		
 		if (Application.loadedLevelName.Equals("RiverScene")) {

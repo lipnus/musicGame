@@ -13,8 +13,7 @@ public class MainPageManager : MonoBehaviour {
 	public GameObject info_page; //정보
 	public GameObject shop_page; //쇼핑
 	public GameObject message_page; //메시지
-	public GameObject ranking_page; //랭킹
-	public GameObject rankingText;
+	public GameObject ranking_page; //랭킹 
 
 	public ConnectServer connectServer;
 	public AudioSource backgroundMusic;
@@ -29,25 +28,12 @@ public class MainPageManager : MonoBehaviour {
 	
 //		PlayerPrefs.DeleteAll();
 //		Debug.Log("닉네임: " + Utils.getNickname());
-		
-		
-		//유저 초기화
-		Utils.firstGift();
-		Utils.setPoint(100);
-		
-		
-		uploadUserInfo();
+		 
 		downloadMessage();
 		
 	}
 
-	public void uploadUserInfo() {
-
-		if (!Utils.getNickname().Equals("empty_nickname")) {
-			connectServer.uploadUserInfo( Utils.getUserInfo() ); //서버로 정보 업로드
-			Debug.Log("서버로 정보 업로드, user_pk: " + Utils.getUserPk());
-		}
-	}
+ 
 
 	public void downloadMessage() {
 		messageManager.downloadMessage();
