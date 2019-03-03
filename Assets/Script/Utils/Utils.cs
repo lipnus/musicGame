@@ -405,7 +405,7 @@ public static class Utils {
         items.Add(item);
         item = new ItemInfo(0, 302, "이지 부스트", 40000, "전체보기 > 신발 > 운동화");
         items.Add(item);
-        item = new ItemInfo(0, 303, "생로랑 첼시부츠", 40000, "전체보기 > 신발 > 부츠");
+        item = new ItemInfo(0, 303, "생로랑 첼시부츠", 1, "전체보기 > 신발 > 부츠");
         items.Add(item);
         
         //패시브아이템

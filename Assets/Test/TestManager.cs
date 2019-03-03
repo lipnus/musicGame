@@ -11,9 +11,9 @@ public class TestManager : MonoBehaviour {
 		Debug.Log("테스트씬");
 		
 		//테스트용, 반드시 지울것
+		PlayerPrefs.DeleteAll();
 		Utils.resetPlayData();
 		SceneManager.LoadSceneAsync("RiverScene");
-//		PlayerPrefs.DeleteAll();
 //		PlayerPrefs.SetString();
 //		Utils.firstGift();
 //		Utils.addMyItem(1818);
