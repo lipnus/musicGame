@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AnswerBox : MonoBehaviour
 {
 	public Text mText; //현재 칸에 들어와있는 자음
+	public SoundManager soundManager;
 	
 	//자음이 답안박스에 와서 충돌
 	void OnCollisionStay2D(Collision2D col){
@@ -18,12 +19,16 @@ public class AnswerBox : MonoBehaviour
 			//원래 답안이 들어와 있던 상황에서 다른 게 들어옴
 			if (mText != null && col.collider.GetComponent<Text>().text != mText.text) {
 				mText.GetComponent<InitialText>().comebackToStartPoint();
+				soundManager.okPlay();
+
 			}
 			//빈칸에 다른 게 들어옴
 			else {
 				col.collider.gameObject.transform.position = transform.position; //위치를 박스 안으로 고정
 				col.collider.GetComponent<InitialText>().submit = true;
 				mText = col.collider.GetComponent<Text>();
+				soundManager.okPlay();
+
 			}
 		}
 	}

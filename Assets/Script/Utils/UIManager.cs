@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
 	public Text nicknameText;
 
 	public Image lifeBar; //생명바
+	public Image lifeBar_bg; //생명바 배경
+	
 	public Text scoreText; //점수표시
 	public Image userDieBackgroud; //게임오버
 
@@ -118,6 +120,12 @@ public class UIManager : MonoBehaviour {
 		float nowWidth = Utils.getLife() * LIFE_UNIT;
 		float nowHeight = rt.rect.height;
 		rt.sizeDelta = new Vector2 (nowWidth, nowHeight);
+
+		if (Utils.isHaveItem(403)) {
+			lifeBar_bg.rectTransform.sizeDelta = new Vector2(510, 50); //뒷 배경도 초기크게 맞게 맞춰줌
+		}
+
+
 	}
 
 

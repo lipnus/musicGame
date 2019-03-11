@@ -563,6 +563,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!224 &146754253 stripped
@@ -1120,6 +1125,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!224 &285225172 stripped
@@ -1589,6 +1599,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!1 &467767471
@@ -2973,6 +2988,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!1 &929177131
@@ -4166,6 +4186,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!1 &1580098314
@@ -5813,6 +5838,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!1 &1998352195
@@ -6210,6 +6240,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
+    - target: {fileID: 114335275579720212, guid: dae096191555a4ef28af565f4dfaba7b,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1737690019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae096191555a4ef28af565f4dfaba7b, type: 3}
 --- !u!224 &2106215762 stripped

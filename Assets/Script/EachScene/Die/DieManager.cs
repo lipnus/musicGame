@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DieManager : MonoBehaviour {
 
@@ -26,11 +28,11 @@ public class DieManager : MonoBehaviour {
 
 	public GameObject bonusButtons;
 	
-
+	
 
 	
 	//광고종료시에 얘를 호출
-	public void initScene() {
+	public void initScene(BonusType bonusType) {
 		
 		//결과표시
 		showPlayData();
@@ -40,7 +42,7 @@ public class DieManager : MonoBehaviour {
 		
 		//검정 페이드아웃
 		uiFadeOut(black,1f);
-		
+	
 		
 		//투명도초기화
 		spotLight.GetComponent<CanvasRenderer>().SetAlpha(0f);
@@ -51,41 +53,32 @@ public class DieManager : MonoBehaviour {
 		text.text = dieText.getDieText();
 		
 		//코루틴시작
-		StartCoroutine(dieScenario(0f));
+		StartCoroutine(dieScenario(bonusType));
 	}
 	
 	
 	
-	//랜덤으로 보너스 버튼을 띄운다
-	private void initBonusButton() {
+	//보상에 맞게 버튼 표시
+	private void initBonusButton(BonusType bonusType) {
 
-		rivivalButton.active = true;
-		
-		//한번 부활한 경우 보너스는 없다
-		if (Utils.getPlayData().isRivival) {
-			normalButton.active = true;
-			return;
-		}
-		
-		int lotto = Random.Range(0, 10);
-		if (8 < lotto) {
+		if (bonusType == BonusType.Rivival) {
 			rivivalButton.active = true;
 			Utils.getPlayData().isRivival = true;
-		}else if (4 < lotto) {
-			pointButton.active = true;		
+		}else if (bonusType == BonusType.PointBonus) {
+			pointButton.active = true;	
 		}else {
 			normalButton.active = true;
 		}
 	}
 
 	//스포트라이트 먼저
-	IEnumerator dieScenario(float delayTime) {
+	IEnumerator dieScenario(BonusType bonusType) {
 		
 		uiFadeIn(spotLight,2f);
 		yield return new WaitForSeconds(1.5f);
 		
 		//보너스 버튼 초기화
-		initBonusButton();
+		initBonusButton(bonusType);
 		
 		uiFadeIn(text, 4f);
 	}
@@ -108,16 +101,16 @@ public class DieManager : MonoBehaviour {
 	private void showDeadBody() {
 
 		string topItem = Utils.getTop().ToString();
-		top.transform.FindChild( topItem ).gameObject.SetActive(true);
-		top.transform.FindChild( topItem+"_bg" ).gameObject.SetActive(true);
+		top.transform.Find( topItem ).gameObject.SetActive(true);
+		top.transform.Find( topItem+"_bg" ).gameObject.SetActive(true);
 		
 		string bottomItem = Utils.getBottom().ToString();
-		bottom.transform.FindChild( bottomItem ).gameObject.SetActive(true);
-		bottom.transform.FindChild( bottomItem+"_bg" ).gameObject.SetActive(true);
+		bottom.transform.Find( bottomItem ).gameObject.SetActive(true);
+		bottom.transform.Find( bottomItem+"_bg" ).gameObject.SetActive(true);
 		
 		string shoesItem = Utils.getShoes().ToString();
-		shoes.transform.FindChild( shoesItem ).gameObject.SetActive(true);
-		shoes.transform.FindChild( shoesItem+"_bg" ).gameObject.SetActive(true);
+		shoes.transform.Find( shoesItem ).gameObject.SetActive(true);
+		shoes.transform.Find( shoesItem+"_bg" ).gameObject.SetActive(true);
 	}
 	
 	

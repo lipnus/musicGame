@@ -56,12 +56,12 @@ public class ShopApp : MonoBehaviour {
 		ItemInfo item = Utils.getItemInfo(curCode);
 		int point = Utils.getPoint();
 		
-		Debug.Log("구매구매" + item.Code);
+		Debug.Log("onClick_purchase()" + item.Code);
 		
 		if (item.Perchase == 0) {	//의류구매
 			buyColth(item, point);
 		}else if (item.Perchase == 1) {	 //악세사리 구매
-			buyAccessory(item, point);
+			buyAccessory(item);
 		}
 		
 		refreshState();
@@ -77,12 +77,11 @@ public class ShopApp : MonoBehaviour {
 	}
 	
 
-	public void buyAccessory(ItemInfo item, int point) {
+	public void buyAccessory(ItemInfo item) {
 		
-		Debug.Log("악세사리 구매");
+		Debug.Log( "buyAccessory()" );
 		soundManager.playSound(3); //구매
 		iapManager.purchaseItem(item.Code);
-		
 	}
 
 	
@@ -218,7 +217,18 @@ public class ShopApp : MonoBehaviour {
 		wore_img.active = false;
 		
 		if (Utils.isHaveItem(curCode)) {
-			if (Utils.isWearItem(curCode)) wore_img.active = true;
+			if (Utils.isWearItem(curCode)) {
+
+				//착용중표시(특정 아이템은 전용 텍스트 사용)
+				Text stateText = wore_img.transform.Find("app_wore_text").GetComponent<Text>();
+				if (curCode==403) stateText.text = "꾸준히 복용중";
+				else if (curCode == 400) stateText.text = "뿌림";
+				else if (curCode==402) stateText.text = "잘 들고다님";
+				else stateText.text = "착용중";
+				
+				wore_img.active = true;
+
+			}
 			else wear_btn.active = true;
 		}
 		else {

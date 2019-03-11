@@ -10681,6 +10681,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 223848661153516890, guid: a49032737cdc84032a397b57ad93afaf,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1835637044}
     - target: {fileID: 224829976543341274, guid: a49032737cdc84032a397b57ad93afaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10786,11 +10791,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223848661153516890, guid: a49032737cdc84032a397b57ad93afaf,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1835637044}
     - target: {fileID: 521024320, guid: a49032737cdc84032a397b57ad93afaf, type: 3}
       propertyPath: m_Text
       value: "BGM Banana\nProd. DCQ BEATZ\xAE"
@@ -10812,6 +10812,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49032737cdc84032a397b57ad93afaf, type: 3}
+--- !u!114 &1359743594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1998695630, guid: a49032737cdc84032a397b57ad93afaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1359743593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1370592336
 GameObject:
   m_ObjectHideFlags: 0
@@ -14453,6 +14465,11 @@ PrefabInstance:
       propertyPath: accesories.Array.data[2]
       value: 
       objectReference: {fileID: 1225645692}
+    - target: {fileID: 2983513126922725039, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
+        type: 3}
+      propertyPath: accesories.Array.data[3]
+      value: 
+      objectReference: {fileID: 1359743594}
     - target: {fileID: 1346138473642811133, guid: 8803b6efbe77c48b1984ed5ba9e91a93,
         type: 3}
       propertyPath: m_Name

@@ -7,29 +7,35 @@ using UnityEngine.Purchasing.Security;
 namespace Script.Utils {
     public class IAPManager: MonoBehaviour, IStoreListener {
         
-        private static IStoreController storeControler = null;
-        private string[] sProductIds;
+        private static IStoreController storeControler;
         public ShopApp shopApp;
+
         
+        private string[] sProductIds = {
+            "item_passive_number5", 
+            "item_passive_airpods", 
+            "item_passive_tumbler",
+            "item_passive_redginseng",
+        };
         
 
-        private void Awake() {
-            
-            if (storeControler==null) {
-                Debug.Log("Awake()");
-                sProductIds = new string[] {"item_passive_number5", "item_passive_airpods", "item_passive_tumbler" };
+        private void Start() {
+            if (storeControler == null) {
+                Debug.Log("storeControler == 널");
                 initStore();
             }
-            
+            else Debug.Log("storeControler!=널");
         }
 
+        
+        
         void initStore() {
             
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-            builder.AddProduct(sProductIds[0], ProductType.NonConsumable, new IDs{ {sProductIds[0], GooglePlay.Name} });
-            builder.AddProduct(sProductIds[1], ProductType.NonConsumable, new IDs{ {sProductIds[1], GooglePlay.Name} });
-            builder.AddProduct(sProductIds[2], ProductType.NonConsumable, new IDs{ {sProductIds[2], GooglePlay.Name} });
-            
+
+            for (int i = 0; i < sProductIds.Length; i++) {
+                builder.AddProduct(sProductIds[i], ProductType.NonConsumable, new IDs{ {sProductIds[i], GooglePlay.Name} });
+            }
             UnityPurchasing.Initialize(this, builder);
         }
 
@@ -37,7 +43,7 @@ namespace Script.Utils {
 
             if (storeControler == null) {
                 initStore();
-                Debug.Log("결재실패. 결재기능 초기화 실패, 재시도함");
+                Debug.Log("결재실패. 원인:결재기능 초기화 실패 -> 재시도");
             }
             else {
 
@@ -46,7 +52,7 @@ namespace Script.Utils {
                 if (item == 400) index = 0; //샤넬No5
                 else if (item == 401) index = 1; //에어팟
                 else if (item == 402) index = 2; //스벅텀블러
-                
+                else if (item == 403) index = 3; //정관장홍삼정
                 else return;
                 
                 storeControler.InitiatePurchase(sProductIds[index]);                
@@ -85,9 +91,12 @@ namespace Script.Utils {
                 }
                 else if(e.purchasedProduct.definition.id.Equals(sProductIds[1])){ //에어팟
                     buyAirPods();                    
-
-                }else if (e.purchasedProduct.definition.id.Equals(sProductIds[2])) { //스벅텀블러
+                }
+                else if (e.purchasedProduct.definition.id.Equals(sProductIds[2])) { //스벅텀블러
                     buyTumbler();
+                }
+                else if (e.purchasedProduct.definition.id.Equals(sProductIds[3])) { //정관장 홍삼정
+                    buyRedGinseng();
                 }
             }
 
@@ -112,6 +121,12 @@ namespace Script.Utils {
         private void buyTumbler() {
             Debug.Log("텀블러 삼");
             global::Utils.addMyItem(402);
+            shopApp.refreshState();
+        }
+
+        private void buyRedGinseng() {
+            Debug.Log("홍삼정 삼");
+            global::Utils.addMyItem(403);
             shopApp.refreshState();
         }
 

@@ -273,5 +273,9 @@ public class User : MonoBehaviour
         //스벅 텀블러
         if (Utils.isHaveItem(402)) accesories[2].color = new Color (1f, 1f, 1f, 1f);
         else accesories[2].color = new Color (1f, 1f, 1f, INACTIVE);
+        
+        //정관장 홍삼정
+        if (Utils.isHaveItem(403)) accesories[3].color = new Color (1f, 1f, 1f, 1f);
+        else accesories[3].color = new Color (1f, 1f, 1f, INACTIVE);
     }
 }

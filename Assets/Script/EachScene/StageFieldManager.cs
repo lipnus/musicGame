@@ -221,7 +221,7 @@ public class StageFieldManager : MonoBehaviour {
 		if (Utils.getPlayData().bossLife == 2) {
 			float catScale = 3.3f;
 			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
-			bossCat.transform.FindChild("catArea").gameObject.GetComponent<CatObject>().quizType =
+			bossCat.transform.Find("catArea").gameObject.GetComponent<CatObject>().quizType =
 				CatObject.QuizType.Initial;
 
 		}
