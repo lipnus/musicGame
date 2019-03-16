@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class UnityAdsManager_Rewarded : MonoBehaviour
@@ -8,28 +10,24 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 	private string iosGameId = "2887673";
 	private bool testMode;
 
+	public GameObject bonusCanvas;
 	private BonusType bonusType;
-
 	public DieManager dieManager;
+	
+	private string gameId = null;
 	
 	private void Awake() {
 	
 		Debug.Log("ad init");
-		string gameId = null;
-     
+		
 			#if UNITY_ANDROID
-			gameId = androidGameId;
+				gameId = androidGameId;
 			#elif UNITY_IOS
-            gameId = iosGameId;
+				gameId = iosGameId;
 			#endif
      
 		
-		//초기화
-		if (Advertisement.isSupported && !Advertisement.isInitialized) {
-			Advertisement.Initialize(gameId, testMode);
-		}
- 
-		
+	
 		//한번 부활한 경우 보너스 없음
 		if (Utils.getPlayData().isRivival) {
 			dieManager.initScene(BonusType.Normal);
@@ -42,33 +40,54 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 		else bonusType = BonusType.Normal; //일반
 		
 		
-		//봐야할 광고수만큼 광고시청(아이템 구매했으면 getPlayData().ad가 0임)
-		if (Utils.getPlayData().ad > 0) ShowRewardedAd(); 
-		else dieManager.initScene(bonusType);
+		//아이템을 구매했거나 보너스가 없으면 광고안봄
+		if (Utils.getPlayData().ad == 0 || bonusType == BonusType.Normal) dieManager.initScene(bonusType);
+		else startAd();
+	}
+
+
+	private void startAd() {
+		
+		Debug.Log("startAd()");
+		
+		//보너스 씬 표시
+		bonusCanvas.active = true;
+
+		//초기화
+		if (Advertisement.isSupported && !Advertisement.isInitialized) {
+			Advertisement.Initialize(gameId, testMode);
+		}
+		StartCoroutine(playAd());
 	}
 	
 	
-	//광고 보여주기
-	public void ShowRewardedAd()
-	{
-		Debug.Log("ShowRewardedAd()");
+	//광고재생
+	IEnumerator playAd() {
+		
+		Debug.Log("playAd()");
+		
+		yield return new WaitForSeconds(1f);
 		if (Advertisement.IsReady("rewardedVideo"))
 		{
-            // 광고가 끝난 뒤 콜백함수 "HandleShowResult" 호출
+			// 광고가 끝난 뒤 콜백함수 "HandleShowResult" 호출
 			Utils.modifyPlaydataAd(-1); //시청해야 되는 광고횟수 -1
-            var options = new ShowOptions { resultCallback = HandleShowResult };
+			var options = new ShowOptions { resultCallback = HandleShowResult };
 			Advertisement.Show("rewardedVideo", options);
 		}
+		else {
+			StartCoroutine(playAd());
+		}
 	}
+
+
 
 	
     // 광고가 종료된 후 호출
 	private void HandleShowResult(ShowResult result)
 	{
-		
+		bonusCanvas.active = false;
 		dieManager.initScene(bonusType);
 
-		
 		switch (result)
 		{
 		case ShowResult.Finished:

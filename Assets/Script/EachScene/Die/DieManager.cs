@@ -27,12 +27,17 @@ public class DieManager : MonoBehaviour {
 	public Text PlayDataResultText;
 
 	public GameObject bonusButtons;
+
+	public GameObject canvas;
 	
 	
 
 	
 	//광고종료시에 얘를 호출
 	public void initScene(BonusType bonusType) {
+		
+		//canvas 활성화
+		canvas.active = true;
 		
 		//결과표시
 		showPlayData();

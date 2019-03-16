@@ -3425,21 +3425,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -542.98
       objectReference: {fileID: 0}
-    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
-        type: 3}
-      propertyPath: m_UsedByEffector
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 212000872689012222, guid: ea915bf73f1a94cc08c718bfe8db76fc,
         type: 3}
       propertyPath: m_Sprite
@@ -3455,6 +3440,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FlipY
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea915bf73f1a94cc08c718bfe8db76fc, type: 3}
@@ -13099,7 +13099,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.8148608, y: -1.6377174}
+  m_Offset: {x: -2.2184172, y: -1.9449773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -13110,7 +13110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0095272, y: 1.2942994}
+  m_Size: {x: 2.5034575, y: 0.6797795}
   m_EdgeRadius: 0
 --- !u!50 &890848641
 Rigidbody2D:
@@ -17392,6 +17392,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -542.98
       objectReference: {fileID: 0}
+    - target: {fileID: 212000872689012222, guid: ea915bf73f1a94cc08c718bfe8db76fc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08fa090585523480281c1e12dc48788d,
+        type: 3}
     - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -17407,12 +17413,6 @@ PrefabInstance:
       propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212000872689012222, guid: ea915bf73f1a94cc08c718bfe8db76fc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 08fa090585523480281c1e12dc48788d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea915bf73f1a94cc08c718bfe8db76fc, type: 3}
 --- !u!4 &1226041962 stripped
@@ -18536,6 +18536,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8756881
       objectReference: {fileID: 0}
+    - target: {fileID: 212000872689012222, guid: ea915bf73f1a94cc08c718bfe8db76fc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1fd278a42688541469241f6ce2c45de2,
+        type: 3}
     - target: {fileID: 61161832635127958, guid: ea915bf73f1a94cc08c718bfe8db76fc,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -18551,12 +18557,6 @@ PrefabInstance:
       propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212000872689012222, guid: ea915bf73f1a94cc08c718bfe8db76fc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1fd278a42688541469241f6ce2c45de2,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea915bf73f1a94cc08c718bfe8db76fc, type: 3}
 --- !u!4 &1333151329 stripped
@@ -19613,16 +19613,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 114397596104462946, guid: a49032737cdc84032a397b57ad93afaf,
-        type: 3}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114904631016046878, guid: a49032737cdc84032a397b57ad93afaf,
-        type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 223848661153516890, guid: a49032737cdc84032a397b57ad93afaf,
         type: 3}
       propertyPath: m_Camera
@@ -19733,9 +19723,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114904631016046878, guid: a49032737cdc84032a397b57ad93afaf,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 521024320, guid: a49032737cdc84032a397b57ad93afaf, type: 3}
       propertyPath: m_Text
       value: "BGM Banana\nProd. DCQ BEATZ\xAE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114397596104462946, guid: a49032737cdc84032a397b57ad93afaf,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49032737cdc84032a397b57ad93afaf, type: 3}

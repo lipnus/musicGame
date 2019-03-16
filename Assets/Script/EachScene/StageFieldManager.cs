@@ -31,7 +31,8 @@ public class StageFieldManager : MonoBehaviour {
 			}
 		}
 		
-		if (user.GetComponent<User>().catCollision) { //야옹충돌 이벤트 이후
+		//야옹충돌 이벤트 이후
+		if (user.GetComponent<User>().catCollision) { 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 			if (hit && hit.collider.gameObject.name.Equals("catArea")) {
@@ -155,7 +156,7 @@ public class StageFieldManager : MonoBehaviour {
 
 	//퀴즈씬으로 이동
 	public void quizStart(String quizType) {
-		savePosition(); //현재 레이어(유저포함)들의 위치를 전역에 기억
+		savePosition(); //현재 레이어(유저포함)들의 위치를 전역위치에 기억
 		SceneManager.LoadScene(quizType);		
 	}
 	
@@ -218,21 +219,23 @@ public class StageFieldManager : MonoBehaviour {
 
 	public void setBossCat() {		
 		
+		//한번 줄어듦
 		if (Utils.getPlayData().bossLife == 2) {
 			float catScale = 3.3f;
 			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
 			bossCat.transform.Find("catArea").gameObject.GetComponent<CatObject>().quizType =
 				CatObject.QuizType.Initial;
-
 		}
 
+		//두번 줄어듦
 		if (Utils.getPlayData().bossLife == 1) {
 			float catScale = 0.8f;
 			bossCat.transform.localScale = new Vector3(catScale, catScale, 1f);
 			bossCat.GetComponent<BoxCollider2D>().size = new Vector2(30f, 5f);
 			bossCat.GetComponent<CatObject>().quizType = CatObject.QuizType.Initial;
 		}
-
+		
+		//없어짐
 		if (Utils.getPlayData().bossLife == 0) {
 			bossCat.active = false;
 		}
