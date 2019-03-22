@@ -19,7 +19,6 @@ public class AnswerBox : MonoBehaviour
 			//원래 답안이 들어와 있던 상황에서 다른 게 들어옴
 			if (mText != null && col.collider.GetComponent<Text>().text != mText.text) {
 				mText.GetComponent<InitialText>().comebackToStartPoint();
-				soundManager.okPlay();
 
 			}
 			//빈칸에 다른 게 들어옴
@@ -27,8 +26,6 @@ public class AnswerBox : MonoBehaviour
 				col.collider.gameObject.transform.position = transform.position; //위치를 박스 안으로 고정
 				col.collider.GetComponent<InitialText>().submit = true;
 				mText = col.collider.GetComponent<Text>();
-				soundManager.okPlay();
-
 			}
 		}
 	}
