@@ -33,7 +33,9 @@ public class DieText{
         list.Add("세계는 이젠 음악을 받아들이지 않는다.\n왜냐하면 음악이 이미 세계를 받아들였기 때문이다.\n\nGeorg Simmel");
         list.Add("사람을 화나게 하는 방법은 두가지가 있다.\n첫번째는 말을 끝까지 하지 않는 것이고..\n\nAmumal Big Festival");
         list.Add("엔딩까지 함께 하는 방안을 진지하게 숙고했습니다만,\n아쉽게도 이번 플레이에서는 함께하기 어렵게 되었다는 말씀을 전하게 되었습니다.\n\n엔딩담당자");
-        list.Add("So you need to stop checking these bitches and keep your dick in.\nNiggas need to go back to the OG[1] penitentiary days and start jacking off.\n\n2Pac");
+        list.Add("비트와 밀당을 하는 나, 힙합밀당녀!\n\n육지담");
+        list.Add("짬에서 나오는 바이브가 있을 거에요.\n\n원썬");
+        list.Add("So you need to stop checking these bitches and keep your dick in.\nNiggas need to go back to the OG penitentiary days and start jacking off.\n\n2Pac");
 
         
     }

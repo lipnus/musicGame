@@ -392,9 +392,9 @@ public static class Utils {
         items.Add(item);
         item = new ItemInfo(0, 101, "아크네 맨투맨", 25000, "전체보기 > 상의 > 맨투맨");
         items.Add(item);
-        item = new ItemInfo(0, 102, "준지 오픈카라셔츠", 10, "전체보기 > 상의 > 셔츠");
+        item = new ItemInfo(0, 102, "준지 오픈카라셔츠", 32000, "전체보기 > 상의 > 셔츠");
         items.Add(item);
-        item = new ItemInfo(0, 103, "발렌시아가 무스탕", 10, "전체보기 > 상의 > 무스탕");
+        item = new ItemInfo(0, 103, "발렌시아가 무스탕", 50000, "전체보기 > 상의 > 무스탕");
         items.Add(item);
         
                 
@@ -412,7 +412,7 @@ public static class Utils {
         items.Add(item);
         item = new ItemInfo(0, 302, "이지 부스트", 40000, "전체보기 > 신발 > 운동화");
         items.Add(item);
-        item = new ItemInfo(0, 303, "생로랑 첼시부츠", 1, "전체보기 > 신발 > 부츠");
+        item = new ItemInfo(0, 303, "생로랑 첼시부츠", 35000, "전체보기 > 신발 > 부츠");
         items.Add(item);
         
         //패시브아이템
