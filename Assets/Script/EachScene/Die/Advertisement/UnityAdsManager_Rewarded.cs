@@ -34,10 +34,11 @@ public class UnityAdsManager_Rewarded : MonoBehaviour
 			return;
 		}
 		
+		//인생은 로또
 		int lotto = Random.Range(0, 10);
-		if (8 < lotto) bonusType = BonusType.Rivival; //부활
-		else if (2 < lotto) bonusType = BonusType.PointBonus; //포인트 보너스
-		else bonusType = BonusType.Normal; //일반
+		if (8 <= lotto && lotto <= 10) bonusType = BonusType.Rivival; //부활
+		else if (6 <= lotto && lotto <= 7) bonusType = BonusType.PointBonus; //포인트 보너스
+		else if( 0<= lotto && lotto <= 5) bonusType = BonusType.Normal; //일반
 		
 		
 		//아이템을 구매했거나 보너스가 없으면 광고안봄
