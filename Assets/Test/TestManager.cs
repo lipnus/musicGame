@@ -5,15 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class TestManager : MonoBehaviour {
 
+	public AudioSource audioSource;
+	
 	// Use this for initialization
 	void Start () {
 		
 		Debug.Log("테스트씬");
-		
+		audioSource.time = 10f;
+		audioSource.Play();
+
+
+
 		//테스트용, 반드시 지울것
-		PlayerPrefs.DeleteAll();
-		Utils.resetPlayData();
-		SceneManager.LoadSceneAsync("RiverScene");
+//		PlayerPrefs.DeleteAll();
+//		Utils.resetPlayData();
+//		SceneManager.LoadSceneAsync("RiverScene");
 //		PlayerPrefs.SetString();
 //		Utils.firstGift();
 //		Utils.addMyItem(1818);

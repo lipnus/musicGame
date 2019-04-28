@@ -31,6 +31,7 @@ public class StageFieldManager : MonoBehaviour {
 			}
 		}
 		
+		
 		//야옹충돌 이벤트 이후
 		if (user.GetComponent<User>().catCollision) { 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -44,7 +45,6 @@ public class StageFieldManager : MonoBehaviour {
 				else if ( catObj.quizType==CatObject.QuizType.Choice ) quizStart("Quiz_choice");
 			}
 		}
-		
 	}
 	
 	
@@ -70,11 +70,13 @@ public class StageFieldManager : MonoBehaviour {
 			returnFromMusicQuiz();
 		}
 		
-		
 		//마지막미션인 경우
 		if (Application.loadedLevelName.Equals("RiverScene")) {
 			setBossCat();
 		}
+		
+		//배경음악 재생
+		soundManager.playBackgroundMusic();
 	}
 	
 	
@@ -111,7 +113,7 @@ public class StageFieldManager : MonoBehaviour {
 			
 			//사망여부확인
 			if (Utils.getLife() <= 0) {
-				savePosition(); //부활을 대비해서 현제상태 기억
+				saveUserState(); //부활을 대비해서 현제상태 기억
 				StartCoroutine(userDie(1));
 			}
 		}
@@ -156,14 +158,16 @@ public class StageFieldManager : MonoBehaviour {
 
 	//퀴즈씬으로 이동
 	public void quizStart(String quizType) {
-		savePosition(); //현재 레이어(유저포함)들의 위치를 전역위치에 기억
+		saveUserState(); //현재 레이어(유저포함)들의 위치를 전역위치에 기억
 		SceneManager.LoadScene(quizType);		
 	}
 	
 
-	//모든 레이어의 위치를 전역에 저장
-	public void savePosition() {
-		Utils.sceneName = Application.loadedLevelName; //스테이지 기억
+	//현재 상태를 임시 저장
+	public void saveUserState() {
+		
+		//스테이지 기억
+		Utils.sceneName = Application.loadedLevelName; 
 		
 		//레이어위치 저장
 		Utils.positionHolder.Clear();
@@ -173,6 +177,9 @@ public class StageFieldManager : MonoBehaviour {
 		
 		//유저위치 저장
 		Utils.userPosition = user.transform.position;
+		
+		//배경음악 재생위치 저장
+		Utils.backgroundMusicTime = soundManager.getBackgroundMusicTime();
 	}
 	
 	
@@ -239,10 +246,6 @@ public class StageFieldManager : MonoBehaviour {
 		if (Utils.getPlayData().bossLife == 0) {
 			bossCat.active = false;
 		}
-		
-				
 	}
 	
-	
-
 }

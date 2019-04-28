@@ -9,14 +9,13 @@ using UnityEngine.UI;
 
 public static class Utils {
     
-
-
     
     //퀴즈 <-> 필드 사이의 데이터 전달을 위한 변수들
     //public static int userPosition=0;
     public static Vector3 userPosition = new Vector3(0,0,0); //위치 기억
     public static int lifeEvent; // -1:오답, 0:정답, 1:보너스
     public static string sceneName;
+    public static float backgroundMusicTime; //배경음악 재생위치
     
     public static List<Vector3> positionHolder = new List<Vector3>(); //오브젝트들의 위치를 저장
     

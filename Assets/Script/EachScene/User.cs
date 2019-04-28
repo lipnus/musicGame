@@ -176,6 +176,10 @@ public class User : MonoBehaviour
         
         icons[3].GetComponent<Animator>().SetBool("icon_b", true); //지하철
         SubwayObject subwayObj = col.GetComponent<SubwayObject>();
+
+        //배경음악 처음부터
+        Utils.backgroundMusicTime = 0;
+        
         subwayObj.startSubway();
 
     }

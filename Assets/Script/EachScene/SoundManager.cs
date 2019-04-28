@@ -49,8 +49,47 @@ public class SoundManager : MonoBehaviour {
 		clickSound.GetComponent<AudioSource>().Play();
 	}
 	
-	//voodoo배경음악
+	//배경음악
 	public void backgroundMusicPlay() {
-		backgroundMusic.GetComponent<AudioSource>().Play();
+		backgroundMusic.GetComponent<AudioSource>().Play();		
+	}
+	
+	//배경음악 위치
+	public float getBackgroundMusicTime() {
+		return backgroundMusic.time;
+	}
+
+	public void playBackgroundMusic() {
+		
+		if(Utils.backgroundMusicTime!=null){
+			backgroundMusic.time = Utils.backgroundMusicTime;
+			StartCoroutine(FadeIn(backgroundMusic, 4f));
+		}
+		else {
+			backgroundMusic.Play();
+		}
+	}
+	
+	
+	
+	//사운드 페이드아웃
+	public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime) {
+		float startVolume = audioSource.volume;
+		while (audioSource.volume > 0) {
+			audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+			yield return null;
+		}
+		audioSource.Stop();
+	}
+	
+	
+	//사운드 페이드인
+	public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime) {
+		audioSource.Play();
+		audioSource.volume = 0.1f;
+		while (audioSource.volume < 0.8f) {
+			audioSource.volume += Time.deltaTime / FadeTime;
+			yield return null;
+		}
 	}
 }
