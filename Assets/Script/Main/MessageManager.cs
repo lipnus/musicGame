@@ -57,5 +57,24 @@ public class MessageManager : MonoBehaviour {
         bulletText.text = count.ToString();
         Debug.Log("showBulletNum");
     }
+    
+    
+    
+    // 전시용
+    public void exhb_setMessage() {
+        
+        //읽지 않은 메시지 개수 표시
+        showBulletNum(3);
+        
+        //메시지 할당
+        dateTexts[0].text = "2019/05/01";
+        msgTexts[0].text = "YCK전시회에 오신 여러분 환영해요!";
+        
+        dateTexts[1].text = "2019/05/01";
+        msgTexts[1].text = "심쿵 고양이 음악게임 뚜룬 베타버전입니다.";
+        
+        dateTexts[2].text = "2019/05/01";
+        msgTexts[2].text = "플레이스토어에서 '뚜룬'을 검색해주세요!";
+    }
 
 }

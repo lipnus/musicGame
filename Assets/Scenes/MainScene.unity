@@ -11892,7 +11892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1341316079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13676,11 +13676,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1087730207532847121, guid: 915ff5c09ea9d446aac4b0688b31c421,
-        type: 3}
-      propertyPath: m_Text
-      value: "\uD3EC\uC778\uD2B8\uAC00 \uBD80\uC871\uD569\uB2C8\uB2E4"
-      objectReference: {fileID: 0}
     - target: {fileID: 1087730207597410272, guid: 915ff5c09ea9d446aac4b0688b31c421,
         type: 3}
       propertyPath: m_Color.r
@@ -13695,6 +13690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087730207532847121, guid: 915ff5c09ea9d446aac4b0688b31c421,
+        type: 3}
+      propertyPath: m_Text
+      value: "\uD3EC\uC778\uD2B8\uAC00 \uBD80\uC871\uD569\uB2C8\uB2E4"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915ff5c09ea9d446aac4b0688b31c421, type: 3}

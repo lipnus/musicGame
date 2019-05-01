@@ -11,10 +11,9 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource clickSound;
 	public AudioSource okSound;
 	public AudioSource backgroundMusic;
-
 	
 	
-
+	
     //임의의 멜로디
     public void notePlay(){
         int idx = Random.Range(0, noteSounds.Count-1);
@@ -44,15 +43,18 @@ public class SoundManager : MonoBehaviour {
 		correctSound.GetComponent<AudioSource>().Play();
 	}
 	
+	
 	//클릭
 	public void clickPlay() {
 		clickSound.GetComponent<AudioSource>().Play();
 	}
 	
+	
 	//배경음악
 	public void backgroundMusicPlay() {
 		backgroundMusic.GetComponent<AudioSource>().Play();		
 	}
+	
 	
 	//배경음악 위치
 	public float getBackgroundMusicTime() {
@@ -81,6 +83,7 @@ public class SoundManager : MonoBehaviour {
 		}
 		audioSource.Stop();
 	}
+	
 	
 	
 	//사운드 페이드인

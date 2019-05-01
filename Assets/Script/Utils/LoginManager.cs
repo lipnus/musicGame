@@ -17,7 +17,6 @@ public class LoginManager : MonoBehaviour {
 
 
 	void Start() {
-
 		signIn();
 	}
 	

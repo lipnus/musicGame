@@ -23,6 +23,9 @@ public class RankingManager : MonoBehaviour {
         setCorrectText();
         setPercentText();
         setGameClearText();
+        
+        setUserRankingText(1);
+        exhibit_setRankBox();
     }
 
 
@@ -59,8 +62,9 @@ public class RankingManager : MonoBehaviour {
         int gameClear = Utils.getGameClear();
         int score = 20 * gameClear + correct - wrong;
         
-        connectServer.requestUserRank( score );
-        connectServer.requestAccumulateRanking( rankBox.Count );
+//        
+//        connectServer.requestUserRank( score );
+//        connectServer.requestAccumulateRanking( rankBox.Count );
         
     }
 
@@ -125,4 +129,53 @@ public class RankingManager : MonoBehaviour {
     }
     
     
+    
+    
+  
+
+    //connectServer에서 호출
+    public void exhibit_setRankBox() {
+
+        rankBox[0].transform.Find("nicknameText").GetComponent<Text>().text = "여기";
+        rankBox[0].transform.Find("scoreText").GetComponent<Text>().text = "100";
+        
+        rankBox[1].transform.Find("nicknameText").GetComponent<Text>().text = "와이파이가";
+        rankBox[1].transform.Find("scoreText").GetComponent<Text>().text = "90";
+        
+        rankBox[2].transform.Find("nicknameText").GetComponent<Text>().text = "안돼요ㅜㅜ";
+        rankBox[2].transform.Find("scoreText").GetComponent<Text>().text = "80";
+
+
+
+        rankBox[3].transform.Find("rankText").GetComponent<Text>().text = "4";
+        rankBox[3].transform.Find("nicknameText").GetComponent<Text>().text = "BTS";
+        rankBox[3].transform.Find("scoreText").GetComponent<Text>().text = "70";
+        
+        rankBox[4].transform.Find("rankText").GetComponent<Text>().text = "5";
+        rankBox[4].transform.Find("nicknameText").GetComponent<Text>().text = "TWICE";
+        rankBox[4].transform.Find("scoreText").GetComponent<Text>().text = "60";
+        
+        rankBox[5].transform.Find("rankText").GetComponent<Text>().text = "6";
+        rankBox[5].transform.Find("nicknameText").GetComponent<Text>().text = "타노스";
+        rankBox[5].transform.Find("scoreText").GetComponent<Text>().text = "40";
+        
+        rankBox[6].transform.Find("rankText").GetComponent<Text>().text = "7";
+        rankBox[6].transform.Find("nicknameText").GetComponent<Text>().text = "아이엠그루트";
+        rankBox[6].transform.Find("scoreText").GetComponent<Text>().text = "30";
+        
+        rankBox[7].transform.Find("rankText").GetComponent<Text>().text = "8";
+        rankBox[7].transform.Find("nicknameText").GetComponent<Text>().text = "태진아";
+        rankBox[7].transform.Find("scoreText").GetComponent<Text>().text = "20";
+        
+        rankBox[8].transform.Find("rankText").GetComponent<Text>().text = "9";
+        rankBox[8].transform.Find("nicknameText").GetComponent<Text>().text = "엄복동";
+        rankBox[8].transform.Find("scoreText").GetComponent<Text>().text = "10"; 
+        
+        rankBox[9].transform.Find("rankText").GetComponent<Text>().text = "10";
+        rankBox[9].transform.Find("nicknameText").GetComponent<Text>().text = "술한잔했습니다";
+        rankBox[9].transform.Find("scoreText").GetComponent<Text>().text = "5"; 
+         
+
+
+    }
 }

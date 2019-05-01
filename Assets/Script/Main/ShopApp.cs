@@ -65,9 +65,7 @@ public class ShopApp : MonoBehaviour {
 		}
 		
 		refreshState();
-		
 	}
-
 
 
 	public void refreshState() {
@@ -152,14 +150,15 @@ public class ShopApp : MonoBehaviour {
 				transform.Find("empty_heart_img").GetComponent<Image>().sprite;
 			heartSelected = false;
 		}
-
 	}
 
+	
 	public void cancelHeart() {
 		heart_img.GetComponent<Image>().sprite = GameObject.Find("app_heart_img").
 			transform.Find("empty_heart_img").GetComponent<Image>().sprite;
 		heartSelected = false;
 	}
+	
 	
 	//정보 삭제
 	public void removeInfo() {
@@ -190,6 +189,7 @@ public class ShopApp : MonoBehaviour {
 
 	}
 	
+	
 	//하트출력
 	public void showHeart() {
 		heart_img.active = true;
@@ -198,11 +198,13 @@ public class ShopApp : MonoBehaviour {
 		heartSelected = false;
 	}
 
+	
 	//음표출력
 	public void showNote() {
 		coin_img.active = false;
 		note_img.active = true;
 	}
+	
 	
 	//코인출력
 	public void showCoin() {
@@ -210,6 +212,7 @@ public class ShopApp : MonoBehaviour {
 		coin_img.active = true;
 	}
 
+	
 	//버튼출력(구매,착용,착용중)
 	public void showBtn() {
 		purchase_btn.active = false;

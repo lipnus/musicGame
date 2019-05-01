@@ -22,12 +22,27 @@ public class QuizManager1 : MonoBehaviour{
 	public ConnectServer connectServer;
 
 	void Start() {
-		connectServer.quiz_1( Utils.difficulty );
+//		connectServer.quiz_1( Utils.difficulty );
+		exhi_init();
+		
 		
 		//n동안 가이드 텍스트 표시
 		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(0.8f));
-
 	}
+
+
+	void exhi_init() {
+		MusicInfo musicInfo = new MusicInfo();
+		musicInfo.music_pk = "1";
+		musicInfo.title = "벌써일년";
+		musicInfo.singer = "브라운아이즈";
+		musicInfo.initial = "ㅂㅆㅇㄴ";
+		musicInfo.path = "벌써일년.mp3";
+		
+		setGame(musicInfo);
+	
+	}
+	
 
 	IEnumerator showGuideText(float delayTime) {
 		midText.active = true;
@@ -128,10 +143,10 @@ public class QuizManager1 : MonoBehaviour{
 			//정답일 때
 			if (result){
 				Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),1);
+//				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),1);
 			}else{
 				Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
-				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0);
+//				connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0);
 			}
 			
 			//복귀
@@ -160,7 +175,7 @@ public class QuizManager1 : MonoBehaviour{
 		isSountPlay = true;
 		
 		float playTime = Utils.getPlayTime();
-		StartCoroutine(stopMusic(playTime));
+		StartCoroutine(stopMusic(2f));
 	}
 	
 	IEnumerator stopMusic(float delayTime) {
@@ -181,7 +196,7 @@ public class QuizManager1 : MonoBehaviour{
 		soundManager.correctPlay();
 		loadingText.active = true; //로딩
 		Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
-		connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0); //피드백처리
+//		connectServer.feedbackQuiz1(int.Parse(musicInfo.music_pk),0); //피드백처리
 		SceneManager.LoadSceneAsync( Utils.sceneName );
 	}
 

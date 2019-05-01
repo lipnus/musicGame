@@ -25,7 +25,8 @@ public class QuizManager2 : MonoBehaviour{
 	private bool buttonChecked = false;
 	
 	void Start() {
-		connectServer.quiz_2( Utils.difficulty );
+//		connectServer.quiz_2( Utils.difficulty );
+		exhi_initQuiz2();
 		sightMove();
 				
 		//초기화(올라가기 전엔 안보임)
@@ -40,6 +41,37 @@ public class QuizManager2 : MonoBehaviour{
 		if(!Utils.isGuide_Finished()) StartCoroutine(showGuideText(3f));
 
 	}
+
+
+	void exhi_initQuiz2() {
+		
+		Quiz quiz = new Quiz();
+		
+		quiz.musicInfo = new MusicInfo();
+		quiz.musicInfo.title = "작은 것들을 위한 시";
+		quiz.musicInfo.singer = "BTS";
+		quiz.musicInfo.music_pk = "2";
+
+		quiz.quiz_pk = 2;
+		quiz.choices[0] = new Choice();
+		quiz.choices[1] = new Choice();
+		quiz.choices[2] = new Choice();
+		
+		
+		
+		quiz.choices[0].choice = "사이렌";
+		quiz.choices[0].truth=0;
+		
+		quiz.choices[1].choice = "주저하는 연인들을 위해";
+		quiz.choices[1].truth=0;
+		
+		quiz.choices[2].choice = "작은 것들을 위한 시";
+		quiz.choices[2].truth=1;
+		
+		setGame(quiz);
+	
+	}
+	
 
 	IEnumerator showGuideText(float delayTime) {
 		midText.active = true;
@@ -145,10 +177,10 @@ public class QuizManager2 : MonoBehaviour{
 		//정답일 때
 		if ( quiz.choices[choice].truth==1 ){
 			Utils.lifeEvent = 0; //정답일때: 목숨 변동사항 없음
-			connectServer.feedbackQuiz2(quiz.quiz_pk, 1); //서버로 결과 피드백
+//			connectServer.feedbackQuiz2(quiz.quiz_pk, 1); //서버로 결과 피드백
 		}else{
 			Utils.lifeEvent = -1; //오답일때: 목숨 변동사항 있음
-			connectServer.feedbackQuiz2(quiz.quiz_pk, 0); //서버로 결과 피드백
+//			connectServer.feedbackQuiz2(quiz.quiz_pk, 0); //서버로 결과 피드백
 		}
 			
 		//복귀

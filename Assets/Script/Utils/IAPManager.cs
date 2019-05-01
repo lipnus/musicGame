@@ -39,6 +39,8 @@ namespace Script.Utils {
             UnityPurchasing.Initialize(this, builder);
         }
 
+        
+        
         public void purchaseItem(int item) {
 
             if (storeControler == null) {
@@ -57,9 +59,10 @@ namespace Script.Utils {
                 
                 storeControler.InitiatePurchase(sProductIds[index]);                
             }
-
         }
 
+        
+        
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs e) {
             bool isSuccess = true;
             

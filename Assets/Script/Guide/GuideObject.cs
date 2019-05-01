@@ -103,9 +103,10 @@ public class GuideObject : MonoBehaviour {
 	void endGuide() {
 		sub.active = true;
 		fieldManager.GetComponent<StageFieldManager>().pauseMove();
-		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다! \n 다음 스테이지로 이동합니다.";
+		midText.GetComponent<Text>().text = "튜토리얼 스테이지를 완료하였습니다. \n 플레이스토어에서 '뚜룬'을 검색해서 풀버전을 다운받으세요!";
 		midText.GetComponent<Animator>().SetBool("showText", true);
-		Utils.endGuide();
+		
+//		Utils.endGuide();
 		
 	}
 

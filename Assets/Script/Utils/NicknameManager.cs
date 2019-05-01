@@ -35,7 +35,8 @@ public class NicknameManager : MonoBehaviour {
         }
         
         nickname = inputField.text;
-        connectServer.nicknameCheck( nickname );
+        nicknameOK();
+//        connectServer.nicknameCheck( nickname );
     }
     
     //콜백

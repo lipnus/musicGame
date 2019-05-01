@@ -28,7 +28,8 @@ public class MainPageManager : MonoBehaviour {
 	
 //		PlayerPrefs.DeleteAll();
 //		Debug.Log("닉네임: " + Utils.getNickname());
-		 
+		Utils.firstGift();
+		Utils.setPoint(1);
 		downloadMessage();
 		
 	}
@@ -36,7 +37,8 @@ public class MainPageManager : MonoBehaviour {
  
 
 	public void downloadMessage() {
-		messageManager.downloadMessage();
+//		messageManager.downloadMessage();
+		messageManager.exhb_setMessage();
 	}
 	
 	
@@ -102,7 +104,7 @@ public class MainPageManager : MonoBehaviour {
 		ranking_page.active = false;
 
 		start_page.active = true;
-		messageManager.downloadMessage(); //메시지 업데이트
+//		messageManager.downloadMessage(); //메시지 업데이트
 		
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeIn(0.2f,BACK_OPPACITY);
 	}
@@ -115,6 +117,7 @@ public class MainPageManager : MonoBehaviour {
 		soundManager.playSound(0);//셔터소리
 	}
 	
+	
 	//게임시작
 	public void onClick_gamestart() {
 		soundManager.playSound(1); //클릭소리
@@ -124,8 +127,8 @@ public class MainPageManager : MonoBehaviour {
 		GameObject.Find("fadeEffect").GetComponent<FadeEffect>().FadeOut(1f, 1f);
 		StartCoroutine(bgMusicFadeOut(0.1f));
 		StartCoroutine(startGame(1.5f));
-		
 	}
+	
 	
 	IEnumerator bgMusicFadeOut(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
@@ -133,16 +136,20 @@ public class MainPageManager : MonoBehaviour {
 		StartCoroutine(bgMusicFadeOut(0.1f));
 	}
 
+	
 	IEnumerator startGame(float delayTime) {
 		yield return new WaitForSeconds(delayTime);
 
-		if (Utils.getNickname().Equals("empty_nickname")) {
-			SceneManager.LoadScene("NicknameScene");
-		}
-		else {
-			SceneManager.LoadScene("HomeScene");		
-		}
+		SceneManager.LoadScene("NicknameScene");
+
+//		if (Utils.getNickname().Equals("empty_nickname")) {
+//			SceneManager.LoadScene("NicknameScene");
+//		}
+//		else {
+//			SceneManager.LoadScene("HomeScene");		
+//		}
 	}
+	
 }
 
 	

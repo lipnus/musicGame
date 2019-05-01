@@ -258,23 +258,22 @@ public class ConnectServer : MonoBehaviour {
 
 
 	public void stremingSound() {
-		if (musicInfo!=null) StartCoroutine("streamingSound");
+		StartCoroutine("streamingSound");
+		Debug.Log("뭐야씨발");
 	}
 	
 	
 	
-	IEnumerator streamingSound() {
-		string musicPath = MUSIC_SERVER_PATH + "/" + musicInfo.path;
-		using (var www = new WWW(musicPath)){			
-			yield return www; //다운받을동안 대기
-			
-			source.clip = www.GetAudioClip();
+	IEnumerator streamingSound() { 	
+			yield return 0; //다운받을동안 대기
+			 
 			source.Play();		
+			Debug.Log("씨발");
 			
 			//지정된 시간만큼 음악을 틀어준다
 			float playTime = Utils.getPlayTime();
-			StartCoroutine(stopMusic(playTime));
-		}
+			StartCoroutine(stopMusic(2f));
+		
 	}
 	
 	IEnumerator stopMusic(float delayTime) {
